@@ -162,6 +162,20 @@ body {
 .cat-sports { background:#f0f5ff; color:#1d39c4; }
 .cat-exhibition { background:#fff7e6; color:#d46b08; }
 .cat-tech { background:#f6ffed; color:#389e0d; }
+.cat-album { background:#f0f5ff; color:#1d39c4; }
+.album-section { text-align:center; padding:40px 24px 8px; max-width:1200px; margin:0 auto; }
+.album-section h2 { font-size:22px; color:#1a1a2e; display:inline-block; padding-bottom:8px; border-bottom:3px solid #e94560; }
+.album-section .sub { font-size:13px; color:#999; margin-top:6px; }
+.album-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; padding:16px 24px 40px; max-width:1200px; margin:0 auto; }
+.album-card { background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,.08); transition:transform .25s,box-shadow .25s; text-decoration:none; color:inherit; display:block; }
+.album-card:hover { transform:translateY(-4px); box-shadow:0 8px 24px rgba(0,0,0,.12); }
+.album-img { width:100%; height:180px; object-fit:cover; background:#eef1f7; display:block; }
+.album-body { padding:12px 14px 14px; }
+.album-name { font-size:14px; font-weight:600; color:#1a1a2e; margin-bottom:4px; line-height:1.4; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.album-meta { font-size:12px; color:#999; }
+.album-meta span { margin-right:8px; }
+@media (max-width:600px) { .album-grid { grid-template-columns:1fr; padding:12px; } .album-img { height:160px; } }
+
 </style>
 </head>
 <body>
@@ -184,6 +198,14 @@ body {
 
 <div class="grid" id="grid">
   <div class="loading">加载作品中</div>
+</div>
+
+
+<div class="album-section">
+  <h2>📸 直播相册</h2>
+  <div class="sub">活动现场图片直播 · 点击查看</div>
+</div>
+<div class="album-grid" id="albumGrid">
 </div>
 
 <div class="modal-overlay" id="modal">
@@ -287,7 +309,39 @@ document.getElementById('modal').addEventListener('click', function(e) {
 });
 document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 
+
+var ALBUMS = [
+  {id:"a1", name:"盛世骉腾谱新篇 抢爆双鸿勇夺冠 — 中国太平洋人寿江苏分公司井冈山峰会暨开门红启动会", src:"alltuu", platform:"喔图", views:"", url:"https://m.alltuu.com/album/60729643c5fa97afc177e8717bb2442d?menu=live", thumb:"https://spu.alltuu.com/cover/ALBUM5885093/SHARE/4.jpg?x-oss-process=image/resize,w_400"},
+  {id:"a2", name:"江苏省分公司高客法商全员培训暨启动大会", src:"alltuu", platform:"喔图", views:"", url:"https://m.alltuu.com/album/5e944678b4e25ef2f4572b3e77ef2b0a?menu=live", thumb:"https://spu.alltuu.com/cover/ALBUM5849740/SHARE/2.jpg?x-oss-process=image/resize,w_400"},
+  {id:"a3", name:"上乘之选 聚力登峰 — 太平洋寿险江苏分公司绩优组织发展峰会", src:"alltuu", platform:"喔图", views:"", url:"https://m.alltuu.com/album/276d6006d13b0a849a04e0312d5497f5?menu=live", thumb:"https://spu.alltuu.com/cover/ALBUM5386330/SHARE/2.jpg?x-oss-process=image/resize,w_400"},
+  {id:"a4", name:"江苏银保条线2026年首季红表彰暨五六联动启动会议", src:"alltuu", platform:"喔图", views:"14,971", url:"https://m.alltuu.com/album/22677368d043a41b202f5b6d2401b2fe/?menu=live", thumb:"https://spu.alltuu.com/cover/ALBUM7254147/SHARE/3.jpg?x-oss-process=image/resize,w_400"},
+  {id:"a5", name:"江苏银保条线2026年首季红表彰（备用链接）", src:"alltuu", platform:"喔图", views:"", url:"https://m.alltuu.com/album/795162a4f81615b25b6bdbd9f9b83bfb/?menu=live", thumb:"https://spu.alltuu.com/cover/ALBUM7756877/SHARE/1.jpg?x-oss-process=image/resize,w_400"},
+  {id:"a6", name:"星耀龙江 守护相随 — 太保黑龙江分公司会议", src:"yipai360", platform:"一拍即传", views:"", url:"https://www.yipai360.com/photolivepc/?orderId=202510201303024936&channel=h5", thumb:""},
+  {id:"a7", name:"大师在你身边 相乐家园-成都站", src:"yipai360", platform:"一拍即传", views:"", url:"https://www.yipai360.com/photolivepc/?orderId=202408261858523839&channel=h5", thumb:""},
+];
+
+
+function renderAlbums() {
+  var grid = document.getElementById('albumGrid');
+  grid.innerHTML = ALBUMS.map(function(a) {
+    var thumbHtml = a.thumb ? '<img class="album-img" src="' + a.thumb + '" alt="' + a.name + '" loading="lazy">' 
+      : '<div class="album-img" style="display:flex;align-items:center;justify-content:center;color:#999;font-size:40px;background:#eef1f7;">📷</div>';
+    var viewsHtml = a.views ? '<span>👁️ ' + a.views + '</span>' : '';
+    return '<a class="album-card" href="' + a.url + '" target="_blank" rel="noopener">' +
+      thumbHtml +
+      '<div class="album-body">' +
+        '<div class="album-name">' + a.name + '</div>' +
+        '<div class="album-meta">' +
+          '<span>📱 ' + a.platform + '</span>' +
+          viewsHtml +
+        '</div>' +
+      '</div>' +
+    '</a>';
+  }).join('');
+}
+
 render('all');
+renderAlbums();
 </script>
 </body>
 </html>
