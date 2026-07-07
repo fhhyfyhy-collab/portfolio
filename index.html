@@ -187,8 +187,8 @@ body {
 </div>
 
 <div class="nav-bar">
-  <button class="nav-btn active" data-tab="projects">\U0001f4c4 方案</button>
-  <button class="nav-btn" data-tab="albums">\U0001f4f8 直播相册</button>
+  <button class="nav-btn active" data-tab="projects">📄 方案</button>
+  <button class="nav-btn" data-tab="albums">📸 直播相册</button>
 </div>
 
 <div class="stats" id="stats">共 9 个项目</div>
@@ -206,7 +206,7 @@ body {
     <div class="modal-title" id="modalTitle"></div>
     <div class="modal-meta" id="modalMeta"></div>
     <div class="modal-desc" id="modalDesc"></div>
-    <a class="modal-open-btn" id="modalOpenBtn" href="#" target="_blank">\U0001f4c4 打开PDF文件</a>
+    <a class="modal-open-btn" id="modalOpenBtn" href="#" target="_blank">📄 打开PDF文件</a>
   </div>
 </div>
 
@@ -223,7 +223,7 @@ function renderProjects() {
       '<img class="card-img" src="' + p.thumb + '" alt="' + p.title + '" loading="lazy">' +
       '<div class="card-body">' +
         '<div class="card-title">' + p.title + '</div>' +
-        '<div class="card-meta"><span>\U0001f4c4 ' + p.pages + ' \u9875</span><span>\U0001f4be ' + p.size + ' MB</span></div>' +
+        '<div class="card-meta"><span>📄 ' + p.pages + ' \u9875</span><span>💾 ' + p.size + ' MB</span></div>' +
         '<div class="card-desc">' + desc + '</div>' +
       '</div>' +
     '</div>';
@@ -233,13 +233,13 @@ function renderProjects() {
 function renderAlbums() {
   var grid = document.getElementById('albumGrid');
   grid.innerHTML = ALBUMS.map(function(a) {
-    var imgHtml = a.thumb ? '<img class="album-img" src="' + a.thumb + '" alt="' + a.name + '" loading="lazy">' : '<div class="album-placeholder">\U0001f4f7</div>';
-    var viewsHtml = a.views ? '<span>\U0001f441 ' + a.views + '</span>' : '';
+    var imgHtml = a.thumb ? '<img class="album-img" src="' + a.thumb + '" alt="' + a.name + '" loading="lazy">' : '<div class="album-placeholder">📷</div>';
+    var viewsHtml = a.views ? '<span>👁 ' + a.views + '</span>' : '';
     return '<a class="album-card" href="' + a.url + '" target="_blank" rel="noopener">' +
       imgHtml +
       '<div class="album-body">' +
         '<div class="album-name">' + a.name + '</div>' +
-        '<div class="album-meta"><span>\U0001f4f1 ' + a.platform + '</span>' + viewsHtml + '</div>' +
+        '<div class="album-meta"><span>📱 ' + a.platform + '</span>' + viewsHtml + '</div>' +
       '</div>' +
     '</a>';
   }).join('');
@@ -265,7 +265,7 @@ function openModal(id) {
   if (!p) return;
   document.getElementById('modalImg').src = p.thumb;
   document.getElementById('modalTitle').textContent = p.title;
-  document.getElementById('modalMeta').textContent = '\U0001f4c4 ' + p.pages + ' \u9875 \u00b7 \U0001f4be ' + p.size + ' MB';
+  document.getElementById('modalMeta').textContent = '📄 ' + p.pages + ' \u9875 \u00b7 💾 ' + p.size + ' MB';
   document.getElementById('modalDesc').innerHTML = '<p><strong>\u6587\u4ef6\uff1a</strong>' + p.file + '</p>' + (p.preview ? '<p style="margin-top:8px;">' + p.preview.substring(0,300).replace(/\n/g,'<br>') + '</p>' : '');
   document.getElementById('modalOpenBtn').href = encodeURI(p.file);
   document.getElementById('modal').classList.add('show');
