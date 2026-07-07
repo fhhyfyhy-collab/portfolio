@@ -163,9 +163,32 @@ body {
 .cat-exhibition { background:#fff7e6; color:#d46b08; }
 .cat-tech { background:#f6ffed; color:#389e0d; }
 .cat-album { background:#f0f5ff; color:#1d39c4; }
-.album-section { text-align:center; padding:40px 24px 8px; max-width:1200px; margin:0 auto; }
-.album-section h2 { font-size:22px; color:#1a1a2e; display:inline-block; padding-bottom:8px; border-bottom:3px solid #e94560; }
-.album-section .sub { font-size:13px; color:#999; margin-top:6px; }
+
+/* ===== NAV ===== */
+.nav-bar {
+  display: flex; justify-content: center; gap: 0;
+  padding: 24px 16px 12px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  position: sticky; top: 0; z-index: 10;
+}
+.nav-btn {
+  padding: 8px 36px;
+  border: 1px solid #ddd;
+  background: #fff;
+  font-size: 15px;
+  color: #666;
+  cursor: pointer;
+  transition: all .2s;
+  font-weight: 500;
+}
+.nav-btn:first-child { border-radius: 20px 0 0 20px; border-right: none; }
+.nav-btn:last-child { border-radius: 0 20px 20px 0; border-left: none; }
+.nav-btn:hover { color: #e94560; }
+.nav-btn.active { background: #e94560; color: #fff; border-color: #e94560; }
+.nav-btn.active + .nav-btn { border-left-color: #e94560; }
+
+
 .album-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; padding:16px 24px 40px; max-width:1200px; margin:0 auto; }
 .album-card { background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,.08); transition:transform .25s,box-shadow .25s; text-decoration:none; color:inherit; display:block; }
 .album-card:hover { transform:translateY(-4px); box-shadow:0 8px 24px rgba(0,0,0,.12); }
