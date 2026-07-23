@@ -1,391 +1,143 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>卢发达 · 作品集</title>
 <style>
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
-  font-family: 'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif;
-  background: #f5f6fa;
-  color: #1a1a2e;
-}
-.header {
-  background: linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);
-  color: #fff;
-  padding: 48px 24px 36px;
-  text-align: center;
-  position: relative;
-}
-.header::after {
-  content: '';
-  position: absolute;
-  bottom:0; left:0; right:0;
-  height:4px;
-  background: linear-gradient(90deg,#e94560,#f5a623,#e94560);
-}
-.header h1 { font-size:32px; font-weight:700; letter-spacing:3px; margin-bottom:6px; }
-.header .sub { font-size:15px; color:rgba(255,255,255,.7); letter-spacing:2px; }
-.header .desc { font-size:14px; color:rgba(255,255,255,.6); margin-top:8px; max-width:600px; margin-left:auto; margin-right:auto; line-height:1.6; }
-
-/* ===== NAV ===== */
-.nav-bar {
-  display: flex; justify-content: center; gap: 0;
-  padding: 20px 16px;
-  background: #fff;
-  border-bottom: 1px solid #eee;
-  position: sticky; top: 0; z-index: 10;
-  flex-wrap: wrap;
-}
-.nav-btn {
-  padding: 8px 28px;
-  border: 1px solid #ddd;
-  background: #fff;
-  font-size: 14px;
-  color: #666;
-  cursor: pointer;
-  transition: all .2s;
-  font-weight: 500;
-}
-.nav-btn:first-child { border-radius: 20px 0 0 20px; border-right: none; }
-.nav-btn:last-child { border-radius: 0 20px 20px 0; }
-.nav-btn:hover { color: #e94560; }
-.nav-btn.active { color: #fff; }
-
-/* Tab 专属配色 */
-.nav-btn[data-tab="projects"].active { background: #e94560; border-color: #e94560; }
-.nav-btn[data-tab="albums"].active { background: #6c5ce7; border-color: #6c5ce7; }
-.nav-btn[data-tab="exhibition"].active { background: #00b4d8; border-color: #00b4d8; color: #fff; }
-
-.stats {
-  text-align: center;
-  font-size: 13px;
-  color: #999;
-  padding: 0 16px 16px;
-  background: #fff;
-  border-bottom: 1px solid #eee;
-}
-
-/* ===== PROJECT GRID ===== */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 20px;
-  padding: 24px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.card {
-  background: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0,0,0,.08);
-  transition: transform .25s, box-shadow .25s;
-  cursor: pointer;
-  position: relative;
-}
-.card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,.12); }
-.card-img { width:100%; height:200px; object-fit:cover; background:#eef1f7; display:block; }
-.card-body { padding: 14px 16px 16px; }
-.card-title { font-size:15px; font-weight:600; color:#1a1a2e; margin-bottom:6px; line-height:1.4; }
-.card-meta { font-size:12px; color:#999; margin-bottom:8px; }
-.card-meta span { margin-right:12px; }
-.card-desc { font-size:12.5px; color:#666; line-height:1.5; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-
-/* ===== 展厅卡片 差异化配色 ===== */
-.exhibition-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 20px;
-  padding: 24px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.exhibition-card {
-  background: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0,0,0,.08);
-  transition: transform .25s, box-shadow .25s;
-  cursor: pointer;
-  position: relative;
-  border-left: 3px solid #00b4d8;
-}
-.exhibition-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,182,216,.2); }
-.exhibition-card .card-img { height:200px; object-fit:cover; background:#eef1f7; display:block; width:100%; }
-.exhibition-card .card-body { padding: 14px 16px 16px; }
-.exhibition-card .card-title { font-size:15px; font-weight:600; color:#1a1a2e; margin-bottom:6px; line-height:1.4; }
-.exhibition-card .card-title::before { content: "\1f3e2 "; }
-.exhibition-card .card-meta { font-size:12px; color:#999; margin-bottom:8px; }
-.exhibition-card .card-meta span { margin-right:12px; }
-.exhibition-card .card-desc { font-size:12.5px; color:#666; line-height:1.5; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-
-/* 展厅标签角标 */
-.exhibition-badge {
-  position: absolute;
-  top: 10px; left: 10px;
-  background: #00b4d8;
-  color: #fff;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 3px 10px;
-  border-radius: 4px;
-  letter-spacing: 1px;
-  z-index: 2;
-  box-shadow: 0 2px 6px rgba(0,180,216,.4);
-}
-.exhibition-badge.status-done { background: #2ec4b6; }
-.exhibition-badge.status-pending { background: #ff9f43; }
-
-/* ===== ALBUM GRID ===== */
-.album-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 16px;
-  padding: 24px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.album-card {
-  background: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0,0,0,.08);
-  transition: transform .25s, box-shadow .25s;
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-.album-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,.12); }
-.album-img { width:100%; height:180px; object-fit:cover; background:#eef1f7; display:block; }
-.album-placeholder { width:100%; height:180px; display:flex; align-items:center; justify-content:center; background:#eef1f7; font-size:48px; }
-.album-body { padding:12px 14px 14px; }
-.album-name { font-size:14px; font-weight:600; color:#1a1a2e; margin-bottom:4px; line-height:1.4; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-.album-meta { font-size:12px; color:#999; }
-.album-meta span { margin-right:8px; }
-
-/* ===== MODAL ===== */
-.modal-overlay {
-  display: none;
-  position: fixed;
-  inset:0;
-  background: rgba(0,0,0,.6);
-  z-index: 100;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-.modal-overlay.show { display: flex; }
-.modal {
-  background: #fff;
-  border-radius: 12px;
-  width: 100%;
-  max-width: 680px;
-  max-height: 90vh;
-  overflow-y: auto;
-  padding: 28px;
-  position: relative;
-  animation: fadeIn .2s ease;
-}
-@keyframes fadeIn { from { opacity:0; transform:scale(.95) } to { opacity:1; transform:scale(1) } }
-.modal-close {
-  position: absolute;
-  top: 12px; right: 16px;
-  font-size: 24px;
-  color: #999;
-  cursor: pointer;
-  background: none;
-  border: none;
-  line-height:1;
-}
-.modal-close:hover { color:#333; }
-.modal-img { width:100%; max-height:360px; object-fit:contain; background:#f5f5f5; border-radius:6px; margin-bottom:12px; }
-.modal-title { font-size:18px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
-.modal-meta { font-size:13px; color:#888; margin-bottom:12px; }
-.modal-desc { font-size:14px; color:#444; line-height:1.7; }
-.modal-open-btn {
-  display: inline-block;
-  margin-top: 16px;
-  padding: 10px 28px;
-  background: #e94560;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background .2s;
-}
-.modal-open-btn:hover { background: #d63851; }
-
-@media (max-width: 600px) {
-  .header { padding: 32px 16px 24px; }
-  .header h1 { font-size:24px; }
-  .grid, .exhibition-grid { grid-template-columns: 1fr; padding: 12px; gap: 12px; }
-  .card-img, .exhibition-card .card-img { height: 160px; }
-  .album-grid { grid-template-columns: 1fr; padding: 12px; }
-  .album-img { height: 160px; }
-  .modal { padding: 16px; }
-  .nav-btn { padding: 8px 16px; font-size: 13px; }
-}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif;background:#faf9f6;color:#1a1a1a;line-height:1.6;overflow-x:hidden}
+.top-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 36px;background:rgba(250,249,246,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06);font-size:13px;letter-spacing:2px}
+.top-nav .logo{font-weight:800;font-size:15px;color:#ea580c}
+.top-nav .nav-links{display:flex;gap:32px;list-style:none}
+.top-nav .nav-links a{color:rgba(0,0,0,.4);text-decoration:none;transition:color .3s;font-weight:500;text-transform:uppercase;font-size:12px}
+.top-nav .nav-links a:hover,.top-nav .nav-links a.active{color:#ea580c}
+.top-nav .cta{padding:7px 20px;border:1px solid rgba(234,88,12,.35);border-radius:6px;color:#ea580c;font-weight:600;text-decoration:none;font-size:12px;letter-spacing:2px;transition:background .3s}
+.top-nav .cta:hover{background:rgba(234,88,12,.06)}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;background:linear-gradient(180deg,#fff5f0 0%,#faf9f6 40%,#fff 100%)}
+.hero>*{position:relative;z-index:1}
+.hero .date-box{display:inline-flex;gap:16px;align-items:center;border:1px solid rgba(234,88,12,.15);border-radius:8px;padding:10px 24px;margin-bottom:32px;font-size:14px;color:rgba(0,0,0,.45);letter-spacing:1px}
+.hero .date-box .num{font-size:28px;font-weight:700;color:#ea580c;line-height:1}
+.hero .date-box .sep{width:1px;height:28px;background:rgba(234,88,12,.15)}
+.hero .venue{font-size:13px;color:rgba(0,0,0,.35);margin-bottom:40px;letter-spacing:2px}
+.hero h1{font-size:clamp(40px,8vw,80px);font-weight:900;letter-spacing:6px;color:#1a1a1a;margin-bottom:8px;line-height:1.1}
+.hero h1 .accent{color:#ea580c}
+.hero .tagline{font-size:clamp(14px,2vw,20px);color:rgba(0,0,0,.3);letter-spacing:5px;font-weight:300;margin-bottom:32px}
+.hero .intro-text{max-width:580px;font-size:14px;color:rgba(0,0,0,.4);line-height:1.8}
+.hero .scroll-indicator{position:absolute;bottom:48px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.hero .scroll-indicator .line{width:1px;height:48px;background:linear-gradient(180deg,rgba(234,88,12,.3),transparent)}
+.hero .scroll-indicator .txt{font-size:11px;letter-spacing:3px;color:rgba(0,0,0,.2);text-transform:uppercase}
+.espace-intro{text-align:center;padding:80px 24px 48px;max-width:740px;margin:0 auto}
+.espace-intro .count{font-size:12px;letter-spacing:3px;color:#ea580c;font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.espace-intro h2{font-size:clamp(22px,3.5vw,32px);font-weight:700;color:#1a1a1a;margin-bottom:16px;letter-spacing:2px}
+.espace-intro .body-text{font-size:14px;color:rgba(0,0,0,.4);line-height:1.8}
+.espace-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;padding:24px 24px 48px;max-width:900px;margin:0 auto}
+.espace-nav .space-link{display:flex;align-items:center;gap:10px;padding:12px 24px;border:1px solid rgba(0,0,0,.08);border-radius:8px;color:rgba(0,0,0,.4);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:1px;transition:all .3s;background:#fff}
+.espace-nav .space-link:hover{border-color:rgba(234,88,12,.3);color:#ea580c;background:rgba(234,88,12,.04)}
+.espace-nav .space-link .num{font-size:18px;font-weight:800;color:#ea580c;opacity:.5}
+.space-section{padding:80px 24px;position:relative}
+.space-section.alt{background:linear-gradient(180deg,rgba(250,249,246,.5),rgba(245,240,235,.5),rgba(250,249,246,.5))}
+.space-header{max-width:1200px;margin:0 auto 48px;display:flex;align-items:baseline;gap:16px}
+.space-header .space-num{font-size:72px;font-weight:900;color:rgba(234,88,12,.06);line-height:1;font-style:italic}
+.space-header .space-info h3{font-size:clamp(20px,2.5vw,28px);font-weight:700;color:#1a1a1a;letter-spacing:1px;margin-bottom:6px}
+.space-header .space-info .space-desc{font-size:13px;color:rgba(0,0,0,.4);line-height:1.6;max-width:500px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;max-width:1200px;margin:0 auto}
+.card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:10px;overflow:hidden;transition:all .35s;cursor:pointer}
+.card:hover{transform:translateY(-5px);border-color:rgba(234,88,12,.2);box-shadow:0 10px 36px rgba(234,88,12,.08)}
+.card-img{width:100%;height:220px;object-fit:cover;object-position:top center;background:#f0eee9;display:block}
+.card-body{padding:16px 16px 18px}
+.card-title{font-size:14px;font-weight:600;color:#1a1a1a;margin-bottom:8px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-meta{font-size:11px;color:rgba(0,0,0,.35);margin-bottom:6px}
+.card-meta span{margin-right:14px}
+.card-desc{font-size:11px;color:rgba(0,0,0,.3);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.album-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;max-width:1200px;margin:0 auto}
+.album-card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:10px;overflow:hidden;transition:all .35s;text-decoration:none;color:inherit;display:block}
+.album-card:hover{transform:translateY(-5px);border-color:rgba(234,88,12,.2);box-shadow:0 10px 36px rgba(234,88,12,.08)}
+.album-img{width:100%;height:200px;object-fit:cover;object-position:center;background:#f0eee9;display:block}
+.album-placeholder{width:100%;height:200px;display:flex;align-items:center;justify-content:center;background:#f5f3f0;font-size:48px;color:rgba(0,0,0,.06)}
+.album-body{padding:14px 16px 16px}
+.album-name{font-size:14px;font-weight:600;color:#1a1a1a;margin-bottom:6px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.album-meta{font-size:12px;color:rgba(0,0,0,.35)}
+.album-meta span{margin-right:10px}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);z-index:200;justify-content:center;align-items:center;padding:20px}
+.modal-overlay.show{display:flex}
+.modal{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:12px;width:100%;max-width:660px;max-height:88vh;overflow-y:auto;padding:28px;position:relative;animation:fadeIn .25s ease}
+@keyframes fadeIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+.modal-close{position:absolute;top:14px;right:18px;font-size:22px;color:rgba(0,0,0,.25);cursor:pointer;background:none;border:none;line-height:1;transition:color .2s}
+.modal-close:hover{color:#ea580c}
+.modal-img{width:100%;max-height:360px;object-fit:contain;background:#f5f3f0;border-radius:8px;margin-bottom:16px}
+.modal-title{font-size:18px;font-weight:700;color:#1a1a1a;margin-bottom:6px}
+.modal-meta{font-size:13px;color:rgba(0,0,0,.35);margin-bottom:14px}
+.modal-desc{font-size:14px;color:rgba(0,0,0,.55);line-height:1.7}
+.modal-open-btn{display:inline-block;margin-top:18px;padding:10px 28px;background:#ea580c;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;transition:opacity .2s}
+.modal-open-btn:hover{opacity:.88}
+.divider{width:1px;height:60px;background:linear-gradient(180deg,transparent,rgba(234,88,12,.12),transparent);margin:0 auto}
+.footer{text-align:center;padding:60px 24px 40px;font-size:12px;color:rgba(0,0,0,.15);letter-spacing:3px}
+@media(max-width:600px){.top-nav{padding:12px 16px}.top-nav .nav-links{gap:16px}.hero{padding:100px 16px 60px}.space-section{padding:48px 16px}.space-header{flex-direction:column;gap:8px}.space-num{font-size:48px}.grid{grid-template-columns:1fr}.card-img{height:180px}.album-grid{grid-template-columns:1fr}.album-img{height:180px}.espace-nav{flex-direction:column;align-items:center}.modal{padding:18px}}
 </style>
 </head>
 <body>
-
-<div class="header">
-  <h1>卢发达 · 作品集</h1>
-  <div class="sub">项目管理 · 会议展览 · 展厅建设 · 全案策划</div>
-  <div class="desc">经手项目涵盖保险金融、医疗学术、体育赛事、大型展会、展厅建设等多个领域，单场活动规模达千人级以上</div>
-</div>
-
-<div class="nav-bar">
-  <button class="nav-btn active" data-tab="exhibition">🏢 展厅建设</button>
-  <button class="nav-btn" data-tab="projects">📄 活动方案</button>
-  <button class="nav-btn" data-tab="albums">📸 直播相册</button>
-</div>
-
-<div class="stats" id="stats">共 9 个项目</div>
-
-<!-- 方案网格 -->
-<div class="grid" id="grid"></div>
-
-<!-- 相册网格 -->
-<div class="album-grid" id="albumGrid" style="display:none"></div>
-
-<!-- 展厅网格 -->
-<div class="exhibition-grid" id="exhibitionGrid" style="display:none"></div>
-
-<!-- Modal -->
-<div class="modal-overlay" id="modal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal()">&times;</button>
-    <img class="modal-img" id="modalImg" src="" alt="">
-    <div class="modal-title" id="modalTitle"></div>
-    <div class="modal-meta" id="modalMeta"></div>
-    <div class="modal-desc" id="modalDesc"></div>
-    <a class="modal-open-btn" id="modalOpenBtn" href="#" target="_blank">📄 打开文件</a>
-  </div>
-</div>
-
+<nav class="top-nav"><span class="logo">LFD</span><ul class="nav-links"><li><a href="#hero" class="active">Accueil</a></li><li><a href="#espace-1">Expo</a></li><li><a href="#espace-2">Projets</a></li><li><a href="#espace-3">Albums</a></li></ul><a href="#espace-1" class="cta">进入展厅</a></nav>
+<section class="hero" id="hero"><div class="date-box"><div class="num">6</div><div class="sep"></div><div>Expo</div><div class="sep"></div><div class="num">9</div><div class="sep"></div><div>Projets</div><div class="sep"></div><div class="num">7</div><div class="sep"></div><div>Albums</div></div><div class="venue">项目管理 · 会议展览 · 空间设计</div><h1>卢<span class="accent">发</span>达</h1><div class="tagline">PORTFOLIO</div><div class="intro-text">经手项目涵盖展厅设计、保险金融、体育赛事、大型展会等多个领域<br>单场活动规模达千人级以上</div><div class="scroll-indicator"><div class="line"></div><div class="txt">Scroll</div></div></section>
+<section class="espace-intro"><div class="count">4 个展览空间 — 沉浸式体验</div><h2>从空间设计到活动执行<br>全方位呈现项目能力</h2><div class="body-text">本作品集围绕 4 个互补空间展开——展厅设计、活动策划、影像记录与项目档案，层层递进，完整还原每个项目从概念到落地的全过程。</div></section>
+<nav class="espace-nav"><a href="#espace-1" class="space-link"><span class="num">01</span> 展厅设计</a><a href="#espace-2" class="space-link"><span class="num">02</span> 策划方案</a><a href="#espace-3" class="space-link"><span class="num">03</span> 直播相册</a><a href="#espace-4" class="space-link"><span class="num">04</span> 项目档案</a></nav>
+<section class="space-section" id="espace-1" style="position:relative;overflow:hidden"><canvas id="expo-canvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.25"></canvas><div style="position:relative;z-index:1"><div class="space-header"><div class="space-num">01</div><div class="space-info"><h3>展厅设计</h3><div class="space-desc">6 个展厅设计项目，涵盖教育考试院展厅改造、党建文化长廊、社会治理中心等空间设计。</div></div></div><div class="grid" id="expoGrid"></div></div></section>
+<div class="divider"></div>
+<section class="space-section alt" id="espace-2"><div class="space-header"><div class="space-num">02</div><div class="space-info"><h3>策划方案</h3><div class="space-desc">9 个精品策划项目，涵盖保险金融、体育赛事、大型展会等核心领域。</div></div></div><div class="grid" id="grid"></div></section>
+<div class="divider"></div>
+<section class="space-section" id="espace-3"><div class="space-header"><div class="space-num">03</div><div class="space-info"><h3>直播相册</h3><div class="space-desc">活动现场影像记录，通过专业摄影平台实时呈现。</div></div></div><div class="album-grid" id="albumGrid"></div></section>
+<div class="divider"></div>
+<section class="space-section alt" id="espace-4"><div class="space-header"><div class="space-num">04</div><div class="space-info"><h3>项目档案</h3><div class="space-desc">所有项目数据一览，完整呈现履历厚度。</div></div></div><div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px" id="archiveGrid"></div></section>
+<footer class="footer">© LU FADA · PORTFOLIO 2026 — 4 ESPACES SCÉNOGRAPHIÉS</footer>
+<div class="modal-overlay" id="modal"><div class="modal"><button class="modal-close" onclick="closeModal()">✕</button><img class="modal-img" id="modalImg" src="" alt=""><div class="modal-title" id="modalTitle"></div><div class="modal-meta" id="modalMeta"></div><div class="modal-desc" id="modalDesc"></div><a class="modal-open-btn" id="modalOpenBtn" href="#" target="_blank">📄 查看完整方案</a></div></div>
 <script>
-var PROJECTS = [{"id": 0, "title": "10月13日重庆女排见面会活动方案", "file": "10月13日重庆女排见面会活动方案（上海新康.pdf", "pages": 37, "size": 12.6, "thumb": "thumbs/00.jpg", "preview": "太平洋保险\n重庆女排见面会活动策划方案\n10.13"}, {"id": 1, "title": "2024世界人工智能大会-投标3.0", "file": "2024世界人工智能大会-投标3.0.pdf", "pages": 124, "size": 63.4, "thumb": "thumbs/01.jpg", "preview": "上海新康辉国际旅行社有限责任公司\n2024世界人工智能大会\nWORLD ARTIFICIAL INTELLIGENCE CONFERENCE"}, {"id": 2, "title": "2024精英会策划V8-增加案例", "file": "2024精英会策划V8-增加案例.pdf", "pages": 166, "size": 56.4, "thumb": "thumbs/02.jpg", "preview": "太平洋产险第四届菁英奖\n颁奖盛典策划方案\n上海新康辉国际旅行社有限责任公司"}, {"id": 3, "title": "CIIE(5)", "file": "CIIE(5).pdf", "pages": 110, "size": 35.2, "thumb": "thumbs/03.jpg", "preview": ""}, {"id": 4, "title": "太保2024年616伙伴节需求推荐方案", "file": "太保2024年616伙伴节需求推荐方案（上海新康.pdf", "pages": 64, "size": 39.1, "thumb": "thumbs/04.jpg", "preview": "太保2024年616伙伴节需求推荐方案\n上海新康辉国际旅行社有限责任公司"}, {"id": 5, "title": "太保奥运健儿见面会方案0808", "file": "太保奥运健儿见面会方案0808.pdf", "pages": 122, "size": 32.5, "thumb": "thumbs/05.jpg", "preview": "太保奥运健儿见面会（厦门站）\n活动策划方案\nOLYMPIC ATHLETE MEET AND GREET EVEN"}, {"id": 6, "title": "太保寿险2025年IQA年会策划方案221", "file": "太保寿险2025年IQA年会策划方案221（上海新康.pdf", "pages": 179, "size": 66.9, "thumb": "thumbs/06.jpg", "preview": "上海新康辉国际旅行社有限责任公司"}, {"id": 7, "title": "富德生命人寿客户节", "file": "富德生命人寿客户节.pdf", "pages": 62, "size": 5.5, "thumb": "thumbs/07.jpg", "preview": "以心/至新\n第十六届客户节盛典活动策划\n富德生命人寿"}, {"id": 8, "title": "第十二届菁英会(首尔)方案", "file": "第十二届菁英会(首尔)方案.pdf", "pages": 143, "size": 34.3, "thumb": "thumbs/08.jpg", "preview": "讲解人：XXX\n2025年9月16日\n顾问行销渠道2025年\n第十二届菁英会(首尔)\n策划方案"}];
+var PROJECTS=[{id:0,title:"重庆女排见面会活动方案",client:"太平洋保险",file:"10月13日重庆女排见面会活动方案（上海新康.pdf",pages:37,size:12.6,thumb:"thumbs/00.jpg",preview:"太平洋保险重庆女排见面会活动策划方案"},{id:1,title:"世界人工智能大会-投标方案",client:"上海新康辉",file:"2024世界人工智能大会-投标3.0.pdf",pages:124,size:63.4,thumb:"thumbs/01.jpg",preview:"2024世界人工智能大会 · 智能制造与数字劳动力"},{id:2,title:"第四届菁英奖颁奖盛典策划",client:"太平洋产险",file:"2024精英会策划V8-增加案例.pdf",pages:166,size:56.4,thumb:"thumbs/02.jpg",preview:"太平洋产险第四届菁英奖颁奖盛典策划方案"},{id:3,title:"CIIE 进博会策划",client:"进博会",file:"CIIE(5).pdf",pages:110,size:35.2,thumb:"thumbs/03.jpg",preview:"中国国际进口博览会"},{id:4,title:"616伙伴节需求推荐方案",client:"太平洋保险",file:"太保2024年616伙伴节需求推荐方案（上海新康.pdf",pages:64,size:39.1,thumb:"thumbs/04.jpg",preview:"太保2024年616伙伴节需求推荐方案"},{id:5,title:"奥运健儿见面会（厦门站）",client:"太平洋保险",file:"太保奥运健儿见面会方案0808.pdf",pages:122,size:32.5,thumb:"thumbs/05.jpg",preview:"太保奥运健儿见面会活动策划方案 · 厦门站"},{id:6,title:"IQA年会策划方案",client:"太保寿险",file:"太保寿险2025年IQA年会策划方案221（上海新康.pdf",pages:179,size:66.9,thumb:"thumbs/06.jpg",preview:"太保寿险2025年IQA年会策划方案"},{id:7,title:"第十六届客户节盛典策划",client:"富德生命人寿",file:"富德生命人寿客户节.pdf",pages:62,size:5.5,thumb:"thumbs/07.jpg",preview:"以心至新 · 第十六届客户节盛典"},{id:8,title:"第十二届菁英会（首尔）",client:"顾问行销渠道",file:"第十二届菁英会(首尔)方案.pdf",pages:143,size:34.3,thumb:"thumbs/08.jpg",preview:"顾问行销渠道2025年第十二届菁英会首尔策划方案"}];
+var EXPOS=[{id:"e4",title:"宣城郎溪党建项目策划案",client:"宣城郎溪",type:"党建文化",desc:"党建文化空间策划与设计。",sections:[],file:"../展厅/宣城郎溪党建项目策划案20230612.pptx",thumb:"thumbs_expo/e4_langxi.jpeg"},{id:"e1",title:"江苏省教育考试院展厅改造方案",client:"江苏省教育考试院",type:"展厅改造",desc:"三大展区（序厅/主厅/尾厅）整体改造，含前言、党的全面领导、电子大屏、八个处室展板、荣誉墙、多媒体互动设备等。",sections:["序厅：前言·党的全面领导·电子大屏","主厅：八处室展板·科举文化·多媒体互动","尾厅：荣誉墙·群团建设·发展规划·结束语"],file:"../展厅/江苏省教育考试院展厅改造方案8.7_HTML版.pptx",thumb:"thumbs_expo/e1_jiaoyu.png"},{id:"e2",title:"凤凰港口文化中心汇报方案",client:"凤凰港口",type:"文化中心",desc:"港口文化中心空间规划与设计汇报方案。",sections:[],file:"../展厅/凤凰港口文化中心汇报9.15(1).pdf",thumb:"thumbs_expo/e2_fenghuang.jpg"},{id:"e3",title:"南邮讲标方案",client:"南京邮电大学",type:"讲标方案",desc:"高校项目讲标展示方案。",sections:[],file:"../展厅/南邮讲标方案1109.pdf",thumb:"thumbs_expo/e3_nanyou.jpg"},{id:"e5",title:"奥赛康药业党建文化长廊设计",client:"江苏奥赛康药业",type:"党建文化",desc:"企业文化长廊空间设计，党建主题展示。",sections:[],file:"../展厅/江苏奥赛康药业有限公司党建文化长廊设计方案.pptx",thumb:"thumbs_expo/e5_aosaikang.jpeg"},{id:"e6",title:"汤山全域社会治理中心方案",client:"汤山街道",type:"社会治理",desc:"全域社会治理中心空间规划方案。",sections:[],file:"../展厅/汤山全域社会治理中心方案第四稿.pdf",thumb:"thumbs_expo/e6_tangshan.jpg"}];
+var ALBUMS=[{id:"a1",name:"九岗山峰会暨开门红启动会",sub:"中国太平洋人寿江苏分公司",url:"https://m.alltuu.com/album/60729643c5fa97afc177e8717bb2442d?menu=live",platform:"喔图",thumb:"https://spu.alltuu.com/cover/ALBUM5885093/SHARE/4.jpg?x-oss-process=image/resize,w_400"},{id:"a2",name:"高客法商全员培训暨启动大会",sub:"",url:"https://m.alltuu.com/album/5e944678b4e25ef2f4572b3e77ef2b0a?menu=live",platform:"喔图",thumb:"https://spu.alltuu.com/cover/ALBUM5849740/SHARE/2.jpg?x-oss-process=image/resize,w_400"},{id:"a3",name:"绩优组织发展峰会",sub:"太平洋寿险江苏分公司",url:"https://m.alltuu.com/album/276d6006d13b0a849a04e0312d5497f5?menu=live",platform:"喔图",thumb:"https://spu.alltuu.com/cover/ALBUM5386330/SHARE/2.jpg?x-oss-process=image/resize,w_400"},{id:"a4",name:"江苏银保首季红表彰暨五六联动启动",sub:"",url:"https://m.alltuu.com/album/22677368d043a41b202f5b6d2401b2fe/?menu=live",platform:"喔图",views:"14,971",thumb:"https://spu.alltuu.com/cover/ALBUM7254147/SHARE/3.jpg?x-oss-process=image/resize,w_400"},{id:"a5",name:"江苏银保首季红表彰（备用链接）",sub:"",url:"https://m.alltuu.com/album/795162a4f81615b25b6bdbd9f9b83bfb/?menu=live",platform:"喔图",thumb:"https://spu.alltuu.com/cover/ALBUM7756877/SHARE/1.jpg?x-oss-process=image/resize,w_400"},{id:"a6",name:"星耀龙江 守护相随",sub:"太保黑龙江分公司",url:"https://www.yipai360.com/photolivepc/?orderId=202510201303024936&channel=h5",platform:"一拍即传",thumb:"thumbs_expo/a6_xingyao.jpg"},{id:"a7",name:"大师在你身边 相乐家园-成都站",sub:"",url:"https://www.yipai360.com/photolivepc/?orderId=202408261858523839&channel=h5",platform:"一拍即传",thumb:"thumbs_expo/a7_dashi.jpg"}];
 
-var ALBUMS = [{"id": "a1", "name": "九岗山峰会暨开门红启动会 — 中国太平洋人寿江苏分公司", "url": "https://m.alltuu.com/album/60729643c5fa97afc177e8717bb2442d?menu=live", "platform": "喔图", "thumb": "https://spu.alltuu.com/cover/ALBUM5885093/SHARE/4.jpg?x-oss-process=image/resize,w_400"}, {"id": "a2", "name": "高客法商全员培训暨启动大会", "url": "https://m.alltuu.com/album/5e944678b4e25ef2f4572b3e77ef2b0a?menu=live", "platform": "喔图", "thumb": "https://spu.alltuu.com/cover/ALBUM5849740/SHARE/2.jpg?x-oss-process=image/resize,w_400"}, {"id": "a3", "name": "上乘之选 聚力登峰 — 太平洋寿险江苏分公司绩优组织发展峰会", "url": "https://m.alltuu.com/album/276d6006d13b0a849a04e0312d5497f5?menu=live", "platform": "喔图", "thumb": "https://spu.alltuu.com/cover/ALBUM5386330/SHARE/2.jpg?x-oss-process=image/resize,w_400"}, {"id": "a4", "name": "江苏银保条线2026年首季红表彰暨五六联动启动会议", "url": "https://m.alltuu.com/album/22677368d043a41b202f5b6d2401b2fe/?menu=live", "platform": "喔图", "views": "14,971", "thumb": "https://spu.alltuu.com/cover/ALBUM7254147/SHARE/3.jpg?x-oss-process=image/resize,w_400"}, {"id": "a5", "name": "江苏银保条线2026年首季红表彰（备用链接）", "url": "https://m.alltuu.com/album/795162a4f81615b25b6bdbd9f9b83bfb/?menu=live", "platform": "喔图", "thumb": "https://spu.alltuu.com/cover/ALBUM7756877/SHARE/1.jpg?x-oss-process=image/resize,w_400"}, {"id": "a6", "name": "星耀龙江 守护相随 — 太保黑龙江分公司会议", "url": "https://www.yipai360.com/photolivepc/?orderId=202510201303024936&channel=h5", "platform": "一拍即传"}, {"id": "a7", "name": "大师在你身边 相乐家园-成都站", "url": "https://www.yipai360.com/photolivepc/?orderId=202408261858523839&channel=h5", "platform": "一拍即传"}];
+function R(e,t){document.getElementById(e).innerHTML=t.map(function(p){return'<div class="card" onclick="'+p.c+'"><img class="card-img" src="'+p.t+'" loading="lazy"><div class="card-body"><div class="card-title">'+p.n+'</div><div class="card-meta">'+p.m+'</div><div class="card-desc">'+p.d+'</div></div></div>'}).join('')}
+function renderProjects(){R('grid',PROJECTS.map(function(p){return{c:'openProjectModal('+p.id+')',t:p.thumb,n:p.title,m:'<span>'+p.client+'</span><span>📄 '+p.pages+' 页</span>',d:p.preview||''}}))}
+function renderAlbums(){document.getElementById('albumGrid').innerHTML=ALBUMS.map(function(a){var i=a.thumb?'<img class="album-img" src="'+a.thumb+'" loading="lazy">':'<div class="album-placeholder">📷</div>',v=a.views?'<span>👁 '+a.views+'</span>':'';return'<a class="album-card" href="'+a.url+'" target="_blank" rel="noopener">'+i+'<div class="album-body"><div class="album-name">'+a.name+'</div><div class="album-meta"><span>📱 '+a.platform+'</span>'+v+'</div></div></a>'}).join('')}
+function renderExpos(){var ic={'展厅改造':'🏛️','文化中心':'🏢','讲标方案':'🎓','党建文化':'🚩','社会治理':'🏘️'};document.getElementById('expoGrid').innerHTML=EXPOS.map(function(e){var i=e.thumb?'<img class="card-img" src="'+e.thumb+'" loading="lazy">':'<div class="album-placeholder" style="height:220px">'+(ic[e.type]||'📐')+'</div>';return'<div class="card" onclick="openExpoModal(''+e.id+'')">'+i+'<div class="card-body"><div class="card-title">'+e.title+'</div><div class="card-meta"><span>'+e.client+'</span><span>'+e.type+'</span></div><div class="card-desc">'+e.desc+'</div></div></div>'}).join('')}
+function openExpoModal(id){var e=EXPOS.find(function(x){return x.id===id});if(!e)return;var mi=document.getElementById('modalImg');mi.src=e.thumb||'';mi.style.display=e.thumb?'':'none';document.getElementById('modalTitle').textContent=e.title;document.getElementById('modalMeta').textContent=e.client+' · '+e.type;var sh=e.sections.length?'<p style="margin-top:12px;font-size:13px;color:rgba(0,0,0,.45);line-height:1.8">'+e.sections.map(function(s,i){return(i+1)+'. '+s}).join('<br>')+'</p>':'';document.getElementById('modalDesc').innerHTML='<p style="color:rgba(0,0,0,.55)">'+e.desc+'</p>'+sh;var btn=document.getElementById('modalOpenBtn');btn.href=encodeURI(e.file);btn.textContent='📄 打开文件';btn.style.display=e.file?'':'none';document.getElementById('modal').classList.add('show')}
+function openProjectModal(id){var p=PROJECTS.find(function(x){return x.id===id});if(!p)return;document.getElementById('modalImg').src=p.thumb;document.getElementById('modalImg').style.display='';document.getElementById('modalTitle').textContent=p.title;document.getElementById('modalMeta').textContent=p.client+' · 📄 '+p.pages+' 页 · 💾 '+p.size+' MB';document.getElementById('modalDesc').innerHTML='<p style="color:rgba(0,0,0,.4);font-size:12px">文件：'+p.file+'</p><p style="margin-top:12px">'+(p.preview||'').substring(0,300).replace(/\n/g,'<br>')+'</p>';document.getElementById('modalOpenBtn').href=encodeURI(p.file);document.getElementById('modalOpenBtn').textContent='📄 查看完整方案';document.getElementById('modalOpenBtn').style.display='';document.getElementById('modal').classList.add('show')}
+function renderArchive(){var cl={};PROJECTS.forEach(function(p){if(!cl[p.client])cl[p.client]=0;cl[p.client]++});EXPOS.forEach(function(e){if(!cl[e.client])cl[e.client]=0;cl[e.client]++});var tp=PROJECTS.reduce(function(s,p){return s+p.pages},0),ts=PROJECTS.reduce(function(s,p){return s+p.size},0);var h='<div class="card" style="cursor:default"><div class="card-body"><div style="font-size:32px;font-weight:900;color:#ea580c;margin-bottom:4px">'+EXPOS.length+'</div><div class="card-title">展厅设计</div><div class="card-desc" style="margin-top:8px">教育考试院 · 党建文化 · 社会治理</div></div></div>';h+='<div class="card" style="cursor:default"><div class="card-body"><div style="font-size:32px;font-weight:900;color:#ea580c;margin-bottom:4px">'+PROJECTS.length+'</div><div class="card-title">策划方案</div><div class="card-desc" style="margin-top:8px">'+tp+' 页 · '+ts.toFixed(1)+' MB</div></div></div>';h+='<div class="card" style="cursor:default"><div class="card-body"><div style="font-size:32px;font-weight:900;color:#ea580c;margin-bottom:4px">'+ALBUMS.length+'</div><div class="card-title">直播相册</div><div class="card-desc" style="margin-top:8px">喔图 + 一拍即传</div></div></div>';h+='<div class="card" style="cursor:default"><div class="card-body"><div style="font-size:32px;font-weight:900;color:#1a1a1a;margin-bottom:4px">'+Object.keys(cl).length+'</div><div class="card-title">服务客户</div><div class="card-desc" style="margin-top:8px">'+Object.keys(cl).slice(0,5).join(' · ')+'…</div></div></div>';document.getElementById('archiveGrid').innerHTML=h}
+function closeModal(){document.getElementById('modal').classList.remove('show')}
 
-var EXHIBITIONS = [{"id": "e1", "title": "宣城郎溪党建项目策划案", "srcFile": "宣城郎溪党建项目策划案20230612.pptx", "file": "exhibition/宣城郎溪党建项目策划案20230612.pptx", "pages": 27, "size": 4.3, "preview": "南京臻卓文化艺术有限公司出品。涵盖展陈大纲、空间布局、党建文化展示体系设计，打造沉浸式党建教育阵地。", "status": "已完成", "thumb": "exhibition_thumbs/宣城郎溪党建项目策划案20230612_thumb.jpg"}, {"id": "e2", "title": "凤凰港口文化中心设计方案", "srcFile": "凤凰港口文化中心汇报9.15(1).pdf", "file": "exhibition/凤凰港口文化中心汇报9.15(1).pdf", "pages": 64, "size": 25.3, "preview": "2023年凤凰镇港口文化中心整体设计方案。包含项目分析、概念设计、硬件配套、社会化服务四大板块，64页完整方案。", "status": "已完成", "thumb": "exhibition_thumbs/凤凰港口文化中心汇报9.15(1)_thumb.jpg"}, {"id": "e3", "title": "南京邮电大学校史馆升级改造", "srcFile": "南邮讲标方案1109.pdf", "file": "exhibition/南邮讲标方案1109.pdf", "pages": 56, "size": 18.6, "preview": "南京邮电大学仙林校区校史馆升级改造工程装修设计策划方案。为献礼学校80周年，全方位展示80年光辉历程。", "status": "已完成", "thumb": "exhibition_thumbs/南邮讲标方案1109_thumb.jpg"}, {"id": "e4", "title": "奥赛康药业党建文化长廊", "srcFile": "江苏奥赛康药业有限公司党建文化长廊设计方案.pptx", "file": "exhibition/江苏奥赛康药业有限公司党建文化长廊设计方案.pdf", "pages": 31, "size": 3.5, "preview": "江苏奥赛康药业有限公司党建文化长廊设计方案。以企业党建为核心，融合企业文化展示与红色教育功能。", "status": "已完成", "thumb": "exhibition_thumbs/江苏奥赛康药业有限公司党建文化长廊设计方案_thumb.jpg"}, {"id": "e5", "title": "江苏省教育考试院展厅改造", "srcFile": "江苏省教育考试院展厅改造方案8.7_HTML版.pptx", "file": "exhibition/江苏省教育考试院展厅改造方案8.7_HTML版.pdf", "pages": 25, "size": 1.8, "preview": "江苏省教育考试院展厅改造升级方案。聚焦教育考试发展历程展示，打造现代化、数字化展厅空间。", "status": "已完成", "thumb": "exhibition_thumbs/江苏省教育考试院展厅改造方案8.7_HTML版_thumb.jpg"}, {"id": "e6", "title": "汤山全域社会治理中心方案", "srcFile": "汤山全域社会治理中心方案第四稿.pdf", "file": "exhibition/汤山全域社会治理中心方案第四稿.pdf", "pages": 15, "size": 5.5, "preview": "汤山全域社会治理中心阵地方案。统筹基层党建、城市管理、社区治理、公共服务，打造可复制的社会治理新范式。", "status": "已完成", "thumb": "exhibition_thumbs/汤山全域社会治理中心方案第四稿_thumb.jpg"}];
+var ns=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',function(){var y=window.pageYOffset;ns.forEach(function(a){a.classList.remove('active')});if(y<document.getElementById('espace-1').offsetTop-100){var h=document.querySelector('.nav-links a[href="#hero"]');if(h)h.classList.add('active')}else if(y<document.getElementById('espace-2').offsetTop-100){var e=document.querySelector('.nav-links a[href="#espace-1"]');if(e)e.classList.add('active')}else if(y<document.getElementById('espace-3').offsetTop-100){var p=document.querySelector('.nav-links a[href="#espace-2"]');if(p)p.classList.add('active')}else if(y<document.getElementById('espace-4').offsetTop-100){var al=document.querySelector('.nav-links a[href="#espace-3"]');if(al)al.classList.add('active')}else{var ar=document.querySelector('.nav-links a[href="#espace-4"]');if(ar)ar.classList.add('active')}});
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()});
+renderExpos();renderProjects();renderAlbums();renderArchive();
+</script>
 
-function renderProjects() {
-  var grid = document.getElementById('grid');
-  grid.innerHTML = PROJECTS.map(function(p) {
-    var desc = p.preview ? p.preview.substring(0,120).replace(/\n/g,' ') + '...' : '';
-    return '<div class="card" onclick="openModal(' + p.id + ')">' +
-      '<img class="card-img" src="' + p.thumb + '" alt="' + p.title + '" loading="lazy">' +
-      '<div class="card-body">' +
-        '<div class="card-title">' + p.title + '</div>' +
-        '<div class="card-meta"><span>📄 ' + p.pages + ' 页</span><span>💾 ' + p.size + ' MB</span></div>' +
-        '<div class="card-desc">' + desc + '</div>' +
-      '</div>' +
-    '</div>';
-  }).join('');
-}
-
-function renderAlbums() {
-  var grid = document.getElementById('albumGrid');
-  grid.innerHTML = ALBUMS.map(function(a) {
-    var imgHtml = a.thumb ? '<img class="album-img" src="' + a.thumb + '" alt="' + a.name + '" loading="lazy">' : '<div class="album-placeholder">📷</div>';
-    var viewsHtml = a.views ? '<span>👁 ' + a.views + '</span>' : '';
-    return '<a class="album-card" href="' + a.url + '" target="_blank" rel="noopener">' +
-      imgHtml +
-      '<div class="album-body">' +
-        '<div class="album-name">' + a.name + '</div>' +
-        '<div class="album-meta"><span>📱 ' + a.platform + '</span>' + viewsHtml + '</div>' +
-      '</div>' +
-    '</a>';
-  }).join('');
-}
-
-function renderExhibitions() {
-  var grid = document.getElementById('exhibitionGrid');
-  var fileTypes = {'.pdf':'PDF','.pptx':'PPTX'};
-  grid.innerHTML = EXHIBITIONS.map(function(e) {
-    var ext = e.file.substring(e.file.lastIndexOf('.'));
-    var extName = fileTypes[ext] || ext;
-    var badgeClass = (e.status === '\u5df2\u5b8c\u6210') ? 'status-done' : 'status-pending';
-    var badgeText = (e.status === '\u5df2\u5b8c\u6210') ? '\u2714 \u5df2\u5b8c\u6210' : '\u23f3 ' + e.status;
-    var desc = e.preview ? e.preview.substring(0,200) : '';
-    return '<div class="exhibition-card" onclick="openExhibitionModal(\'' + e.id + '\')">' +
-      '<span class="exhibition-badge ' + badgeClass + '">' + badgeText + '</span>' +
-      '<img class="card-img" src="' + e.thumb + '" alt="' + e.title + '" loading="lazy">' +
-      '<div class="card-body">' +
-        '<div class="card-title">' + e.title + '</div>' +
-        '<div class="card-meta"><span>📄 ' + e.pages + ' 页</span><span>💾 ' + e.size + ' MB</span><span>' + extName + '</span></div>' +
-        '<div class="card-desc">' + desc + '</div>' +
-      '</div>' +
-    '</div>';
-  }).join('');
-}
-
-function openExhibitionModal(id) {
-  var e = EXHIBITIONS.find(function(x) { return x.id === id; });
-  if (!e) return;
-  document.getElementById('modalImg').src = e.thumb;
-  document.getElementById('modalTitle').textContent = e.title;
-  document.getElementById('modalMeta').textContent = '📄 ' + e.pages + ' 页 \u00b7 💾 ' + e.size + ' MB';
-  document.getElementById('modalDesc').innerHTML = '<p>' + e.preview.replace(/\n/g,'<br>') + '</p>';
-  document.getElementById('modalOpenBtn').href = encodeURI(e.file);
-  document.getElementById('modalOpenBtn').style.display = e.file ? '' : 'none';
-  document.getElementById('modal').classList.add('show');
-}
-
-function switchTab(tab) {
-  document.querySelectorAll('.nav-btn').forEach(function(b) { b.classList.remove('active'); });
-  document.querySelector('.nav-btn[data-tab="' + tab + '"]').classList.add('active');
-  document.getElementById('grid').style.display = 'none';
-  document.getElementById('albumGrid').style.display = 'none';
-  document.getElementById('exhibitionGrid').style.display = 'none';
-  var stats = document.getElementById('stats');
-  if (tab === 'projects') {
-    document.getElementById('grid').style.display = '';
-    stats.textContent = '\u5171 ' + PROJECTS.length + ' \u4e2a\u9879\u76ee';
-    renderProjects();
-  } else if (tab === 'albums') {
-    document.getElementById('albumGrid').style.display = '';
-    stats.textContent = ALBUMS.length + ' \u4e2a\u76f4\u64ad\u76f8\u518c';
-    renderAlbums();
-  } else {
-    document.getElementById('exhibitionGrid').style.display = '';
-    stats.textContent = EXHIBITIONS.length + ' \u4e2a\u5c55\u5385\u5efa\u8bbe\u9879\u76ee';
-    renderExhibitions();
-  }
-}
-
-function openModal(id) {
-  var p = PROJECTS.find(function(x) { return x.id === id; });
-  if (!p) return;
-  document.getElementById('modalImg').src = p.thumb;
-  document.getElementById('modalTitle').textContent = p.title;
-  document.getElementById('modalMeta').textContent = '📄 ' + p.pages + ' 页 \u00b7 💾 ' + p.size + ' MB';
-  document.getElementById('modalDesc').innerHTML = '<p><strong>\u6587\u4ef6\uff1a</strong>' + p.file + '</p>' + (p.preview ? '<p style="margin-top:8px;">' + p.preview.substring(0,300).replace(/\n/g,'<br>') + '</p>' : '');
-  document.getElementById('modalOpenBtn').href = encodeURI(p.file);
-  document.getElementById('modal').classList.add('show');
-}
-
-function closeModal() {
-  document.getElementById('modal').classList.remove('show');
-}
-
-document.querySelectorAll('.nav-btn').forEach(function(btn) {
-  btn.addEventListener('click', function() { switchTab(this.dataset.tab); });
-});
-
-document.getElementById('modal').addEventListener('click', function(e) {
-  if (e.target === this) closeModal();
-});
-document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
-
-renderProjects();
-switchTab('exhibition');
+<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+<script>
+(function(){if(typeof THREE==='undefined')return;
+var s=new THREE.Scene(),cam=new THREE.PerspectiveCamera(45,window.innerWidth/window.innerHeight,.1,50);
+cam.position.set(0,1.5,8);cam.lookAt(0,0,0);
+var r=new THREE.WebGLRenderer({canvas:document.getElementById('expo-canvas'),alpha:true,antialias:true});
+r.setSize(window.innerWidth,window.innerHeight);r.setPixelRatio(Math.min(window.devicePixelRatio,2));
+s.add(new THREE.AmbientLight(0xfff5f0,1.5));
+var sp=new THREE.SpotLight(0xea580c,8,20,Math.PI/6,.3,1);sp.position.set(3,5,4);s.add(sp);
+var sp2=new THREE.SpotLight(0xfbbf24,4,15,Math.PI/8,.4,1);sp2.position.set(-3,3,-2);s.add(sp2);
+var fg=new THREE.PlaneGeometry(14,10);var fm=new THREE.MeshStandardMaterial({color:0xf5f0eb,roughness:.9,metalness:.05});
+var fl=new THREE.Mesh(fg,fm);fl.rotation.x=-Math.PI/2;fl.position.y=-2.5;s.add(fl);
+function mw(w,h,x,z,ry,c){var g=new THREE.BoxGeometry(w,h,.15);var m=new THREE.MeshStandardMaterial({color:c||0xffffff,roughness:.6,metalness:.1,transparent:true,opacity:.85});var me=new THREE.Mesh(g,m);me.position.set(x,h/2-2,z);me.rotation.y=ry||0;return me}
+function mp(r,h,x,z,c){var g=new THREE.CylinderGeometry(r,r,h,16);var m=new THREE.MeshStandardMaterial({color:c||0xea580c,roughness:.3,metalness:.5,emissive:c||0xea580c,emissiveIntensity:.15});var me=new THREE.Mesh(g,m);me.position.set(x,h/2-2,z);return me}
+s.add(mw(6,5,0,-2.5,0,0xf8f4f0));s.add(mw(3,5,-3.1,-.5,0,0xfaf7f3));s.add(mw(3,5,3.1,-.5,0,0xfaf7f3));s.add(mw(1.2,3,0,1.5,0,0xf0e8e0));
+s.add(mp(.12,4.5,-3,2.3,0xea580c));s.add(mp(.12,4.5,3,2.3,0xea580c));s.add(mp(.08,3,0,-2.5,0xfbbf24));
+var pg=new THREE.BufferGeometry();var pc=200;var pp=new Float32Array(pc*3);
+for(var i=0;i<pc*3;i+=3){pp[i]=(Math.random()-.5)*8;pp[i+1]=Math.random()*6-1;pp[i+2]=(Math.random()-.5)*6}
+pg.setAttribute('position',new THREE.BufferAttribute(pp,3));
+var pm=new THREE.PointsMaterial({color:0xea580c,size:.03,transparent:true,opacity:.5,blending:THREE.AdditiveBlending});
+var pt=new THREE.Points(pg,pm);s.add(pt);
+var cl=new THREE.Clock();
+function an(){requestAnimationFrame(an);var t=cl.getElapsedTime();cam.position.x=Math.sin(t*.15)*2.5;cam.position.y=1.5+Math.sin(t*.2)*.4;cam.position.z=7+Math.cos(t*.12)*1;cam.lookAt(0,Math.sin(t*.3)*.3,0);pt.rotation.y+=.001;pt.rotation.x+=.0003;r.render(s,cam)}
+an();
+window.addEventListener('resize',function(){cam.aspect=window.innerWidth/window.innerHeight;cam.updateProjectionMatrix();r.setSize(window.innerWidth,window.innerHeight)});
+})();
 </script>
 </body>
 </html>
