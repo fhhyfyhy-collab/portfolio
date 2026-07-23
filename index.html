@@ -36,12 +36,13 @@ body {
   background: #fff;
   border-bottom: 1px solid #eee;
   position: sticky; top: 0; z-index: 10;
+  flex-wrap: wrap;
 }
 .nav-btn {
-  padding: 8px 36px;
+  padding: 8px 28px;
   border: 1px solid #ddd;
   background: #fff;
-  font-size: 15px;
+  font-size: 14px;
   color: #666;
   cursor: pointer;
   transition: all .2s;
@@ -50,7 +51,12 @@ body {
 .nav-btn:first-child { border-radius: 20px 0 0 20px; border-right: none; }
 .nav-btn:last-child { border-radius: 0 20px 20px 0; }
 .nav-btn:hover { color: #e94560; }
-.nav-btn.active { background: #e94560; color: #fff; border-color: #e94560; }
+.nav-btn.active { color: #fff; }
+
+/* Tab 专属配色 */
+.nav-btn[data-tab="projects"].active { background: #e94560; border-color: #e94560; }
+.nav-btn[data-tab="albums"].active { background: #6c5ce7; border-color: #6c5ce7; }
+.nav-btn[data-tab="exhibition"].active { background: #00b4d8; border-color: #00b4d8; color: #fff; }
 
 .stats {
   text-align: center;
@@ -77,6 +83,7 @@ body {
   box-shadow: 0 2px 12px rgba(0,0,0,.08);
   transition: transform .25s, box-shadow .25s;
   cursor: pointer;
+  position: relative;
 }
 .card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,.12); }
 .card-img { width:100%; height:200px; object-fit:cover; background:#eef1f7; display:block; }
@@ -85,6 +92,51 @@ body {
 .card-meta { font-size:12px; color:#999; margin-bottom:8px; }
 .card-meta span { margin-right:12px; }
 .card-desc { font-size:12.5px; color:#666; line-height:1.5; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+
+/* ===== 展厅卡片 差异化配色 ===== */
+.exhibition-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 20px;
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.exhibition-card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,.08);
+  transition: transform .25s, box-shadow .25s;
+  cursor: pointer;
+  position: relative;
+  border-left: 3px solid #00b4d8;
+}
+.exhibition-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,182,216,.2); }
+.exhibition-card .card-img { height:200px; object-fit:cover; background:#eef1f7; display:block; width:100%; }
+.exhibition-card .card-body { padding: 14px 16px 16px; }
+.exhibition-card .card-title { font-size:15px; font-weight:600; color:#1a1a2e; margin-bottom:6px; line-height:1.4; }
+.exhibition-card .card-title::before { content: "\1f3e2 "; }
+.exhibition-card .card-meta { font-size:12px; color:#999; margin-bottom:8px; }
+.exhibition-card .card-meta span { margin-right:12px; }
+.exhibition-card .card-desc { font-size:12.5px; color:#666; line-height:1.5; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+
+/* 展厅标签角标 */
+.exhibition-badge {
+  position: absolute;
+  top: 10px; left: 10px;
+  background: #00b4d8;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  z-index: 2;
+  box-shadow: 0 2px 6px rgba(0,180,216,.4);
+}
+.exhibition-badge.status-done { background: #2ec4b6; }
+.exhibition-badge.status-pending { background: #ff9f43; }
 
 /* ===== ALBUM GRID ===== */
 .album-grid {
@@ -170,11 +222,12 @@ body {
 @media (max-width: 600px) {
   .header { padding: 32px 16px 24px; }
   .header h1 { font-size:24px; }
-  .grid { grid-template-columns: 1fr; padding: 12px; gap: 12px; }
-  .card-img { height: 160px; }
+  .grid, .exhibition-grid { grid-template-columns: 1fr; padding: 12px; gap: 12px; }
+  .card-img, .exhibition-card .card-img { height: 160px; }
   .album-grid { grid-template-columns: 1fr; padding: 12px; }
   .album-img { height: 160px; }
   .modal { padding: 16px; }
+  .nav-btn { padding: 8px 16px; font-size: 13px; }
 }
 </style>
 </head>
@@ -182,23 +235,28 @@ body {
 
 <div class="header">
   <h1>卢发达 · 作品集</h1>
-  <div class="sub">项目管理 · 会议展览 · 全案策划</div>
-  <div class="desc">经手项目涵盖保险金融、医疗学术、体育赛事、大型展会等多个领域，单场活动规模达千人级以上</div>
+  <div class="sub">项目管理 · 会议展览 · 展厅建设 · 全案策划</div>
+  <div class="desc">经手项目涵盖保险金融、医疗学术、体育赛事、大型展会、展厅建设等多个领域，单场活动规模达千人级以上</div>
 </div>
 
 <div class="nav-bar">
-  <button class="nav-btn active" data-tab="projects">📄 方案</button>
+  <button class="nav-btn active" data-tab="exhibition">🏢 展厅建设</button>
+  <button class="nav-btn" data-tab="projects">📄 活动方案</button>
   <button class="nav-btn" data-tab="albums">📸 直播相册</button>
 </div>
 
 <div class="stats" id="stats">共 9 个项目</div>
 
-<div class="grid" id="grid">
-</div>
+<!-- 方案网格 -->
+<div class="grid" id="grid"></div>
 
-<div class="album-grid" id="albumGrid" style="display:none">
-</div>
+<!-- 相册网格 -->
+<div class="album-grid" id="albumGrid" style="display:none"></div>
 
+<!-- 展厅网格 -->
+<div class="exhibition-grid" id="exhibitionGrid" style="display:none"></div>
+
+<!-- Modal -->
 <div class="modal-overlay" id="modal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal()">&times;</button>
@@ -206,14 +264,16 @@ body {
     <div class="modal-title" id="modalTitle"></div>
     <div class="modal-meta" id="modalMeta"></div>
     <div class="modal-desc" id="modalDesc"></div>
-    <a class="modal-open-btn" id="modalOpenBtn" href="#" target="_blank">📄 打开PDF文件</a>
+    <a class="modal-open-btn" id="modalOpenBtn" href="#" target="_blank">📄 打开文件</a>
   </div>
 </div>
 
 <script>
-var PROJECTS = [{"id": 0, "title": "10月13日重庆女排见面会活动方案", "file": "10月13日重庆女排见面会活动方案（上海新康.pdf", "pages": 37, "size": 12.6, "thumb": "thumbs/00.jpg", "thumb_sm": "thumbs/00_sm.jpg", "preview": "太平洋保险\n重庆女排见面会活动策划方案\n10.13\n"}, {"id": 1, "title": "2024世界人工智能大会-投标3.0", "file": "2024世界人工智能大会-投标3.0.pdf", "pages": 124, "size": 63.4, "thumb": "thumbs/01.jpg", "thumb_sm": "thumbs/01_sm.jpg", "preview": "上海新康辉国际旅行社有限责任公司\n2024世界人工智能大会\nWORLD ARTIFICIAL INTELLIGENCE CONFERENCE\nIntelligent Manufacturing of Dgital Labor Force Creating a Forum for New Quality Productivity\n"}, {"id": 2, "title": "2024精英会策划V8-增加案例", "file": "2024精英会策划V8-增加案例.pdf", "pages": 166, "size": 56.4, "thumb": "thumbs/02.jpg", "thumb_sm": "thumbs/02_sm.jpg", "preview": "太平洋产险第四届菁英奖\n颁奖盛典策划方案\n上海新康辉国际旅行社有限责任公司\n"}, {"id": 3, "title": "CIIE(5)", "file": "CIIE(5).pdf", "pages": 110, "size": 35.2, "thumb": "thumbs/03.jpg", "thumb_sm": "thumbs/03_sm.jpg", "preview": ""}, {"id": 4, "title": "太保2024年616伙伴节需求推荐方案", "file": "太保2024年616伙伴节需求推荐方案（上海新康.pdf", "pages": 64, "size": 39.1, "thumb": "thumbs/04.jpg", "thumb_sm": "thumbs/04_sm.jpg", "preview": "太保2 0 2 4 年6 1 6 伙伴节需求\n推荐方案\n上海新康辉国际旅行社有限责任公司\n"}, {"id": 5, "title": "太保奥运健儿见面会方案0808", "file": "太保奥运健儿见面会方案0808.pdf", "pages": 122, "size": 32.5, "thumb": "thumbs/05.jpg", "thumb_sm": "thumbs/05_sm.jpg", "preview": "  太保奥运健儿见面会（厦门站）\n活动策划方案\nOLYMPIC ATHLETE MEET AND GREET EVEN\n"}, {"id": 6, "title": "太保寿险2025年IQA年会策划方案221", "file": "太保寿险2025年IQA年会策划方案221（上海新康.pdf", "pages": 179, "size": 66.9, "thumb": "thumbs/06.jpg", "thumb_sm": "thumbs/06_sm.jpg", "preview": "上海新康辉国际旅行社有限责任公司\n"}, {"id": 7, "title": "富德生命人寿客户节", "file": "富德生命人寿客户节.pdf", "pages": 62, "size": 5.5, "thumb": "thumbs/07.jpg", "thumb_sm": "thumbs/07_sm.jpg", "preview": "以心/至新\n第十六届客户节盛典活动策划\n富德生命人寿\n"}, {"id": 8, "title": "第十二届菁英会(首尔)方案", "file": "第十二届菁英会(首尔)方案.pdf", "pages": 143, "size": 34.3, "thumb": "thumbs/08.jpg", "thumb_sm": "thumbs/08_sm.jpg", "preview": "讲解人：XXX\n2025年9月16日\n顾问行销渠道2025年\n第十二届菁英会(首尔)\n策划方案\n"}];
+var PROJECTS = [{"id": 0, "title": "10月13日重庆女排见面会活动方案", "file": "10月13日重庆女排见面会活动方案（上海新康.pdf", "pages": 37, "size": 12.6, "thumb": "thumbs/00.jpg", "preview": "太平洋保险\n重庆女排见面会活动策划方案\n10.13"}, {"id": 1, "title": "2024世界人工智能大会-投标3.0", "file": "2024世界人工智能大会-投标3.0.pdf", "pages": 124, "size": 63.4, "thumb": "thumbs/01.jpg", "preview": "上海新康辉国际旅行社有限责任公司\n2024世界人工智能大会\nWORLD ARTIFICIAL INTELLIGENCE CONFERENCE"}, {"id": 2, "title": "2024精英会策划V8-增加案例", "file": "2024精英会策划V8-增加案例.pdf", "pages": 166, "size": 56.4, "thumb": "thumbs/02.jpg", "preview": "太平洋产险第四届菁英奖\n颁奖盛典策划方案\n上海新康辉国际旅行社有限责任公司"}, {"id": 3, "title": "CIIE(5)", "file": "CIIE(5).pdf", "pages": 110, "size": 35.2, "thumb": "thumbs/03.jpg", "preview": ""}, {"id": 4, "title": "太保2024年616伙伴节需求推荐方案", "file": "太保2024年616伙伴节需求推荐方案（上海新康.pdf", "pages": 64, "size": 39.1, "thumb": "thumbs/04.jpg", "preview": "太保2024年616伙伴节需求推荐方案\n上海新康辉国际旅行社有限责任公司"}, {"id": 5, "title": "太保奥运健儿见面会方案0808", "file": "太保奥运健儿见面会方案0808.pdf", "pages": 122, "size": 32.5, "thumb": "thumbs/05.jpg", "preview": "太保奥运健儿见面会（厦门站）\n活动策划方案\nOLYMPIC ATHLETE MEET AND GREET EVEN"}, {"id": 6, "title": "太保寿险2025年IQA年会策划方案221", "file": "太保寿险2025年IQA年会策划方案221（上海新康.pdf", "pages": 179, "size": 66.9, "thumb": "thumbs/06.jpg", "preview": "上海新康辉国际旅行社有限责任公司"}, {"id": 7, "title": "富德生命人寿客户节", "file": "富德生命人寿客户节.pdf", "pages": 62, "size": 5.5, "thumb": "thumbs/07.jpg", "preview": "以心/至新\n第十六届客户节盛典活动策划\n富德生命人寿"}, {"id": 8, "title": "第十二届菁英会(首尔)方案", "file": "第十二届菁英会(首尔)方案.pdf", "pages": 143, "size": 34.3, "thumb": "thumbs/08.jpg", "preview": "讲解人：XXX\n2025年9月16日\n顾问行销渠道2025年\n第十二届菁英会(首尔)\n策划方案"}];
 
 var ALBUMS = [{"id": "a1", "name": "九岗山峰会暨开门红启动会 — 中国太平洋人寿江苏分公司", "url": "https://m.alltuu.com/album/60729643c5fa97afc177e8717bb2442d?menu=live", "platform": "喔图", "thumb": "https://spu.alltuu.com/cover/ALBUM5885093/SHARE/4.jpg?x-oss-process=image/resize,w_400"}, {"id": "a2", "name": "高客法商全员培训暨启动大会", "url": "https://m.alltuu.com/album/5e944678b4e25ef2f4572b3e77ef2b0a?menu=live", "platform": "喔图", "thumb": "https://spu.alltuu.com/cover/ALBUM5849740/SHARE/2.jpg?x-oss-process=image/resize,w_400"}, {"id": "a3", "name": "上乘之选 聚力登峰 — 太平洋寿险江苏分公司绩优组织发展峰会", "url": "https://m.alltuu.com/album/276d6006d13b0a849a04e0312d5497f5?menu=live", "platform": "喔图", "thumb": "https://spu.alltuu.com/cover/ALBUM5386330/SHARE/2.jpg?x-oss-process=image/resize,w_400"}, {"id": "a4", "name": "江苏银保条线2026年首季红表彰暨五六联动启动会议", "url": "https://m.alltuu.com/album/22677368d043a41b202f5b6d2401b2fe/?menu=live", "platform": "喔图", "views": "14,971", "thumb": "https://spu.alltuu.com/cover/ALBUM7254147/SHARE/3.jpg?x-oss-process=image/resize,w_400"}, {"id": "a5", "name": "江苏银保条线2026年首季红表彰（备用链接）", "url": "https://m.alltuu.com/album/795162a4f81615b25b6bdbd9f9b83bfb/?menu=live", "platform": "喔图", "thumb": "https://spu.alltuu.com/cover/ALBUM7756877/SHARE/1.jpg?x-oss-process=image/resize,w_400"}, {"id": "a6", "name": "星耀龙江 守护相随 — 太保黑龙江分公司会议", "url": "https://www.yipai360.com/photolivepc/?orderId=202510201303024936&channel=h5", "platform": "一拍即传"}, {"id": "a7", "name": "大师在你身边 相乐家园-成都站", "url": "https://www.yipai360.com/photolivepc/?orderId=202408261858523839&channel=h5", "platform": "一拍即传"}];
+
+var EXHIBITIONS = [{"id": "e1", "title": "宣城郎溪党建项目策划案", "srcFile": "宣城郎溪党建项目策划案20230612.pptx", "file": "exhibition/宣城郎溪党建项目策划案20230612.pptx", "pages": 27, "size": 4.3, "preview": "南京臻卓文化艺术有限公司出品。涵盖展陈大纲、空间布局、党建文化展示体系设计，打造沉浸式党建教育阵地。", "status": "已完成", "thumb": "exhibition_thumbs/宣城郎溪党建项目策划案20230612_thumb.jpg"}, {"id": "e2", "title": "凤凰港口文化中心设计方案", "srcFile": "凤凰港口文化中心汇报9.15(1).pdf", "file": "exhibition/凤凰港口文化中心汇报9.15(1).pdf", "pages": 64, "size": 25.3, "preview": "2023年凤凰镇港口文化中心整体设计方案。包含项目分析、概念设计、硬件配套、社会化服务四大板块，64页完整方案。", "status": "已完成", "thumb": "exhibition_thumbs/凤凰港口文化中心汇报9.15(1)_thumb.jpg"}, {"id": "e3", "title": "南京邮电大学校史馆升级改造", "srcFile": "南邮讲标方案1109.pdf", "file": "exhibition/南邮讲标方案1109.pdf", "pages": 56, "size": 18.6, "preview": "南京邮电大学仙林校区校史馆升级改造工程装修设计策划方案。为献礼学校80周年，全方位展示80年光辉历程。", "status": "已完成", "thumb": "exhibition_thumbs/南邮讲标方案1109_thumb.jpg"}, {"id": "e4", "title": "奥赛康药业党建文化长廊", "srcFile": "江苏奥赛康药业有限公司党建文化长廊设计方案.pptx", "file": "exhibition/江苏奥赛康药业有限公司党建文化长廊设计方案.pdf", "pages": 31, "size": 3.5, "preview": "江苏奥赛康药业有限公司党建文化长廊设计方案。以企业党建为核心，融合企业文化展示与红色教育功能。", "status": "已完成", "thumb": "exhibition_thumbs/江苏奥赛康药业有限公司党建文化长廊设计方案_thumb.jpg"}, {"id": "e5", "title": "江苏省教育考试院展厅改造", "srcFile": "江苏省教育考试院展厅改造方案8.7_HTML版.pptx", "file": "exhibition/江苏省教育考试院展厅改造方案8.7_HTML版.pdf", "pages": 25, "size": 1.8, "preview": "江苏省教育考试院展厅改造升级方案。聚焦教育考试发展历程展示，打造现代化、数字化展厅空间。", "status": "已完成", "thumb": "exhibition_thumbs/江苏省教育考试院展厅改造方案8.7_HTML版_thumb.jpg"}, {"id": "e6", "title": "汤山全域社会治理中心方案", "srcFile": "汤山全域社会治理中心方案第四稿.pdf", "file": "exhibition/汤山全域社会治理中心方案第四稿.pdf", "pages": 15, "size": 5.5, "preview": "汤山全域社会治理中心阵地方案。统筹基层党建、城市管理、社区治理、公共服务，打造可复制的社会治理新范式。", "status": "已完成", "thumb": "exhibition_thumbs/汤山全域社会治理中心方案第四稿_thumb.jpg"}];
 
 function renderProjects() {
   var grid = document.getElementById('grid');
@@ -223,7 +283,7 @@ function renderProjects() {
       '<img class="card-img" src="' + p.thumb + '" alt="' + p.title + '" loading="lazy">' +
       '<div class="card-body">' +
         '<div class="card-title">' + p.title + '</div>' +
-        '<div class="card-meta"><span>📄 ' + p.pages + ' \u9875</span><span>💾 ' + p.size + ' MB</span></div>' +
+        '<div class="card-meta"><span>📄 ' + p.pages + ' 页</span><span>💾 ' + p.size + ' MB</span></div>' +
         '<div class="card-desc">' + desc + '</div>' +
       '</div>' +
     '</div>';
@@ -245,18 +305,58 @@ function renderAlbums() {
   }).join('');
 }
 
+function renderExhibitions() {
+  var grid = document.getElementById('exhibitionGrid');
+  var fileTypes = {'.pdf':'PDF','.pptx':'PPTX'};
+  grid.innerHTML = EXHIBITIONS.map(function(e) {
+    var ext = e.file.substring(e.file.lastIndexOf('.'));
+    var extName = fileTypes[ext] || ext;
+    var badgeClass = (e.status === '\u5df2\u5b8c\u6210') ? 'status-done' : 'status-pending';
+    var badgeText = (e.status === '\u5df2\u5b8c\u6210') ? '\u2714 \u5df2\u5b8c\u6210' : '\u23f3 ' + e.status;
+    var desc = e.preview ? e.preview.substring(0,200) : '';
+    return '<div class="exhibition-card" onclick="openExhibitionModal(\'' + e.id + '\')">' +
+      '<span class="exhibition-badge ' + badgeClass + '">' + badgeText + '</span>' +
+      '<img class="card-img" src="' + e.thumb + '" alt="' + e.title + '" loading="lazy">' +
+      '<div class="card-body">' +
+        '<div class="card-title">' + e.title + '</div>' +
+        '<div class="card-meta"><span>📄 ' + e.pages + ' 页</span><span>💾 ' + e.size + ' MB</span><span>' + extName + '</span></div>' +
+        '<div class="card-desc">' + desc + '</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function openExhibitionModal(id) {
+  var e = EXHIBITIONS.find(function(x) { return x.id === id; });
+  if (!e) return;
+  document.getElementById('modalImg').src = e.thumb;
+  document.getElementById('modalTitle').textContent = e.title;
+  document.getElementById('modalMeta').textContent = '📄 ' + e.pages + ' 页 \u00b7 💾 ' + e.size + ' MB';
+  document.getElementById('modalDesc').innerHTML = '<p>' + e.preview.replace(/\n/g,'<br>') + '</p>';
+  document.getElementById('modalOpenBtn').href = encodeURI(e.file);
+  document.getElementById('modalOpenBtn').style.display = e.file ? '' : 'none';
+  document.getElementById('modal').classList.add('show');
+}
+
 function switchTab(tab) {
   document.querySelectorAll('.nav-btn').forEach(function(b) { b.classList.remove('active'); });
   document.querySelector('.nav-btn[data-tab="' + tab + '"]').classList.add('active');
+  document.getElementById('grid').style.display = 'none';
+  document.getElementById('albumGrid').style.display = 'none';
+  document.getElementById('exhibitionGrid').style.display = 'none';
+  var stats = document.getElementById('stats');
   if (tab === 'projects') {
     document.getElementById('grid').style.display = '';
-    document.getElementById('albumGrid').style.display = 'none';
-    document.getElementById('stats').textContent = '\u5171 ' + PROJECTS.length + ' \u4e2a\u9879\u76ee';
-  } else {
-    document.getElementById('grid').style.display = 'none';
+    stats.textContent = '\u5171 ' + PROJECTS.length + ' \u4e2a\u9879\u76ee';
+    renderProjects();
+  } else if (tab === 'albums') {
     document.getElementById('albumGrid').style.display = '';
+    stats.textContent = ALBUMS.length + ' \u4e2a\u76f4\u64ad\u76f8\u518c';
     renderAlbums();
-    document.getElementById('stats').textContent = ALBUMS.length + ' \u4e2a\u76f4\u64ad\u76f8\u518c';
+  } else {
+    document.getElementById('exhibitionGrid').style.display = '';
+    stats.textContent = EXHIBITIONS.length + ' \u4e2a\u5c55\u5385\u5efa\u8bbe\u9879\u76ee';
+    renderExhibitions();
   }
 }
 
@@ -265,7 +365,7 @@ function openModal(id) {
   if (!p) return;
   document.getElementById('modalImg').src = p.thumb;
   document.getElementById('modalTitle').textContent = p.title;
-  document.getElementById('modalMeta').textContent = '📄 ' + p.pages + ' \u9875 \u00b7 💾 ' + p.size + ' MB';
+  document.getElementById('modalMeta').textContent = '📄 ' + p.pages + ' 页 \u00b7 💾 ' + p.size + ' MB';
   document.getElementById('modalDesc').innerHTML = '<p><strong>\u6587\u4ef6\uff1a</strong>' + p.file + '</p>' + (p.preview ? '<p style="margin-top:8px;">' + p.preview.substring(0,300).replace(/\n/g,'<br>') + '</p>' : '');
   document.getElementById('modalOpenBtn').href = encodeURI(p.file);
   document.getElementById('modal').classList.add('show');
@@ -285,7 +385,7 @@ document.getElementById('modal').addEventListener('click', function(e) {
 document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 
 renderProjects();
-switchTab('projects');
+switchTab('exhibition');
 </script>
 </body>
 </html>
