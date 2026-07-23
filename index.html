@@ -7,137 +7,116 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif;background:#faf9f6;color:#1a1a1a;line-height:1.6;overflow-x:hidden}
-.top-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 36px;background:rgba(250,249,246,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06);font-size:13px;letter-spacing:2px}
-.top-nav .logo{font-weight:800;font-size:15px;color:#ea580c}
-.top-nav .nav-links{display:flex;gap:32px;list-style:none}
-.top-nav .nav-links a{color:rgba(0,0,0,.4);text-decoration:none;transition:color .3s;font-weight:500;text-transform:uppercase;font-size:12px}
-.top-nav .nav-links a:hover,.top-nav .nav-links a.active{color:#ea580c}
-.top-nav .cta{padding:7px 20px;border:1px solid rgba(234,88,12,.35);border-radius:6px;color:#ea580c;font-weight:600;text-decoration:none;font-size:12px;letter-spacing:2px;transition:background .3s}
-.top-nav .cta:hover{background:rgba(234,88,12,.06)}
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;background:linear-gradient(180deg,#fff5f0 0%,#faf9f6 40%,#fff 100%)}
-.hero>*{position:relative;z-index:1}
-.hero .date-box{display:inline-flex;gap:16px;align-items:center;border:1px solid rgba(234,88,12,.15);border-radius:8px;padding:10px 24px;margin-bottom:32px;font-size:14px;color:rgba(0,0,0,.45);letter-spacing:1px}
-.hero .date-box .num{font-size:28px;font-weight:700;color:#ea580c;line-height:1}
-.hero .date-box .sep{width:1px;height:28px;background:rgba(234,88,12,.15)}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#fff;color:#1a1a1a;line-height:1.5;overflow-x:hidden}
+.top-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 40px;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.05);font-size:13px;letter-spacing:1px;text-transform:uppercase}
+.top-nav .logo{font-weight:800;font-size:14px;color:#ff6b00}
+.top-nav .nav-links{display:flex;gap:36px;list-style:none}
+.top-nav .nav-links a{color:rgba(0,0,0,.45);text-decoration:none;transition:color .2s;font-weight:500;font-size:12px}
+.top-nav .nav-links a:hover,.top-nav .nav-links a.active{color:#ff6b00}
+.top-nav .cta{padding:8px 22px;border:1px solid #ff6b00;border-radius:4px;color:#ff6b00;font-weight:600;text-decoration:none;font-size:12px;letter-spacing:1px;transition:all .2s}
+.top-nav .cta:hover{background:#ff6b00;color:#fff}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;background:#fff}
+.hero .date-box{display:inline-flex;gap:16px;align-items:center;border:1px solid rgba(0,0,0,.1);border-radius:4px;padding:10px 24px;margin-bottom:32px;font-size:14px;color:rgba(0,0,0,.45)}
+.hero .date-box .num{font-size:28px;font-weight:800;color:#ff6b00;line-height:1}
+.hero .date-box .sep{width:1px;height:28px;background:rgba(0,0,0,.1)}
 .hero .venue{font-size:13px;color:rgba(0,0,0,.35);margin-bottom:40px;letter-spacing:2px}
-.hero h1{font-size:clamp(40px,8vw,80px);font-weight:900;letter-spacing:6px;color:#1a1a1a;margin-bottom:8px;line-height:1.1}
-.hero h1 .accent{color:#ea580c}
-.hero .tagline{font-size:clamp(14px,2vw,20px);color:rgba(0,0,0,.3);letter-spacing:5px;font-weight:300;margin-bottom:32px}
-.hero .intro-text{max-width:580px;font-size:14px;color:rgba(0,0,0,.4);line-height:1.8}
-.hero .scroll-indicator{position:absolute;bottom:48px;display:flex;flex-direction:column;align-items:center;gap:8px}
-.hero .scroll-indicator .line{width:1px;height:48px;background:linear-gradient(180deg,rgba(234,88,12,.3),transparent)}
-.hero .scroll-indicator .txt{font-size:11px;letter-spacing:3px;color:rgba(0,0,0,.2);text-transform:uppercase}
-.espace-intro{text-align:center;padding:80px 24px 48px;max-width:740px;margin:0 auto}
-.espace-intro .count{font-size:12px;letter-spacing:3px;color:#ea580c;font-weight:600;text-transform:uppercase;margin-bottom:12px}
-.espace-intro h2{font-size:clamp(22px,3.5vw,32px);font-weight:700;color:#1a1a1a;margin-bottom:16px;letter-spacing:2px}
-.espace-intro .body-text{font-size:14px;color:rgba(0,0,0,.4);line-height:1.8}
-.espace-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;padding:24px 24px 48px;max-width:900px;margin:0 auto}
-.espace-nav .space-link{display:flex;align-items:center;gap:10px;padding:12px 24px;border:1px solid rgba(0,0,0,.08);border-radius:8px;color:rgba(0,0,0,.4);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:1px;transition:all .3s;background:#fff}
-.espace-nav .space-link:hover{border-color:rgba(234,88,12,.3);color:#ea580c;background:rgba(234,88,12,.04)}
-.espace-nav .space-link .num{font-size:18px;font-weight:800;color:#ea580c;opacity:.5}
-.space-section{padding:80px 24px;position:relative}
-.space-section.alt{background:linear-gradient(180deg,rgba(250,249,246,.5),rgba(245,240,235,.5),rgba(250,249,246,.5))}
-.space-header{max-width:1200px;margin:0 auto 48px;display:flex;align-items:baseline;gap:16px}
-.space-header .space-num{font-size:72px;font-weight:900;color:rgba(234,88,12,.06);line-height:1;font-style:italic}
-.space-header .space-info h3{font-size:clamp(20px,2.5vw,28px);font-weight:700;color:#1a1a1a;letter-spacing:1px;margin-bottom:6px}
-.space-header .space-info .space-desc{font-size:13px;color:rgba(0,0,0,.4);line-height:1.6;max-width:500px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;max-width:1200px;margin:0 auto}
-.card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:10px;overflow:hidden;transition:all .35s;cursor:pointer}
-.card:hover{transform:translateY(-5px);border-color:rgba(234,88,12,.2);box-shadow:0 10px 36px rgba(234,88,12,.08)}
-.card-img{width:100%;height:220px;object-fit:cover;object-position:top center;background:#f0eee9;display:block}
-.card-body{padding:16px 16px 18px}
-.card-title{font-size:14px;font-weight:600;color:#1a1a1a;margin-bottom:8px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.card-meta{font-size:11px;color:rgba(0,0,0,.35);margin-bottom:6px}
-.card-meta span{margin-right:14px}
-.card-desc{font-size:11px;color:rgba(0,0,0,.3);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.album-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;max-width:1200px;margin:0 auto}
-.album-card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:10px;overflow:hidden;transition:all .35s;text-decoration:none;color:inherit;display:block}
-.album-card:hover{transform:translateY(-5px);border-color:rgba(234,88,12,.2);box-shadow:0 10px 36px rgba(234,88,12,.08)}
-.album-img{width:100%;height:200px;object-fit:cover;object-position:center;background:#f0eee9;display:block}
-.album-placeholder{width:100%;height:200px;display:flex;align-items:center;justify-content:center;background:#f5f3f0;font-size:48px;color:rgba(0,0,0,.06)}
-.album-body{padding:14px 16px 16px}
-.album-name{font-size:14px;font-weight:600;color:#1a1a1a;margin-bottom:6px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.album-meta{font-size:12px;color:rgba(0,0,0,.35)}
-.album-meta span{margin-right:10px}
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);z-index:200;justify-content:center;align-items:center;padding:20px}
+.hero h1{font-size:clamp(42px,8vw,84px);font-weight:900;color:#1a1a1a;margin-bottom:8px;line-height:1.05}
+.hero h1 span{color:#ff6b00}
+.hero .tagline{font-size:clamp(14px,2vw,18px);color:rgba(0,0,0,.3);letter-spacing:5px;font-weight:300;margin-bottom:32px}
+.hero .desc{max-width:560px;font-size:14px;color:rgba(0,0,0,.4);line-height:1.8}
+.espace-intro{text-align:center;padding:80px 24px 48px;max-width:720px;margin:0 auto;background:#fff}
+.espace-intro .count{font-size:12px;letter-spacing:4px;color:#ff6b00;font-weight:600;text-transform:uppercase;margin-bottom:16px}
+.espace-intro h2{font-size:clamp(22px,3vw,30px);font-weight:700;color:#1a1a1a;margin-bottom:16px}
+.espace-intro .body{font-size:14px;color:rgba(0,0,0,.4);line-height:1.8}
+.espace-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;padding:24px 24px 48px;max-width:960px;margin:0 auto;background:#fff}
+.espace-nav a{display:flex;align-items:center;gap:8px;padding:10px 20px;border:1px solid rgba(0,0,0,.08);border-radius:4px;color:rgba(0,0,0,.4);text-decoration:none;font-size:12px;font-weight:500;letter-spacing:1px;transition:all .2s}
+.espace-nav a:hover{border-color:#ff6b00;color:#ff6b00}
+.espace-nav a .num{font-size:18px;font-weight:800;color:#ff6b00;opacity:.5}
+.section{padding:80px 24px 100px;background:#fff}
+.section-header{max-width:1200px;margin:0 auto 40px;display:flex;align-items:flex-end;gap:12px}
+.section-header .num{font-size:80px;font-weight:900;color:rgba(255,107,0,.04);line-height:.8;font-style:italic;min-width:100px}
+.section-header .info h3{font-size:clamp(20px,2.5vw,26px);font-weight:700;color:#1a1a1a;margin-bottom:4px}
+.section-header .info p{font-size:13px;color:rgba(0,0,0,.35);max-width:480px;line-height:1.6}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;max-width:1200px;margin:0 auto}
+.card{border:1px solid rgba(0,0,0,.06);border-radius:6px;overflow:hidden;transition:all .25s;cursor:pointer;background:#fff}
+.card:hover{transform:translateY(-3px);border-color:rgba(255,107,0,.15);box-shadow:0 6px 24px rgba(0,0,0,.04)}
+.card-img{width:100%;height:200px;object-fit:cover;object-position:top center;background:#f8f8f8;display:block}
+.card-body{padding:14px 16px 16px}
+.card-title{font-size:13px;font-weight:600;color:#1a1a1a;margin-bottom:6px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-meta{font-size:11px;color:rgba(0,0,0,.3);margin-bottom:4px}
+.card-meta span{margin-right:12px}
+.card-desc{font-size:11px;color:rgba(0,0,0,.25);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.album-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;max-width:1200px;margin:0 auto}
+.album-card{border:1px solid rgba(0,0,0,.06);border-radius:6px;overflow:hidden;transition:all .25s;text-decoration:none;color:inherit;display:block;background:#fff}
+.album-card:hover{transform:translateY(-3px);border-color:rgba(255,107,0,.15);box-shadow:0 6px 24px rgba(0,0,0,.04)}
+.album-img{width:100%;height:180px;object-fit:cover;background:#f8f8f8;display:block}
+.album-ph{width:100%;height:180px;display:flex;align-items:center;justify-content:center;background:#f8f8f8;font-size:40px;color:rgba(0,0,0,.05)}
+.album-body{padding:12px 14px 14px}
+.album-name{font-size:13px;font-weight:600;color:#1a1a1a;margin-bottom:4px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.album-meta{font-size:11px;color:rgba(0,0,0,.3)}
+.album-meta span{margin-right:8px}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);backdrop-filter:blur(2px);z-index:200;justify-content:center;align-items:center;padding:20px}
 .modal-overlay.show{display:flex}
-.modal{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:12px;width:100%;max-width:660px;max-height:88vh;overflow-y:auto;padding:28px;position:relative;animation:fadeIn .25s ease}
-@keyframes fadeIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
-.modal-close{position:absolute;top:14px;right:18px;font-size:22px;color:rgba(0,0,0,.25);cursor:pointer;background:none;border:none;line-height:1;transition:color .2s}
-.modal-close:hover{color:#ea580c}
-.modal-img{width:100%;max-height:360px;object-fit:contain;background:#f5f3f0;border-radius:8px;margin-bottom:16px}
-.modal-title{font-size:18px;font-weight:700;color:#1a1a1a;margin-bottom:6px}
-.modal-meta{font-size:13px;color:rgba(0,0,0,.35);margin-bottom:14px}
-.modal-desc{font-size:14px;color:rgba(0,0,0,.55);line-height:1.7}
-.modal-open-btn{display:inline-block;margin-top:18px;padding:10px 28px;background:#ea580c;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;transition:opacity .2s}
-.modal-open-btn:hover{opacity:.88}
-.divider{width:1px;height:60px;background:linear-gradient(180deg,transparent,rgba(234,88,12,.12),transparent);margin:0 auto}
-.footer{text-align:center;padding:60px 24px 40px;font-size:12px;color:rgba(0,0,0,.15);letter-spacing:3px}
-@media(max-width:600px){.top-nav{padding:12px 16px}.top-nav .nav-links{gap:16px}.hero{padding:100px 16px 60px}.space-section{padding:48px 16px}.space-header{flex-direction:column;gap:8px}.space-num{font-size:48px}.grid{grid-template-columns:1fr}.card-img{height:180px}.album-grid{grid-template-columns:1fr}.album-img{height:180px}.espace-nav{flex-direction:column;align-items:center}.modal{padding:18px}}
+.modal{background:#fff;border-radius:8px;width:100%;max-width:640px;max-height:88vh;overflow-y:auto;padding:28px;position:relative;animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+.modal-close{position:absolute;top:12px;right:16px;font-size:20px;color:rgba(0,0,0,.25);cursor:pointer;background:none;border:none;line-height:1;transition:color .2s}
+.modal-close:hover{color:#ff6b00}
+.modal-img{width:100%;max-height:320px;object-fit:contain;background:#f8f8f8;border-radius:4px;margin-bottom:14px}
+.modal-title{font-size:17px;font-weight:700;color:#1a1a1a;margin-bottom:6px}
+.modal-meta{font-size:12px;color:rgba(0,0,0,.3);margin-bottom:12px}
+.modal-desc{font-size:13px;color:rgba(0,0,0,.45);line-height:1.7}
+.modal-btn{display:inline-block;margin-top:16px;padding:9px 24px;background:#ff6b00;color:#fff;border:none;border-radius:4px;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;transition:opacity .2s}
+.modal-btn:hover{opacity:.88}
+.divider{height:1px;background:rgba(0,0,0,.06);max-width:1200px;margin:0 auto}
+.footer{text-align:center;padding:40px 24px;font-size:11px;color:rgba(0,0,0,.12);letter-spacing:2px}
+@media(max-width:600px){.top-nav{padding:12px 16px}.top-nav .nav-links{gap:18px}.hero{padding:100px 16px 60px}.section{padding:56px 16px 72px}.section-header{flex-direction:column;gap:4px}.section-header .num{font-size:48px}.grid{grid-template-columns:1fr}.card-img{height:180px}.album-grid{grid-template-columns:1fr}.album-img{height:170px}.espace-nav{flex-direction:column;align-items:center}.espace-nav a{width:100%;justify-content:center}.modal{padding:18px}}
 </style>
 </head>
 <body>
-<nav class="top-nav"><span class="logo">LFD</span><ul class="nav-links"><li><a href="#hero" class="active">Accueil</a></li><li><a href="#espace-1">Expo</a></li><li><a href="#espace-2">Projets</a></li><li><a href="#espace-3">Albums</a></li></ul><a href="#espace-1" class="cta">进入展厅</a></nav>
-<section class="hero" id="hero"><div class="date-box"><div class="num">6</div><div class="sep"></div><div>Expo</div><div class="sep"></div><div class="num">9</div><div class="sep"></div><div>Projets</div><div class="sep"></div><div class="num">7</div><div class="sep"></div><div>Albums</div></div><div class="venue">项目管理 · 会议展览 · 空间设计</div><h1>卢<span class="accent">发</span>达</h1><div class="tagline">PORTFOLIO</div><div class="intro-text">经手项目涵盖展厅设计、保险金融、体育赛事、大型展会等多个领域<br>单场活动规模达千人级以上</div><div class="scroll-indicator"><div class="line"></div><div class="txt">Scroll</div></div></section>
-<section class="espace-intro"><div class="count">4 个展览空间 — 沉浸式体验</div><h2>从空间设计到活动执行<br>全方位呈现项目能力</h2><div class="body-text">本作品集围绕 4 个互补空间展开——展厅设计、活动策划、影像记录与项目档案，层层递进，完整还原每个项目从概念到落地的全过程。</div></section>
-<nav class="espace-nav"><a href="#espace-1" class="space-link"><span class="num">01</span> 展厅设计</a><a href="#espace-2" class="space-link"><span class="num">02</span> 策划方案</a><a href="#espace-3" class="space-link"><span class="num">03</span> 直播相册</a><a href="#espace-4" class="space-link"><span class="num">04</span> 项目档案</a></nav>
-<section class="space-section" id="espace-1" style="position:relative;overflow:hidden"><canvas id="expo-canvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.25"></canvas><div style="position:relative;z-index:1"><div class="space-header"><div class="space-num">01</div><div class="space-info"><h3>展厅设计</h3><div class="space-desc">6 个展厅设计项目，涵盖教育考试院展厅改造、党建文化长廊、社会治理中心等空间设计。</div></div></div><div class="grid" id="expoGrid"></div></div></section>
+<nav class="top-nav"><span class="logo">LFD</span><ul class="nav-links"><li><a href="#hero">Accueil</a></li><li><a href="#espace-1">Expo</a></li><li><a href="#espace-2">Projets</a></li><li><a href="#espace-3">Albums</a></li></ul><a href="#espace-1" class="cta">进入展厅</a></nav>
+
+<section class="hero" id="hero">
+<div class="date-box"><div class="num">6</div><div class="sep"></div><div>Expo</div><div class="sep"></div><div class="num">9</div><div class="sep"></div><div>Projets</div><div class="sep"></div><div class="num">7</div><div class="sep"></div><div>Albums</div></div>
+<div class="venue">项目管理 · 会议展览 · 空间设计</div>
+<h1>卢<span>发</span>达</h1>
+<div class="tagline">PORTFOLIO</div>
+<div class="desc">经手项目涵盖展厅设计、保险金融、体育赛事、大型展会等多个领域，单场活动规模达千人级以上</div>
+</section>
+
+<section class="espace-intro"><div class="count">4 ESPACES SCÉNOGRAPHIÉS</div><h2>从空间设计到活动执行，全方位呈现项目能力</h2><div class="body">围绕4个互补空间展开——展厅设计、活动策划、影像记录与项目档案，层层递进。</div></section>
+
+<nav class="espace-nav"><a href="#espace-1"><span class="num">01</span>展厅设计</a><a href="#espace-2"><span class="num">02</span>策划方案</a><a href="#espace-3"><span class="num">03</span>直播相册</a><a href="#espace-4"><span class="num">04</span>项目档案</a></nav>
+
+<section class="section" id="espace-1"><div class="section-header"><div class="num">01</div><div class="info"><h3>展厅设计</h3><p>6个展厅设计项目，涵盖教育考试院展厅改造、党建文化长廊、社会治理中心等空间设计。</p></div></div><div class="grid" id="expoGrid"></div></section>
 <div class="divider"></div>
-<section class="space-section alt" id="espace-2"><div class="space-header"><div class="space-num">02</div><div class="space-info"><h3>策划方案</h3><div class="space-desc">9 个精品策划项目，涵盖保险金融、体育赛事、大型展会等核心领域。</div></div></div><div class="grid" id="grid"></div></section>
+<section class="section" id="espace-2"><div class="section-header"><div class="num">02</div><div class="info"><h3>策划方案</h3><p>9个精品策划项目，涵盖保险金融、体育赛事、大型展会等核心领域。</p></div></div><div class="grid" id="grid"></div></section>
 <div class="divider"></div>
-<section class="space-section" id="espace-3"><div class="space-header"><div class="space-num">03</div><div class="space-info"><h3>直播相册</h3><div class="space-desc">活动现场影像记录，通过专业摄影平台实时呈现。</div></div></div><div class="album-grid" id="albumGrid"></div></section>
+<section class="section" id="espace-3"><div class="section-header"><div class="num">03</div><div class="info"><h3>直播相册</h3><p>活动现场影像记录，通过专业摄影平台实时呈现。</p></div></div><div class="album-grid" id="albumGrid"></div></section>
 <div class="divider"></div>
-<section class="space-section alt" id="espace-4"><div class="space-header"><div class="space-num">04</div><div class="space-info"><h3>项目档案</h3><div class="space-desc">所有项目数据一览，完整呈现履历厚度。</div></div></div><div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px" id="archiveGrid"></div></section>
-<footer class="footer">© LU FADA · PORTFOLIO 2026 — 4 ESPACES SCÉNOGRAPHIÉS</footer>
-<div class="modal-overlay" id="modal"><div class="modal"><button class="modal-close" onclick="closeModal()">✕</button><img class="modal-img" id="modalImg" src="" alt=""><div class="modal-title" id="modalTitle"></div><div class="modal-meta" id="modalMeta"></div><div class="modal-desc" id="modalDesc"></div><a class="modal-open-btn" id="modalOpenBtn" href="#" target="_blank">📄 查看完整方案</a></div></div>
+<section class="section" id="espace-4"><div class="section-header"><div class="num">04</div><div class="info"><h3>项目档案</h3><p>所有项目数据一览，完整呈现履历厚度。</p></div></div><div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px" id="archiveGrid"></div></section>
+
+<footer class="footer">© LU FADA — PORTFOLIO 2026</footer>
+
+<div class="modal-overlay" id="modal"><div class="modal"><button class="modal-close" onclick="closeModal()">✕</button><img class="modal-img" id="modalImg" src="" alt=""><div class="modal-title" id="modalTitle"></div><div class="modal-meta" id="modalMeta"></div><div class="modal-desc" id="modalDesc"></div><a class="modal-btn" id="modalOpenBtn" href="#" target="_blank">📄 查看文件</a></div></div>
+
 <script>
 var PROJECTS=[{id:0,title:"重庆女排见面会活动方案",client:"太平洋保险",file:"10月13日重庆女排见面会活动方案（上海新康.pdf",pages:37,size:12.6,thumb:"thumbs/00.jpg",preview:"太平洋保险重庆女排见面会活动策划方案"},{id:1,title:"世界人工智能大会-投标方案",client:"上海新康辉",file:"2024世界人工智能大会-投标3.0.pdf",pages:124,size:63.4,thumb:"thumbs/01.jpg",preview:"2024世界人工智能大会 · 智能制造与数字劳动力"},{id:2,title:"第四届菁英奖颁奖盛典策划",client:"太平洋产险",file:"2024精英会策划V8-增加案例.pdf",pages:166,size:56.4,thumb:"thumbs/02.jpg",preview:"太平洋产险第四届菁英奖颁奖盛典策划方案"},{id:3,title:"CIIE 进博会策划",client:"进博会",file:"CIIE(5).pdf",pages:110,size:35.2,thumb:"thumbs/03.jpg",preview:"中国国际进口博览会"},{id:4,title:"616伙伴节需求推荐方案",client:"太平洋保险",file:"太保2024年616伙伴节需求推荐方案（上海新康.pdf",pages:64,size:39.1,thumb:"thumbs/04.jpg",preview:"太保2024年616伙伴节需求推荐方案"},{id:5,title:"奥运健儿见面会（厦门站）",client:"太平洋保险",file:"太保奥运健儿见面会方案0808.pdf",pages:122,size:32.5,thumb:"thumbs/05.jpg",preview:"太保奥运健儿见面会活动策划方案 · 厦门站"},{id:6,title:"IQA年会策划方案",client:"太保寿险",file:"太保寿险2025年IQA年会策划方案221（上海新康.pdf",pages:179,size:66.9,thumb:"thumbs/06.jpg",preview:"太保寿险2025年IQA年会策划方案"},{id:7,title:"第十六届客户节盛典策划",client:"富德生命人寿",file:"富德生命人寿客户节.pdf",pages:62,size:5.5,thumb:"thumbs/07.jpg",preview:"以心至新 · 第十六届客户节盛典"},{id:8,title:"第十二届菁英会（首尔）",client:"顾问行销渠道",file:"第十二届菁英会(首尔)方案.pdf",pages:143,size:34.3,thumb:"thumbs/08.jpg",preview:"顾问行销渠道2025年第十二届菁英会首尔策划方案"}];
-var EXPOS=[{id:"e4",title:"宣城郎溪党建项目策划案",client:"宣城郎溪",type:"党建文化",desc:"党建文化空间策划与设计。",sections:[],file:"../展厅/宣城郎溪党建项目策划案20230612.pptx",thumb:"thumbs_expo/e4_langxi.jpeg"},{id:"e1",title:"江苏省教育考试院展厅改造方案",client:"江苏省教育考试院",type:"展厅改造",desc:"三大展区（序厅/主厅/尾厅）整体改造，含前言、党的全面领导、电子大屏、八个处室展板、荣誉墙、多媒体互动设备等。",sections:["序厅：前言·党的全面领导·电子大屏","主厅：八处室展板·科举文化·多媒体互动","尾厅：荣誉墙·群团建设·发展规划·结束语"],file:"../展厅/江苏省教育考试院展厅改造方案8.7_HTML版.pptx",thumb:"thumbs_expo/e1_jiaoyu.png"},{id:"e2",title:"凤凰港口文化中心汇报方案",client:"凤凰港口",type:"文化中心",desc:"港口文化中心空间规划与设计汇报方案。",sections:[],file:"../展厅/凤凰港口文化中心汇报9.15(1).pdf",thumb:"thumbs_expo/e2_fenghuang.jpg"},{id:"e3",title:"南邮讲标方案",client:"南京邮电大学",type:"讲标方案",desc:"高校项目讲标展示方案。",sections:[],file:"../展厅/南邮讲标方案1109.pdf",thumb:"thumbs_expo/e3_nanyou.jpg"},{id:"e5",title:"奥赛康药业党建文化长廊设计",client:"江苏奥赛康药业",type:"党建文化",desc:"企业文化长廊空间设计，党建主题展示。",sections:[],file:"../展厅/江苏奥赛康药业有限公司党建文化长廊设计方案.pptx",thumb:"thumbs_expo/e5_aosaikang.jpeg"},{id:"e6",title:"汤山全域社会治理中心方案",client:"汤山街道",type:"社会治理",desc:"全域社会治理中心空间规划方案。",sections:[],file:"../展厅/汤山全域社会治理中心方案第四稿.pdf",thumb:"thumbs_expo/e6_tangshan.jpg"}];
-var ALBUMS=[{id:"a1",name:"九岗山峰会暨开门红启动会",sub:"中国太平洋人寿江苏分公司",url:"https://m.alltuu.com/album/60729643c5fa97afc177e8717bb2442d?menu=live",platform:"喔图",thumb:"https://spu.alltuu.com/cover/ALBUM5885093/SHARE/4.jpg?x-oss-process=image/resize,w_400"},{id:"a2",name:"高客法商全员培训暨启动大会",sub:"",url:"https://m.alltuu.com/album/5e944678b4e25ef2f4572b3e77ef2b0a?menu=live",platform:"喔图",thumb:"https://spu.alltuu.com/cover/ALBUM5849740/SHARE/2.jpg?x-oss-process=image/resize,w_400"},{id:"a3",name:"绩优组织发展峰会",sub:"太平洋寿险江苏分公司",url:"https://m.alltuu.com/album/276d6006d13b0a849a04e0312d5497f5?menu=live",platform:"喔图",thumb:"https://spu.alltuu.com/cover/ALBUM5386330/SHARE/2.jpg?x-oss-process=image/resize,w_400"},{id:"a4",name:"江苏银保首季红表彰暨五六联动启动",sub:"",url:"https://m.alltuu.com/album/22677368d043a41b202f5b6d2401b2fe/?menu=live",platform:"喔图",views:"14,971",thumb:"https://spu.alltuu.com/cover/ALBUM7254147/SHARE/3.jpg?x-oss-process=image/resize,w_400"},{id:"a5",name:"江苏银保首季红表彰（备用链接）",sub:"",url:"https://m.alltuu.com/album/795162a4f81615b25b6bdbd9f9b83bfb/?menu=live",platform:"喔图",thumb:"https://spu.alltuu.com/cover/ALBUM7756877/SHARE/1.jpg?x-oss-process=image/resize,w_400"},{id:"a6",name:"星耀龙江 守护相随",sub:"太保黑龙江分公司",url:"https://www.yipai360.com/photolivepc/?orderId=202510201303024936&channel=h5",platform:"一拍即传",thumb:"thumbs_expo/a6_xingyao.jpg"},{id:"a7",name:"大师在你身边 相乐家园-成都站",sub:"",url:"https://www.yipai360.com/photolivepc/?orderId=202408261858523839&channel=h5",platform:"一拍即传",thumb:"thumbs_expo/a7_dashi.jpg"}];
+var EXPOS=[{id:"e4",title:"宣城郎溪党建项目策划案",client:"宣城郎溪",type:"党建文化",desc:"党建文化空间策划与设计。",file:"../展厅/宣城郎溪党建项目策划案20230612.pptx",thumb:"thumbs_expo/e4_langxi.jpeg"},{id:"e1",title:"江苏省教育考试院展厅改造方案",client:"江苏省教育考试院",type:"展厅改造",desc:"三大展区整体改造，含前言、党的全面领导、电子大屏、八个处室展板、荣誉墙、多媒体互动设备等。",sections:["序厅：前言·党的全面领导·电子大屏","主厅：八处室展板·科举文化·多媒体互动","尾厅：荣誉墙·群团建设·发展规划·结束语"],file:"../展厅/江苏省教育考试院展厅改造方案8.7_HTML版.pptx",thumb:"thumbs_expo/e1_jiaoyu.png"},{id:"e2",title:"凤凰港口文化中心汇报方案",client:"凤凰港口",type:"文化中心",desc:"港口文化中心空间规划与设计汇报方案。",file:"../展厅/凤凰港口文化中心汇报9.15(1).pdf",thumb:"thumbs_expo/e2_fenghuang.jpg"},{id:"e3",title:"南邮讲标方案",client:"南京邮电大学",type:"讲标方案",desc:"高校项目讲标展示方案。",file:"../展厅/南邮讲标方案1109.pdf",thumb:"thumbs_expo/e3_nanyou.jpg"},{id:"e5",title:"奥赛康药业党建文化长廊设计",client:"江苏奥赛康药业",type:"党建文化",desc:"企业文化长廊空间设计，党建主题展示。",file:"../展厅/江苏奥赛康药业有限公司党建文化长廊设计方案.pptx",thumb:"thumbs_expo/e5_aosaikang.jpeg"},{id:"e6",title:"汤山全域社会治理中心方案",client:"汤山街道",type:"社会治理",desc:"全域社会治理中心空间规划方案。",file:"../展厅/汤山全域社会治理中心方案第四稿.pdf",thumb:"thumbs_expo/e6_tangshan.jpg"}];
+var ALBUMS=[{id:"a1",name:"九岗山峰会暨开门红启动会",sub:"中国太平洋人寿江苏分公司",url:"https://m.alltuu.com/album/60729643c5fa97afc177e8717bb2442d?menu=live",platform:"喔图",thumb:"https://spu.alltuu.com/cover/ALBUM5885093/SHARE/4.jpg?x-oss-process=image/resize,w_400"},{id:"a2",name:"高客法商全员培训暨启动大会",sub:"",url:"https://m.alltuu.com/album/5e944678b4e25ef2f4572b3e77ef2b0a?menu=live",platform:"喔图",thumb:"https://spu.alltuu.com/cover/ALBUM5849740/SHARE/2.jpg?x-oss-process=image/resize,w_400"},{id:"a3",name:"绩优组织发展峰会",sub:"太平洋寿险江苏分公司",url:"https://m.alltuu.com/album/276d6006d13b0a849a04e0312d5497f5?menu=live",platform:"喔图",thumb:"https://spu.alltuu.com/cover/ALBUM5386330/SHARE/2.jpg?x-oss-process=image/resize,w_400"},{id:"a4",name:"江苏银保首季红表彰暨五六联动启动",sub:"",url:"https://m.alltuu.com/album/22677368d043a41b202f5b6d2401b2fe/?menu=live",platform:"喔图",views:"14971",thumb:"https://spu.alltuu.com/cover/ALBUM7254147/SHARE/3.jpg?x-oss-process=image/resize,w_400"},{id:"a5",name:"江苏银保首季红表彰（备用链接）",sub:"",url:"https://m.alltuu.com/album/795162a4f81615b25b6bdbd9f9b83bfb/?menu=live",platform:"喔图",thumb:"https://spu.alltuu.com/cover/ALBUM7756877/SHARE/1.jpg?x-oss-process=image/resize,w_400"},{id:"a6",name:"星耀龙江 守护相随",sub:"太保黑龙江分公司",url:"https://www.yipai360.com/photolivepc/?orderId=202510201303024936&channel=h5",platform:"一拍即传",thumb:"thumbs_expo/a6_xingyao.jpg"},{id:"a7",name:"大师在你身边 相乐家园-成都站",sub:"",url:"https://www.yipai360.com/photolivepc/?orderId=202408261858523839&channel=h5",platform:"一拍即传",thumb:"thumbs_expo/a7_dashi.jpg"}];
 
-function R(e,t){document.getElementById(e).innerHTML=t.map(function(p){return'<div class="card" onclick="'+p.c+'"><img class="card-img" src="'+p.t+'" loading="lazy"><div class="card-body"><div class="card-title">'+p.n+'</div><div class="card-meta">'+p.m+'</div><div class="card-desc">'+p.d+'</div></div></div>'}).join('')}
-function renderProjects(){R('grid',PROJECTS.map(function(p){return{c:'openProjectModal('+p.id+')',t:p.thumb,n:p.title,m:'<span>'+p.client+'</span><span>📄 '+p.pages+' 页</span>',d:p.preview||''}}))}
-function renderAlbums(){document.getElementById('albumGrid').innerHTML=ALBUMS.map(function(a){var i=a.thumb?'<img class="album-img" src="'+a.thumb+'" loading="lazy">':'<div class="album-placeholder">📷</div>',v=a.views?'<span>👁 '+a.views+'</span>':'';return'<a class="album-card" href="'+a.url+'" target="_blank" rel="noopener">'+i+'<div class="album-body"><div class="album-name">'+a.name+'</div><div class="album-meta"><span>📱 '+a.platform+'</span>'+v+'</div></div></a>'}).join('')}
-function renderExpos(){var ic={'展厅改造':'🏛️','文化中心':'🏢','讲标方案':'🎓','党建文化':'🚩','社会治理':'🏘️'};document.getElementById('expoGrid').innerHTML=EXPOS.map(function(e){var i=e.thumb?'<img class="card-img" src="'+e.thumb+'" loading="lazy">':'<div class="album-placeholder" style="height:220px">'+(ic[e.type]||'📐')+'</div>';return'<div class="card" onclick="openExpoModal(''+e.id+'')">'+i+'<div class="card-body"><div class="card-title">'+e.title+'</div><div class="card-meta"><span>'+e.client+'</span><span>'+e.type+'</span></div><div class="card-desc">'+e.desc+'</div></div></div>'}).join('')}
-function openExpoModal(id){var e=EXPOS.find(function(x){return x.id===id});if(!e)return;var mi=document.getElementById('modalImg');mi.src=e.thumb||'';mi.style.display=e.thumb?'':'none';document.getElementById('modalTitle').textContent=e.title;document.getElementById('modalMeta').textContent=e.client+' · '+e.type;var sh=e.sections.length?'<p style="margin-top:12px;font-size:13px;color:rgba(0,0,0,.45);line-height:1.8">'+e.sections.map(function(s,i){return(i+1)+'. '+s}).join('<br>')+'</p>':'';document.getElementById('modalDesc').innerHTML='<p style="color:rgba(0,0,0,.55)">'+e.desc+'</p>'+sh;var btn=document.getElementById('modalOpenBtn');btn.href=encodeURI(e.file);btn.textContent='📄 打开文件';btn.style.display=e.file?'':'none';document.getElementById('modal').classList.add('show')}
-function openProjectModal(id){var p=PROJECTS.find(function(x){return x.id===id});if(!p)return;document.getElementById('modalImg').src=p.thumb;document.getElementById('modalImg').style.display='';document.getElementById('modalTitle').textContent=p.title;document.getElementById('modalMeta').textContent=p.client+' · 📄 '+p.pages+' 页 · 💾 '+p.size+' MB';document.getElementById('modalDesc').innerHTML='<p style="color:rgba(0,0,0,.4);font-size:12px">文件：'+p.file+'</p><p style="margin-top:12px">'+(p.preview||'').substring(0,300).replace(/\n/g,'<br>')+'</p>';document.getElementById('modalOpenBtn').href=encodeURI(p.file);document.getElementById('modalOpenBtn').textContent='📄 查看完整方案';document.getElementById('modalOpenBtn').style.display='';document.getElementById('modal').classList.add('show')}
-function renderArchive(){var cl={};PROJECTS.forEach(function(p){if(!cl[p.client])cl[p.client]=0;cl[p.client]++});EXPOS.forEach(function(e){if(!cl[e.client])cl[e.client]=0;cl[e.client]++});var tp=PROJECTS.reduce(function(s,p){return s+p.pages},0),ts=PROJECTS.reduce(function(s,p){return s+p.size},0);var h='<div class="card" style="cursor:default"><div class="card-body"><div style="font-size:32px;font-weight:900;color:#ea580c;margin-bottom:4px">'+EXPOS.length+'</div><div class="card-title">展厅设计</div><div class="card-desc" style="margin-top:8px">教育考试院 · 党建文化 · 社会治理</div></div></div>';h+='<div class="card" style="cursor:default"><div class="card-body"><div style="font-size:32px;font-weight:900;color:#ea580c;margin-bottom:4px">'+PROJECTS.length+'</div><div class="card-title">策划方案</div><div class="card-desc" style="margin-top:8px">'+tp+' 页 · '+ts.toFixed(1)+' MB</div></div></div>';h+='<div class="card" style="cursor:default"><div class="card-body"><div style="font-size:32px;font-weight:900;color:#ea580c;margin-bottom:4px">'+ALBUMS.length+'</div><div class="card-title">直播相册</div><div class="card-desc" style="margin-top:8px">喔图 + 一拍即传</div></div></div>';h+='<div class="card" style="cursor:default"><div class="card-body"><div style="font-size:32px;font-weight:900;color:#1a1a1a;margin-bottom:4px">'+Object.keys(cl).length+'</div><div class="card-title">服务客户</div><div class="card-desc" style="margin-top:8px">'+Object.keys(cl).slice(0,5).join(' · ')+'…</div></div></div>';document.getElementById('archiveGrid').innerHTML=h}
+function R(g,items,cardFn){document.getElementById(g).innerHTML=items.map(cardFn).join('')}
+function renderProjects(){R('grid',PROJECTS,function(p){return'<div class="card" onclick="openP('+p.id+')"><img class="card-img" src="'+p.thumb+'" loading="lazy"><div class="card-body"><div class="card-title">'+p.title+'</div><div class="card-meta"><span>'+p.client+'</span><span>'+p.pages+'页</span></div><div class="card-desc">'+(p.preview||'')+'</div></div></div>'})}
+function renderAlbums(){document.getElementById('albumGrid').innerHTML=ALBUMS.map(function(a){var i=a.thumb?'<img class="album-img" src="'+a.thumb+'" loading="lazy">':'<div class="album-ph">📷</div>',v=a.views?'<span>👁 '+a.views+'</span>':'';return'<a class="album-card" href="'+a.url+'" target="_blank" rel="noopener">'+i+'<div class="album-body"><div class="album-name">'+a.name+'</div><div class="album-meta"><span>📱 '+a.platform+'</span>'+v+'</div></div></a>'}).join('')}
+function renderExpos(){var ic={'展厅改造':'🏛️','文化中心':'🏢','讲标方案':'🎓','党建文化':'🚩','社会治理':'🏘️'};document.getElementById('expoGrid').innerHTML=EXPOS.map(function(e){var i=e.thumb?'<img class="card-img" src="'+e.thumb+'" loading="lazy">':'<div class="album-ph" style="height:200px">'+(ic[e.type]||'📐')+'</div>';return'<div class="card" onclick="openE(\''+e.id+'\')">'+i+'<div class="card-body"><div class="card-title">'+e.title+'</div><div class="card-meta"><span>'+e.client+'</span><span>'+e.type+'</span></div><div class="card-desc">'+e.desc+'</div></div></div>'}).join('')}
+function openE(id){var e=EXPOS.find(function(x){return x.id===id});if(!e)return;var mi=document.getElementById('modalImg');mi.src=e.thumb||'';mi.style.display=e.thumb?'':'none';document.getElementById('modalTitle').textContent=e.title;document.getElementById('modalMeta').textContent=e.client+' · '+e.type;var sh=e.sections&&e.sections.length?'<p style="margin-top:12px;font-size:12px;color:rgba(0,0,0,.4);line-height:1.8">'+e.sections.map(function(s,i){return(i+1)+'. '+s}).join('<br>')+'</p>':'';document.getElementById('modalDesc').innerHTML='<p>'+e.desc+'</p>'+sh;var btn=document.getElementById('modalOpenBtn');btn.href=encodeURI(e.file);btn.style.display=e.file?'':'none';document.getElementById('modal').classList.add('show')}
+function openP(id){var p=PROJECTS.find(function(x){return x.id===id});if(!p)return;document.getElementById('modalImg').src=p.thumb;document.getElementById('modalImg').style.display='';document.getElementById('modalTitle').textContent=p.title;document.getElementById('modalMeta').textContent=p.client+' · '+p.pages+'页 · '+p.size+'MB';document.getElementById('modalDesc').innerHTML='<p style="color:rgba(0,0,0,.35);font-size:11px">'+p.file+'</p><p style="margin-top:8px">'+(p.preview||'').substring(0,300).replace(/\n/g,'<br>')+'</p>';document.getElementById('modalOpenBtn').href=encodeURI(p.file);document.getElementById('modalOpenBtn').style.display='';document.getElementById('modal').classList.add('show')}
+function renderArchive(){var cl={};PROJECTS.forEach(function(p){if(!cl[p.client])cl[p.client]=0;cl[p.client]++});EXPOS.forEach(function(e){if(!cl[e.client])cl[e.client]=0;cl[e.client]++});var tp=PROJECTS.reduce(function(s,p){return s+p.pages},0),ts=PROJECTS.reduce(function(s,p){return s+p.size},0);var h='<div class="card" style="cursor:default"><div class="card-body"><div style="font-size:28px;font-weight:900;color:#ff6b00;margin-bottom:2px">'+EXPOS.length+'</div><div class="card-title">展厅设计</div><div class="card-desc" style="margin-top:4px">教育考试院·党建文化·社会治理</div></div></div>';h+='<div class="card" style="cursor:default"><div class="card-body"><div style="font-size:28px;font-weight:900;color:#ff6b00;margin-bottom:2px">'+PROJECTS.length+'</div><div class="card-title">策划方案</div><div class="card-desc" style="margin-top:4px">'+tp+'页 · '+ts.toFixed(1)+'MB</div></div></div>';h+='<div class="card" style="cursor:default"><div class="card-body"><div style="font-size:28px;font-weight:900;color:#ff6b00;margin-bottom:2px">'+ALBUMS.length+'</div><div class="card-title">直播相册</div><div class="card-desc" style="margin-top:4px">喔图+一拍即传</div></div></div>';h+='<div class="card" style="cursor:default"><div class="card-body"><div style="font-size:28px;font-weight:900;color:#1a1a1a;margin-bottom:2px">'+Object.keys(cl).length+'</div><div class="card-title">服务客户</div><div class="card-desc" style="margin-top:4px">'+Object.keys(cl).slice(0,5).join('·')+'…</div></div></div>';document.getElementById('archiveGrid').innerHTML=h}
 function closeModal(){document.getElementById('modal').classList.remove('show')}
-
 var ns=document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll',function(){var y=window.pageYOffset;ns.forEach(function(a){a.classList.remove('active')});if(y<document.getElementById('espace-1').offsetTop-100){var h=document.querySelector('.nav-links a[href="#hero"]');if(h)h.classList.add('active')}else if(y<document.getElementById('espace-2').offsetTop-100){var e=document.querySelector('.nav-links a[href="#espace-1"]');if(e)e.classList.add('active')}else if(y<document.getElementById('espace-3').offsetTop-100){var p=document.querySelector('.nav-links a[href="#espace-2"]');if(p)p.classList.add('active')}else if(y<document.getElementById('espace-4').offsetTop-100){var al=document.querySelector('.nav-links a[href="#espace-3"]');if(al)al.classList.add('active')}else{var ar=document.querySelector('.nav-links a[href="#espace-4"]');if(ar)ar.classList.add('active')}});
+window.addEventListener('scroll',function(){var y=pageYOffset;ns.forEach(function(a){a.classList.remove('active')});var t1=document.getElementById('espace-1'),t2=document.getElementById('espace-2'),t3=document.getElementById('espace-3'),t4=document.getElementById('espace-4');if(y<(t1?t1.offsetTop:9999)-100){var h=document.querySelector('.nav-links a[href="#hero"]');if(h)h.classList.add('active')}else if(y<(t2?t2.offsetTop:9999)-100){var e=document.querySelector('.nav-links a[href="#espace-1"]');if(e)e.classList.add('active')}else if(y<(t3?t3.offsetTop:9999)-100){var p=document.querySelector('.nav-links a[href="#espace-2"]');if(p)p.classList.add('active')}else if(y<(t4?t4.offsetTop:9999)-100){var a=document.querySelector('.nav-links a[href="#espace-3"]');if(a)a.classList.add('active')}else{var r=document.querySelector('.nav-links a[href="#espace-4"]');if(r)r.classList.add('active')}});
 document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal()});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()});
 renderExpos();renderProjects();renderAlbums();renderArchive();
-</script>
-
-<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
-<script>
-(function(){if(typeof THREE==='undefined')return;
-var s=new THREE.Scene(),cam=new THREE.PerspectiveCamera(45,window.innerWidth/window.innerHeight,.1,50);
-cam.position.set(0,1.5,8);cam.lookAt(0,0,0);
-var r=new THREE.WebGLRenderer({canvas:document.getElementById('expo-canvas'),alpha:true,antialias:true});
-r.setSize(window.innerWidth,window.innerHeight);r.setPixelRatio(Math.min(window.devicePixelRatio,2));
-s.add(new THREE.AmbientLight(0xfff5f0,1.5));
-var sp=new THREE.SpotLight(0xea580c,8,20,Math.PI/6,.3,1);sp.position.set(3,5,4);s.add(sp);
-var sp2=new THREE.SpotLight(0xfbbf24,4,15,Math.PI/8,.4,1);sp2.position.set(-3,3,-2);s.add(sp2);
-var fg=new THREE.PlaneGeometry(14,10);var fm=new THREE.MeshStandardMaterial({color:0xf5f0eb,roughness:.9,metalness:.05});
-var fl=new THREE.Mesh(fg,fm);fl.rotation.x=-Math.PI/2;fl.position.y=-2.5;s.add(fl);
-function mw(w,h,x,z,ry,c){var g=new THREE.BoxGeometry(w,h,.15);var m=new THREE.MeshStandardMaterial({color:c||0xffffff,roughness:.6,metalness:.1,transparent:true,opacity:.85});var me=new THREE.Mesh(g,m);me.position.set(x,h/2-2,z);me.rotation.y=ry||0;return me}
-function mp(r,h,x,z,c){var g=new THREE.CylinderGeometry(r,r,h,16);var m=new THREE.MeshStandardMaterial({color:c||0xea580c,roughness:.3,metalness:.5,emissive:c||0xea580c,emissiveIntensity:.15});var me=new THREE.Mesh(g,m);me.position.set(x,h/2-2,z);return me}
-s.add(mw(6,5,0,-2.5,0,0xf8f4f0));s.add(mw(3,5,-3.1,-.5,0,0xfaf7f3));s.add(mw(3,5,3.1,-.5,0,0xfaf7f3));s.add(mw(1.2,3,0,1.5,0,0xf0e8e0));
-s.add(mp(.12,4.5,-3,2.3,0xea580c));s.add(mp(.12,4.5,3,2.3,0xea580c));s.add(mp(.08,3,0,-2.5,0xfbbf24));
-var pg=new THREE.BufferGeometry();var pc=200;var pp=new Float32Array(pc*3);
-for(var i=0;i<pc*3;i+=3){pp[i]=(Math.random()-.5)*8;pp[i+1]=Math.random()*6-1;pp[i+2]=(Math.random()-.5)*6}
-pg.setAttribute('position',new THREE.BufferAttribute(pp,3));
-var pm=new THREE.PointsMaterial({color:0xea580c,size:.03,transparent:true,opacity:.5,blending:THREE.AdditiveBlending});
-var pt=new THREE.Points(pg,pm);s.add(pt);
-var cl=new THREE.Clock();
-function an(){requestAnimationFrame(an);var t=cl.getElapsedTime();cam.position.x=Math.sin(t*.15)*2.5;cam.position.y=1.5+Math.sin(t*.2)*.4;cam.position.z=7+Math.cos(t*.12)*1;cam.lookAt(0,Math.sin(t*.3)*.3,0);pt.rotation.y+=.001;pt.rotation.x+=.0003;r.render(s,cam)}
-an();
-window.addEventListener('resize',function(){cam.aspect=window.innerWidth/window.innerHeight;cam.updateProjectionMatrix();r.setSize(window.innerWidth,window.innerHeight)});
-})();
 </script>
 </body>
 </html>
