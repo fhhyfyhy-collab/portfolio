@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>卢发达 · 3D卡片墙</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0d0d14;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;overflow:hidden;height:100vh;user-select:none}
+.info{position:fixed;top:24px;left:50%;transform:translateX(-50%);z-index:10;text-align:center;pointer-events:none}
+.info h1{font-size:20px;font-weight:800;letter-spacing:4px;background:linear-gradient(135deg,#ff6b00,#ff9a3c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.info .hint{font-size:11px;color:rgba(255,255,255,.25);margin-top:4px;letter-spacing:2px}
+canvas{display:block}
+.back{position:fixed;top:20px;left:20px;z-index:100;padding:8px 16px;border:1px solid rgba(255,255,255,.15);border-radius:6px;color:rgba(255,255,255,.5);text-decoration:none;font-size:12px;letter-spacing:1px;transition:all .3s}
+.back:hover{border-color:#ff6b00;color:#ff6b00}
+</style>
+</head>
+<body>
+<a class="back" href="index.html">← 返回主页</a>
+<div class="info"><h1>卢发达 · 3D 卡片墙</h1><div class="hint">拖拽旋转 · 滚轮缩放 · 点击卡片展开</div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+var cards=[{t:"世界人工智能大会",c:"上海新康辉",g:"#ff6b00"},{t:"菁英奖颁奖盛典",c:"太平洋产险",g:"#e85d04"},{t:"重庆女排见面会",c:"太平洋保险",g:"#dc2f02"},{t:"IQA年会策划",c:"太保寿险",g:"#f48c06"},{t:"CIIE进博会",c:"进博会",g:"#faa307"},{t:"第十二届菁英会",c:"顾问行销",g:"#e85d04"},{t:"616伙伴节",c:"太平洋保险",g:"#ff6b00"},{t:"富德生命客户节",c:"富德生命人寿",g:"#dc2f02"},{t:"奥运健儿见面会",c:"太平洋保险",g:"#f48c06"}];
+
+var scene=new THREE.Scene();
+var camera=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,.1,100);
+camera.position.set(0,1.5,12);
+var renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
+renderer.setSize(innerWidth,innerHeight);
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.shadowMap.enabled=true;
+document.body.appendChild(renderer.domElement);
+
+var ambient=new THREE.AmbientLight(0x222244,.6);scene.add(ambient);
+var dir=new THREE.DirectionalLight(0xff6b00,.8);dir.position.set(5,8,5);dir.castShadow=true;scene.add(dir);
+var fill=new THREE.DirectionalLight(0x3366ff,.3);fill.position.set(-3,0,-3);scene.add(fill);
+
+var group=new THREE.Group();scene.add(group);
+var radius=5.5,cardW=.85,cardH=1.2,cardD=.08,rows=3,cols=3;
+
+function makeCard(text,client,color,i){
+var g=new THREE.Group();
+var mat=new THREE.MeshPhongMaterial({color:0x1a1a2e,emissive:0x050510,specular:0x222244,shininess:30,transparent:true,opacity:.92});
+var m=new THREE.Mesh(new THREE.BoxGeometry(cardW,cardH,cardD),mat);
+m.castShadow=true;m.receiveShadow=true;g.add(m);
+
+var edge=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(cardW+.01,cardH+.01,cardD+.01)),new THREE.LineBasicMaterial({color:parseInt(color.replace('#','0x')),transparent:true,opacity:.3}));
+g.add(edge);
+
+var cvs=document.createElement('canvas');cvs.width=512;cvs.height=320;
+var ctx=cvs.getContext('2d');
+ctx.fillStyle='#0d0d14';ctx.fillRect(0,0,512,320);
+ctx.strokeStyle=color;ctx.lineWidth=2;ctx.strokeRect(16,16,480,288);
+
+ctx.fillStyle=color;ctx.font='bold 36px -apple-system,"PingFang SC",sans-serif';ctx.textAlign='center';
+var words=text.split('');
+for(var j=0;j<words.length;j++){ctx.fillText(words[j],256,110+j*40)}
+
+ctx.fillStyle='rgba(255,255,255,.4)';ctx.font='18px -apple-system,"PingFang SC",sans-serif';
+ctx.fillText(client,256,260);
+
+var tex=new THREE.CanvasTexture(cvs);tex.minFilter=THREE.LinearFilter;
+var frontMat=new THREE.MeshBasicMaterial({map:tex,transparent:true,opacity:.9});
+var front=new THREE.Mesh(new THREE.PlaneGeometry(cardW-.04,cardH-.04),frontMat);
+front.position.z=cardD/2+.001;g.add(front);
+
+g.userData={text:text,client:client,i:i};
+return g
+}
+
+cards.forEach(function(c,i){
+var card=makeCard(c.t,c.c,c.g,i);
+var row=Math.floor(i/cols),col=i%cols;
+var angleY=((col-(cols-1)/2)/(cols-1))*Math.PI*.7;
+var angleX=((row-(rows-1)/2)/(rows-1))*Math.PI*.35;
+card.position.set(Math.sin(angleY)*radius, -angleX*radius*.6, Math.cos(angleY)*radius);
+card.lookAt(0,0,0);
+group.add(card)
+});
+
+var starGeo=new THREE.BufferGeometry();var starCount=800;
+var starPos=new Float32Array(starCount*3);
+for(var i=0;i<starCount*3;i+=3){starPos[i]=(Math.random()-.5)*30;starPos[i+1]=(Math.random()-.5)*20;starPos[i+2]=(Math.random()-.5)*20}
+starGeo.setAttribute('position',new THREE.BufferAttribute(starPos,3));
+var starMat=new THREE.PointsMaterial({color:0xff6b00,size:.02,transparent:true,opacity:.5});
+scene.add(new THREE.Points(starGeo,starMat));
+
+var raycaster=new THREE.Raycaster(),mouse=new THREE.Vector2(),isDragging=false,prevMouse={x:0,y:0};
+var targetRotY=0,targetRotX=0;
+
+renderer.domElement.addEventListener('mousedown',function(e){isDragging=true;prevMouse.x=e.clientX;prevMouse.y=e.clientY});
+window.addEventListener('mouseup',function(){isDragging=false});
+window.addEventListener('mousemove',function(e){
+mouse.x=(e.clientX/innerWidth)*2-1;mouse.y=-(e.clientY/innerHeight)*2+1;
+if(isDragging){targetRotY+=(e.clientX-prevMouse.x)*.005;targetRotX+=(e.clientY-prevMouse.y)*.005;prevMouse.x=e.clientX;prevMouse.y=e.clientY}
+});
+renderer.domElement.addEventListener('wheel',function(e){camera.position.z+=e.deltaY*.01;camera.position.z=Math.max(6,Math.min(20,camera.position.z))});
+renderer.domElement.addEventListener('click',function(e){
+if(Math.abs(targetRotY-group.rotation.y)>.1)return;
+mouse.x=(e.clientX/innerWidth)*2-1;mouse.y=-(e.clientY/innerHeight)*2+1;
+raycaster.setFromCamera(mouse,camera);
+var intersects=raycaster.intersectObjects(group.children,true);
+if(intersects.length>0){var obj=intersects[0].object;while(obj&&!obj.userData.text)obj=obj.parent;if(obj&&obj.userData.text)alert(obj.userData.text+'\n客户：'+obj.userData.client)}
+});
+
+window.addEventListener('resize',function(){camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
+
+var clock=new THREE.Clock();
+function animate(){
+requestAnimationFrame(animate);
+var dt=Math.min(clock.getDelta(),.1);
+if(!isDragging){targetRotY+=.001}
+group.rotation.y+=(targetRotY-group.rotation.y)*.08;
+group.rotation.x+=(targetRotX-group.rotation.x)*.08;
+group.children.forEach(function(c){c.rotation.y+=dt*.3});
+renderer.render(scene,camera)
+}
+animate();
+</script>
+</body>
+</html>

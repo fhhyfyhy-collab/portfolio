@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>卢发达 · 粒子星空</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0f;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;overflow-x:hidden;cursor:default}
+canvas{position:fixed;top:0;left:0;z-index:0}
+.content{position:relative;z-index:1;pointer-events:none}
+.content>*{pointer-events:auto}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px}
+.hero h1{font-size:clamp(48px,10vw,100px);font-weight:900;letter-spacing:-1px;background:linear-gradient(135deg,#ff6b00,#ff9a3c,#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+.hero .sub{font-size:16px;color:rgba(255,255,255,.4);letter-spacing:8px;margin-bottom:24px}
+.hero .desc{max-width:520px;font-size:14px;color:rgba(255,255,255,.3);line-height:1.8}
+.hero .tags{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:28px}
+.hero .tags span{padding:6px 18px;border:1px solid rgba(255,107,0,.3);border-radius:20px;font-size:12px;color:rgba(255,107,0,.8);transition:all .3s;cursor:pointer}
+.hero .tags span:hover{background:rgba(255,107,0,.15);border-color:#ff6b00}
+.projects{max-width:1000px;margin:0 auto;padding:0 24px 80px}
+.projects h2{font-size:clamp(22px,3vw,28px);font-weight:700;color:rgba(255,255,255,.8);margin-bottom:32px;text-align:center;letter-spacing:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:24px;transition:all .35s;cursor:pointer;backdrop-filter:blur(10px);position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,107,0,.06),transparent);transition:left .6s}
+.card:hover::before{left:100%}
+.card:hover{transform:translateY(-4px);border-color:rgba(255,107,0,.3);box-shadow:0 8px 32px rgba(255,107,0,.08)}
+.card .num{font-size:56px;font-weight:900;color:rgba(255,107,0,.08);position:absolute;top:-8px;right:12px;line-height:1}
+.card h3{font-size:15px;font-weight:600;color:#fff;margin-bottom:6px}
+.card .client{font-size:11px;color:rgba(255,107,0,.6);margin-bottom:8px}
+.card p{font-size:12px;color:rgba(255,255,255,.3);line-height:1.6}
+.footer{text-align:center;padding:40px 24px;font-size:11px;color:rgba(255,255,255,.1);letter-spacing:2px}
+.back{position:fixed;top:20px;left:20px;z-index:100;padding:8px 16px;border:1px solid rgba(255,255,255,.15);border-radius:6px;color:rgba(255,255,255,.5);text-decoration:none;font-size:12px;letter-spacing:1px;transition:all .3s}
+.back:hover{border-color:#ff6b00;color:#ff6b00}
+</style>
+</head>
+<body>
+<a class="back" href="index.html">← 返回主页</a>
+<canvas id="c"></canvas>
+<div class="content">
+<section class="hero">
+<h1>卢发达</h1>
+<div class="sub">PORTFOLIO · 3D</div>
+<div class="desc">项目管理 · 会议展览 · 空间设计<br>粒子星空中呈现项目全貌</div>
+<div class="tags"><span>展厅设计 ×6</span><span>策划方案 ×9</span><span>直播相册 ×7</span><span>千⼈级活动</span></div>
+</section>
+<section class="projects">
+<h2>✦ 精选项目</h2>
+<div class="grid" id="grid"></div>
+</section>
+<footer class="footer">© LU FADA 2026 · 3D Particle</footer>
+</div>
+<script>
+var P=[{n:"世界人工智能大会",c:"上海新康辉",d:"2024世界人工智能大会 · 投标方案，智能制造与数字劳动力"}, {n:"第四届菁英奖颁奖盛典",c:"太平洋产险",d:"千人级颁奖盛典策划与执行，166页完整方案"}, {n:"重庆女排见面会",c:"太平洋保险",d:"体育营销活动策划，球迷互动+品牌传播"}, {n:"IQA年会策划",c:"太保寿险",d:"2025年IQA年会，179页全案策划"}, {n:"CIIE进博会",c:"进博会",d:"中国国际进口博览会策划方案"}, {n:"第十二届菁英会·首尔",c:"顾问行销",d:"2025年顾问行销菁英会首尔站"}];
+document.getElementById('grid').innerHTML=P.map(function(p,i){return'<div class="card"><span class="num">0'+(i+1)+'</span><h3>'+p.n+'</h3><div class="client">'+p.c+'</div><p>'+p.d+'</p></div>'}).join('');
+
+var c=document.getElementById('c'),ctx=c.getContext('2d'),w,h,particles=[];
+function resize(){w=c.width=innerWidth;h=c.height=innerHeight}
+resize();window.addEventListener('resize',resize);
+
+var P2=[];for(var i=0;i<180;i++)P2.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:Math.random()*1.8+0.4,o:Math.random()*.5+.3});
+
+var mouse={x:w/2,y:h/2};
+document.addEventListener('mousemove',function(e){mouse.x=e.clientX;mouse.y=e.clientY});
+
+function draw(){
+ctx.fillStyle='rgba(10,10,15,.12)';ctx.fillRect(0,0,w,h);
+for(var i=0;i<P2.length;i++){
+var p=P2[i];
+var dx=mouse.x-p.x,dy=mouse.y-p.y,dist=Math.sqrt(dx*dx+dy*dy);
+if(dist<120){p.vx+=dx/dist*.02;p.vy+=dy/dist*.02}
+p.vx*=.998;p.vy*=.998;p.x+=p.vx;p.y+=p.vy;
+if(p.x<0)p.x=w;if(p.x>w)p.x=0;if(p.y<0)p.y=h;if(p.y>h)p.y=0;
+var dToMouse=Math.min(dist/200,1);
+ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fillStyle='rgba(255,107,0,'+(p.o*(1-dToMouse*.7)).toFixed(2)+')';
+ctx.fill();
+}
+ctx.beginPath();ctx.arc(mouse.x,mouse.y,30,0,Math.PI*2);
+var grad=ctx.createRadialGradient(mouse.x,mouse.y,0,mouse.x,mouse.y,30);
+grad.addColorStop(0,'rgba(255,107,0,.04)');grad.addColorStop(1,'rgba(255,107,0,0)');
+ctx.fillStyle=grad;ctx.fill();
+requestAnimationFrame(draw)
+}
+draw();
+</script>
+</body>
+</html>

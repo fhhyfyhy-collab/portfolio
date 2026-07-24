@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>卢发达 · 3D球体项目地图</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:radial-gradient(ellipse at center,#0a0a1a 0%,#020208 100%);color:#fff;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;overflow:hidden;height:100vh}
+canvas{display:block}
+.hud{position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:10}
+.hud>*{pointer-events:auto}
+.hud h1{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);font-size:clamp(22px,4vw,34px);font-weight:900;letter-spacing:4px;text-align:center;background:linear-gradient(135deg,#ff6b00,#ff9a3c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hud .hint{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);font-size:11px;color:rgba(255,255,255,.25);letter-spacing:2px}
+.tooltip{position:fixed;background:rgba(10,10,20,.92);border:1px solid rgba(255,107,0,.4);border-radius:8px;padding:12px 16px;pointer-events:none;opacity:0;transition:opacity .2s;z-index:20;font-size:12px;max-width:220px;backdrop-filter:blur(8px)}
+.tooltip h4{color:#ff6b00;margin-bottom:2px}
+.tooltip .c{color:rgba(255,255,255,.4);font-size:11px}
+.back{position:fixed;top:20px;left:20px;z-index:100;padding:8px 16px;border:1px solid rgba(255,255,255,.15);border-radius:6px;color:rgba(255,255,255,.5);text-decoration:none;font-size:12px;letter-spacing:1px;transition:all .3s}
+.back:hover{border-color:#ff6b00;color:#ff6b00}
+</style>
+</head>
+<body>
+<a class="back" href="index.html">← 返回主页</a>
+<div class="hud"><h1>卢发达 · 项目地图</h1><div class="hint">拖拽旋转 · 滚轮缩放 · 悬停查看项目</div></div>
+<div class="tooltip" id="tip"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+var nodes=[{t:"世界人工智能大会",c:"上海新康辉",lat:31.2,lng:121.5},{t:"菁英奖颁奖盛典",c:"太平洋产险",lat:31.2,lng:121.5},{t:"重庆女排见面会",c:"太平洋保险",lat:29.5,lng:106.5},{t:"IQA年会",c:"太保寿险",lat:31.2,lng:121.5},{t:"进博会",c:"CIIE",lat:31.2,lng:121.5},{t:"第十二届菁英会·首尔",c:"顾问行销",lat:37.5,lng:127},{t:"616伙伴节",c:"太平洋保险",lat:31.2,lng:121.5},{t:"客户节盛典",c:"富德生命人寿",lat:22.5,lng:114},{t:"奥运健儿见面会·厦门",c:"太平洋保险",lat:24.5,lng:118.1},{t:"党建文化长廊",c:"奥赛康药业",lat:32.0,lng:118.8},{t:"教育考试院展厅",c:"江苏省教育考试院",lat:32.0,lng:118.8},{t:"汤山社会治理中心",c:"汤山街道",lat:32.0,lng:118.8},{t:"凤凰港口文化中心",c:"凤凰港口",lat:32.0,lng:118.8}];
+
+function latLngToVec3(lat,lng,r){var phi=(90-lat)*Math.PI/180,theta=(lng+180)*Math.PI/180;return new THREE.Vector3(-r*Math.sin(phi)*Math.cos(theta),r*Math.cos(phi),r*Math.sin(phi)*Math.sin(theta))}
+
+var scene=new THREE.Scene();
+var camera=new THREE.PerspectiveCamera(50,innerWidth/innerHeight,.1,50);
+camera.position.set(0,2,8);
+var renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
+renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+document.body.appendChild(renderer.domElement);
+
+var wireGeo=new THREE.SphereGeometry(2.5,48,32);
+var wireMat=new THREE.MeshBasicMaterial({color:0x111133,wireframe:true,transparent:true,opacity:.15});
+scene.add(new THREE.Mesh(wireGeo,wireMat));
+
+var dotGeo=new THREE.SphereGeometry(.008,8,8);
+var dotMat=new THREE.MeshBasicMaterial({color:0x334466,transparent:true,opacity:.4});
+for(var i=0;i<600;i++){var phi=Math.acos(2*Math.random()-1),theta=Math.random()*Math.PI*2,r=2.5;var dot=new THREE.Mesh(dotGeo,dotMat);dot.position.set(r*Math.sin(phi)*Math.cos(theta),r*Math.cos(phi),r*Math.sin(phi)*Math.sin(theta));scene.add(dot)}
+
+var ringGeo=new THREE.RingGeometry(2.55,2.6,80);
+var ringMat=new THREE.MeshBasicMaterial({color:0xff6b00,side:THREE.DoubleSide,transparent:true,opacity:.15});
+var ring=new THREE.Mesh(ringGeo,ringMat);ring.rotation.x=Math.PI/2;scene.add(ring);
+
+var orbitGeo=new THREE.RingGeometry(2.7,2.73,80);
+var orbitMat=new THREE.MeshBasicMaterial({color:0xff6b00,side:THREE.DoubleSide,transparent:true,opacity:.08});
+var orbit=new THREE.Mesh(orbitGeo,orbitMat);orbit.rotation.x=Math.PI/3;scene.add(orbit);
+
+var nodeGroup=new THREE.Group();scene.add(nodeGroup);
+var nodeMeshes=[];
+nodes.forEach(function(node,i){
+var pos=latLngToVec3(node.lat,node.lng,2.5);
+var nGeo=new THREE.SphereGeometry(.06,16,16);
+var nMat=new THREE.MeshBasicMaterial({color:0xff6b00});
+var n=new THREE.Mesh(nGeo,nMat);n.position.copy(pos);nodeGroup.add(n);
+var glowGeo=new THREE.SphereGeometry(.12,16,16);
+var glowMat=new THREE.MeshBasicMaterial({color:0xff6b00,transparent:true,opacity:.2});
+var glow=new THREE.Mesh(glowGeo,glowMat);n.add(glow);
+n.userData=node;
+n.userData.origColor=0xff6b00;
+nodeMeshes.push(n);
+
+var lineGeo=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,0),pos]);
+var lineMat=new THREE.LineBasicMaterial({color:0xff6b00,transparent:true,opacity:.06});
+nodeGroup.add(new THREE.Line(lineGeo,lineMat))
+});
+
+var starGeo=new THREE.BufferGeometry();var sc=1500,sp=new Float32Array(sc*3);
+for(var i=0;i<sc*3;i+=3){sp[i]=(Math.random()-.5)*30;sp[i+1]=(Math.random()-.5)*20;sp[i+2]=(Math.random()-.5)*30}
+starGeo.setAttribute('position',new THREE.BufferAttribute(sp,3));
+scene.add(new THREE.Points(starGeo,new THREE.PointsMaterial({color:0xffffff,size:.015,transparent:true,opacity:.6})));
+
+var isDragging=false,pm={x:0,y:0},targetRX=0,targetRY=0;
+var container=new THREE.Group();scene.add(container);
+scene.children.forEach(function(c){if(c!==container&&c.type!=="Scene"){scene.remove(c);container.add(c)}});
+
+renderer.domElement.addEventListener('mousedown',function(e){isDragging=true;pm.x=e.clientX;pm.y=e.clientY});
+window.addEventListener('mouseup',function(){isDragging=false});
+var mouse=new THREE.Vector2(),raycaster=new THREE.Raycaster();
+window.addEventListener('mousemove',function(e){
+mouse.x=(e.clientX/innerWidth)*2-1;mouse.y=-(e.clientY/innerHeight)*2+1;
+if(isDragging){targetRY+=(e.clientX-pm.x)*.005;targetRX+=(e.clientY-pm.y)*.005;pm.x=e.clientX;pm.y=e.clientY}
+raycaster.setFromCamera(mouse,camera);
+var hits=raycaster.intersectObjects(nodeMeshes);
+var tip=document.getElementById('tip');
+if(hits.length>0){var d=hits[0].object.userData;tip.innerHTML='<h4>'+d.t+'</h4><div class="c">'+d.c+'</div>';tip.style.left=(e.clientX+20)+'px';tip.style.top=(e.clientY-20)+'px';tip.style.opacity='1'}else{tip.style.opacity='0'}
+});
+renderer.domElement.addEventListener('wheel',function(e){camera.position.z+=e.deltaY*.008;camera.position.z=Math.max(4,Math.min(15,camera.position.z))});
+window.addEventListener('resize',function(){camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
+
+function animate(){
+requestAnimationFrame(animate);
+if(!isDragging)targetRY+=.003;
+container.rotation.y+=(targetRY-container.rotation.y)*.06;
+container.rotation.x+=(targetRX-container.rotation.x)*.06;
+nodeMeshes.forEach(function(n){n.scale.setScalar(1+Math.sin(Date.now()*.003+n.position.x*3)*.15)});
+renderer.render(scene,camera)
+}
+animate();
+</script>
+</body>
+</html>
