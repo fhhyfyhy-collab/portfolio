@@ -236,7 +236,8 @@ function linkUrl(f){
   for(var i=0;i<LOCAL_DIRS.length;i++){ if(f.indexOf(LOCAL_DIRS[i]) === 0) return f; }
   return 'https://www.luhuahua.com/' + f;
 }
-function href(f){ return esc(encodeURI(linkUrl(f))); }
+/* 卡片链接到网页阅读页（每页图片流），PDF 作为下载入口放在阅读页内 */
+function href(f){ return esc(encodeURI(linkUrl(f.replace(/\.pdf$/i, '.html')))); }
 
 /* ---------- 渲染 ---------- */
 function renderTours(){
