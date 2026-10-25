@@ -3,118 +3,398 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>案例分享 · 作品集</title>
+<meta name="theme-color" content="#FAF8F5">
+<title>LFD · 策划作品集 | 旅游团建 · 保险金融 · 会展空间</title>
+<meta name="description" content="LFD 的策划案例集：旅游团建、保险金融、体育赛事、大型展会与展厅设计。涵盖太平洋保险、富德生命人寿、世界人工智能大会、CIIE 进博会等项目。">
+<meta name="author" content="LFD">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LFD · 策划作品集">
+<meta property="og:description" content="旅游团建 · 保险金融 · 体育赛事 · 大型展会 · 展厅设计">
+<meta property="og:image" content="https://www.luhuahua.com/thumbs/00.jpg">
+<meta property="og:url" content="https://www.luhuahua.com/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2316130F'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='17' font-weight='bold' fill='%23FAF8F5' text-anchor='middle'%3EL%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfilePage","name":"LFD 策划作品集","url":"https://www.luhuahua.com/","about":{"@type":"Person","name":"LFD","jobTitle":"策划经理","knowsAbout":["活动策划","会议展览","旅游团建","空间设计","项目管理"]},"hasPart":[{"@type":"CollectionPage","name":"旅游案例"},{"@type":"CollectionPage","name":"策划方案"},{"@type":"CollectionPage","name":"直播相册"},{"@type":"CollectionPage","name":"展厅设计"}]}
+</script>
 <style>
+:root{
+  --paper:#FAF8F5;
+  --paper-2:#F3EFE9;
+  --ink:#16130F;
+  --ink-2:#4A423B;
+  --muted:#8C8378;
+  --line:#E2DBD1;
+  --accent:#B23A20;
+  --serif:'Noto Serif SC','Songti SC','SimSun',Georgia,serif;
+  --sans:'Noto Sans SC',-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;
+  --mono:ui-monospace,'SFMono-Regular',Consolas,'Courier New',monospace;
+  --pad:clamp(20px,5vw,72px);
+}
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#fff;color:#1a1a1a;line-height:1.5;overflow-x:hidden}
-.top-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 40px;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.05);font-size:13px;letter-spacing:1px;text-transform:uppercase}
-.top-nav .logo{font-weight:800;font-size:14px;color:#ff6b00}
-.top-nav .nav-links{display:flex;gap:36px;list-style:none}
-.top-nav .nav-links a{color:rgba(0,0,0,.45);text-decoration:none;transition:color .2s;font-weight:500;font-size:12px}
-.top-nav .nav-links a:hover,.top-nav .nav-links a.active{color:#ff6b00}
-.top-nav .cta{padding:8px 22px;border:1px solid #ff6b00;border-radius:4px;color:#ff6b00;font-weight:600;text-decoration:none;font-size:12px;letter-spacing:1px;transition:all .2s}
-.top-nav .cta:hover{background:#ff6b00;color:#fff}
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;background:#fff}
-.hero .date-box{display:inline-flex;gap:16px;align-items:center;border:1px solid rgba(0,0,0,.1);border-radius:4px;padding:10px 24px;margin-bottom:32px;font-size:14px;color:rgba(0,0,0,.45)}
-.hero .date-box .num{font-size:28px;font-weight:800;color:#ff6b00;line-height:1}
-.hero .date-box .sep{width:1px;height:28px;background:rgba(0,0,0,.1)}
-.hero .venue{font-size:13px;color:rgba(0,0,0,.35);margin-bottom:40px;letter-spacing:2px}
-.hero h1{font-size:clamp(42px,8vw,84px);font-weight:900;color:#1a1a1a;margin-bottom:8px;line-height:1.05}
-.hero h1 span{color:#ff6b00}
-.hero .tagline{font-size:clamp(14px,2vw,18px);color:rgba(0,0,0,.3);letter-spacing:5px;font-weight:300;margin-bottom:32px}
-.hero .desc{max-width:560px;font-size:14px;color:rgba(0,0,0,.4);line-height:1.8}
-.espace-intro{text-align:center;padding:80px 24px 48px;max-width:720px;margin:0 auto;background:#fff}
-.espace-intro .count{font-size:12px;letter-spacing:4px;color:#ff6b00;font-weight:600;text-transform:uppercase;margin-bottom:16px}
-.espace-intro h2{font-size:clamp(22px,3vw,30px);font-weight:700;color:#1a1a1a;margin-bottom:16px}
-.espace-intro .body{font-size:14px;color:rgba(0,0,0,.4);line-height:1.8}
-.espace-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;padding:24px 24px 48px;max-width:960px;margin:0 auto;background:#fff}
-.espace-nav a{display:flex;align-items:center;gap:8px;padding:10px 20px;border:1px solid rgba(0,0,0,.08);border-radius:4px;color:rgba(0,0,0,.4);text-decoration:none;font-size:12px;font-weight:500;letter-spacing:1px;transition:all .2s}
-.espace-nav a:hover{border-color:#ff6b00;color:#ff6b00}
-.espace-nav a .num{font-size:18px;font-weight:800;color:#ff6b00;opacity:.5}
-.section{padding:80px 24px 100px;background:#fff}
-.section-header{max-width:1200px;margin:0 auto 40px;display:flex;align-items:flex-end;gap:12px}
-.section-header .num{font-size:80px;font-weight:900;color:rgba(255,107,0,.04);line-height:.8;font-style:italic;min-width:100px}
-.section-header .info h3{font-size:clamp(20px,2.5vw,26px);font-weight:700;color:#1a1a1a;margin-bottom:4px}
-.section-header .info p{font-size:13px;color:rgba(0,0,0,.35);max-width:480px;line-height:1.6}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;max-width:1200px;margin:0 auto}
-.card{border:1px solid rgba(0,0,0,.06);border-radius:6px;overflow:hidden;transition:all .25s;cursor:pointer;background:#fff}
-.card:hover{transform:translateY(-3px);border-color:rgba(255,107,0,.15);box-shadow:0 6px 24px rgba(0,0,0,.04)}
-.card-img{width:100%;height:200px;object-fit:cover;object-position:top center;background:#f8f8f8;display:block}
-.card-body{padding:14px 16px 16px}
-.card-title{font-size:13px;font-weight:600;color:#1a1a1a;margin-bottom:6px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.card-meta{font-size:11px;color:rgba(0,0,0,.3);margin-bottom:4px}
-.card-meta span{margin-right:12px}
-.card-desc{font-size:11px;color:rgba(0,0,0,.25);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.album-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;max-width:1200px;margin:0 auto}
-.album-card{border:1px solid rgba(0,0,0,.06);border-radius:6px;overflow:hidden;transition:all .25s;text-decoration:none;color:inherit;display:block;background:#fff}
-.album-card:hover{transform:translateY(-3px);border-color:rgba(255,107,0,.15);box-shadow:0 6px 24px rgba(0,0,0,.04)}
-.album-img{width:100%;height:180px;object-fit:cover;background:#f8f8f8;display:block}
-.album-ph{width:100%;height:180px;display:flex;align-items:center;justify-content:center;background:#f8f8f8;font-size:40px;color:rgba(0,0,0,.05)}
-.album-body{padding:12px 14px 14px}
-.album-name{font-size:13px;font-weight:600;color:#1a1a1a;margin-bottom:4px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.album-meta{font-size:11px;color:rgba(0,0,0,.3)}
-.album-meta span{margin-right:8px}
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);backdrop-filter:blur(2px);z-index:200;justify-content:center;align-items:center;padding:20px}
-.modal-overlay.show{display:flex}
-.modal{background:#fff;border-radius:8px;width:100%;max-width:640px;max-height:88vh;overflow-y:auto;padding:28px;position:relative;animation:fadeIn .2s ease}
-@keyframes fadeIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
-.modal-close{position:absolute;top:12px;right:16px;font-size:20px;color:rgba(0,0,0,.25);cursor:pointer;background:none;border:none;line-height:1;transition:color .2s}
-.modal-close:hover{color:#ff6b00}
-.modal-img{width:100%;max-height:320px;object-fit:contain;background:#f8f8f8;border-radius:4px;margin-bottom:14px}
-.modal-title{font-size:17px;font-weight:700;color:#1a1a1a;margin-bottom:6px}
-.modal-meta{font-size:12px;color:rgba(0,0,0,.3);margin-bottom:12px}
-.modal-desc{font-size:13px;color:rgba(0,0,0,.45);line-height:1.7}
-.modal-btn{display:inline-block;margin-top:16px;padding:9px 24px;background:#ff6b00;color:#fff;border:none;border-radius:4px;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;transition:opacity .2s}
-.modal-btn:hover{opacity:.88}
-.divider{height:1px;background:rgba(0,0,0,.06);max-width:1200px;margin:0 auto}
-.footer{text-align:center;padding:40px 24px;font-size:11px;color:rgba(0,0,0,.12);letter-spacing:2px}
-@media(max-width:600px){.top-nav{padding:12px 16px}.top-nav .nav-links{gap:18px}.hero{padding:100px 16px 60px}.section{padding:56px 16px 72px}.section-header{flex-direction:column;gap:4px}.section-header .num{font-size:48px}.grid{grid-template-columns:1fr}.card-img{height:180px}.album-grid{grid-template-columns:1fr}.album-img{height:170px}.espace-nav{flex-direction:column;align-items:center}.espace-nav a{width:100%;justify-content:center}.modal{padding:18px}}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.65;font-size:15px;overflow-x:hidden;font-feature-settings:"kern" 1;text-rendering:optimizeLegibility}
+img{max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:1.5px solid var(--accent);outline-offset:4px}
+
+/* ── 导航 ── */
+.nav{position:fixed;inset:0 0 auto 0;z-index:100;background:rgba(250,248,245,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:24px;height:62px;padding:0 var(--pad);max-width:1560px;margin:0 auto}
+.brand{font-family:var(--serif);font-size:17px;font-weight:700;letter-spacing:.16em;text-decoration:none;color:var(--ink)}
+.nav-links{display:flex;gap:30px;list-style:none}
+.nav-links a{position:relative;font-size:13px;letter-spacing:.04em;color:var(--ink-2);text-decoration:none;padding:6px 0;transition:color .2s}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .28s cubic-bezier(.2,.7,.3,1)}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-links a.active::after,.nav-links a:hover::after{transform:scaleX(1)}
+.nav-cta{font-size:12.5px;letter-spacing:.06em;text-decoration:none;padding-bottom:3px;border-bottom:1px solid var(--ink);transition:color .2s,border-color .2s}
+.nav-cta:hover{color:var(--accent);border-color:var(--accent)}
+.burger{display:none;width:30px;height:30px;border:0;background:none;position:relative;cursor:pointer}
+.burger i{position:absolute;left:3px;right:3px;height:1px;background:var(--ink);transition:transform .25s,opacity .2s}
+.burger i:nth-child(1){top:10px}.burger i:nth-child(2){top:15px}.burger i:nth-child(3){top:20px}
+.burger[aria-expanded="true"] i:nth-child(1){transform:translateY(5px) rotate(45deg)}
+.burger[aria-expanded="true"] i:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] i:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
+
+/* ── 首屏 ── */
+.hero{max-width:1560px;margin:0 auto;padding:calc(62px + clamp(56px,10vh,124px)) var(--pad) clamp(38px,6vh,68px)}
+.hero h1{font-family:var(--serif);font-weight:800;font-size:clamp(56px,11vw,160px);line-height:.94;letter-spacing:.01em}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero-sub{margin-top:clamp(20px,3.5vh,34px);font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;color:var(--muted)}
+
+/* ── 分区 ── */
+.sec{max-width:1560px;margin:0 auto;padding:clamp(56px,8vh,96px) var(--pad) clamp(64px,9vh,110px);scroll-margin-top:62px}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:0 clamp(18px,2vw,32px);align-items:end;padding-bottom:22px;border-bottom:1px solid var(--line);margin-bottom:clamp(30px,4vh,48px)}
+.sec-no{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--accent);margin-bottom:10px}
+.sec-head h2{font-family:var(--serif);font-size:clamp(24px,2.6vw,34px);font-weight:700;letter-spacing:.02em;line-height:1.25}
+.sec-head p{font-size:12.5px;line-height:1.8;color:var(--muted);text-align:right;padding-bottom:2px}
+
+/* ── 作品网格 ── */
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(28px,3.4vw,46px) clamp(18px,2vw,30px)}
+.work{display:block;width:100%;text-align:left;background:none;border:0;padding:0;cursor:pointer}
+.thumb{display:block;position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--paper-2)}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.16,.84,.44,1),filter .4s}
+.work:hover .thumb img{transform:scale(1.038)}
+.work-title{display:block;margin-top:15px;font-size:15px;font-weight:600;letter-spacing:.005em;line-height:1.45;transition:color .22s}
+.work:hover .work-title{color:var(--accent)}
+.work-meta{display:block;margin-top:7px;font-size:11.5px;letter-spacing:.04em;color:var(--muted);font-variant-numeric:tabular-nums}
+.work-desc{display:block;margin-top:9px;font-size:13px;line-height:1.65;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.album .thumb{aspect-ratio:4/3}
+.album .thumb img{filter:saturate(.96)}
+.alb-views{display:inline-block;margin-left:10px;color:var(--muted)}
+
+/* ── 弹窗 ── */
+.overlay{position:fixed;inset:0;background:rgba(22,19,15,.62);z-index:200;display:none;justify-content:center;align-items:center;padding:24px}
+.overlay.show{display:flex}
+.modal{background:var(--paper);width:100%;max-width:760px;max-height:88vh;overflow-y:auto;padding:clamp(22px,3vw,40px);position:relative}
+.modal-bar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:20px}
+.modal-kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+.modal-close{background:none;border:0;cursor:pointer;font-size:12px;letter-spacing:.06em;color:var(--muted);display:flex;align-items:center;gap:6px;transition:color .2s}
+.modal-close:hover{color:var(--ink)}
+.modal-close b{font-size:15px;font-weight:400;line-height:1}
+.modal-img{width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--paper-2);display:block;margin-bottom:24px}
+.modal-title{font-family:var(--serif);font-size:clamp(20px,2vw,26px);font-weight:700;line-height:1.35;letter-spacing:.01em}
+.modal-meta{margin-top:10px;font-size:11.5px;letter-spacing:.05em;color:var(--muted);font-variant-numeric:tabular-nums}
+.modal-desc{margin-top:16px;padding-top:16px;border-top:1px solid var(--line);font-size:13.5px;line-height:1.85;color:var(--ink-2)}
+.modal-desc ol,.modal-desc ul{margin:10px 0 0 0;padding-left:18px}
+.modal-desc li{margin-bottom:6px}
+.modal-link{display:inline-flex;align-items:center;gap:8px;margin-top:24px;font-size:13px;letter-spacing:.04em;text-decoration:none;padding-bottom:4px;border-bottom:1px solid var(--ink);transition:color .2s,border-color .2s}
+.modal-link:hover{color:var(--accent);border-color:var(--accent)}
+.modal-link span{font-size:15px;line-height:1}
+
+/* ── 页脚 ── */
+.foot{max-width:1560px;margin:0 auto;padding:36px var(--pad) 48px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:11.5px;letter-spacing:.06em;color:var(--muted)}
+.foot a{text-decoration:none;transition:color .2s}
+.foot a:hover{color:var(--accent)}
+
+/* ── 响应式 ── */
+@media(max-width:1100px){
+  .sec-head{grid-template-columns:1fr;gap:0;align-items:start}
+  .sec-head p{text-align:left;margin-top:12px;max-width:56ch}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:860px){
+  .nav-in{height:58px}
+  .burger{display:block;order:3}
+  .nav-cta{display:none}
+  .nav-links{position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--paper);border-bottom:1px solid var(--line);display:none}
+  .nav-links.open{display:flex}
+  .nav-links a{display:block;padding:15px var(--pad);font-size:14px;border-bottom:1px solid var(--line)}
+  .nav-links a::after{display:none}
+  .nav-links a.active{color:var(--accent)}
+  .hero{padding-top:calc(58px + 52px);padding-bottom:34px}
+  .hero h1{font-size:clamp(50px,16vw,100px)}
+  .hero-sub{font-size:10.5px;letter-spacing:.12em;margin-top:20px}
+  .sec{padding-top:52px;padding-bottom:64px}
+  .grid{grid-template-columns:1fr;gap:32px}
+  .thumb{aspect-ratio:16/9}
+  .work-desc{-webkit-line-clamp:3}
+  .modal{max-height:92vh}
+}
+@media(max-width:420px){
+  .hero-top{font-size:10px;letter-spacing:.08em;flex-direction:column;gap:6px}
+}
 </style>
 </head>
 <body>
-<nav class="top-nav"><span class="logo">LFD</span><ul class="nav-links"><li><a href="#hero">首页</a></li><li><a href="#espace-1">策划方案</a></li><li><a href="#espace-2">直播相册</a></li><li><a href="#espace-3">展厅设计</a></li></ul><a href="#espace-1" class="cta">查看案例</a></nav>
+<nav class="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top">LFD</a>
+    <button class="burger" id="burger" aria-label="展开导航" aria-expanded="false" aria-controls="navLinks"><i></i><i></i><i></i></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#top">首页</a></li>
+      <li><a href="#espace-1">旅游案例</a></li>
+      <li><a href="#espace-2">策划方案</a></li>
+      <li><a href="#espace-3">直播相册</a></li>
+      <li><a href="#espace-4">展厅设计</a></li>
+    </ul>
+    <a href="#espace-1" class="nav-cta">案例索引</a>
+  </div>
+</nav>
 
-<section class="hero" id="hero">
-<div class="date-box"><div class="num">9</div><div class="sep"></div><div>策划方案</div><div class="sep"></div><div class="num">7</div><div class="sep"></div><div>直播相册</div><div class="sep"></div><div class="num">6</div><div class="sep"></div><div>展厅设计</div></div>
-<div class="venue">项目管理 · 会议展览 · 空间设计</div>
-<h1>案例<span>分</span>享</h1>
-<div class="tagline">PORTFOLIO</div>
-<div class="desc">精选策划案例与活动现场影像，涵盖保险金融、体育赛事、大型展会、展厅设计等多个领域</div>
-</section>
+<header class="hero" id="top">
+  <h1>案例<em>分享</em></h1>
+  <p class="hero-sub">活动策划 · 会议展览 · 空间设计</p>
+</header>
 
-<section class="espace-intro"><div class="count">3 ESPACES</div><h2>策划方案 · 直播相册 · 展厅设计</h2><div class="body">围绕3个维度展开——策划案例、活动现场影像、展厅空间设计，全方位呈现项目能力。</div></section>
+<main>
+  <section class="sec" id="espace-1">
+    <div class="sec-head"><div class="sec-titles"><span class="sec-no">01</span><h2>旅游案例</h2></div>
+      <p>保险渠道团、康养旅行、禅修文化、跨境游轮——从线路设计到落地执行的全案策划。</p>
+    </div>
+    <div class="grid" id="tourGrid"></div>
+  </section>
 
-<nav class="espace-nav"><a href="#espace-1"><span class="num">01</span>策划方案</a><a href="#espace-2"><span class="num">02</span>直播相册</a><a href="#espace-3"><span class="num">03</span>展厅设计</a></nav>
+  <section class="sec" id="espace-2">
+    <div class="sec-head"><div class="sec-titles"><span class="sec-no">02</span><h2>策划方案</h2></div>
+      <p>9 个精品策划项目，涵盖保险金融、体育赛事、大型展会等核心领域。</p>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
 
-<section class="section" id="espace-1"><div class="section-header"><div class="num">01</div><div class="info"><h3>策划方案</h3><p>9个精品策划项目，涵盖保险金融、体育赛事、大型展会等核心领域。</p></div></div><div class="grid" id="grid"></div></section>
-<div class="divider"></div>
-<section class="section" id="espace-2"><div class="section-header"><div class="num">02</div><div class="info"><h3>直播相册</h3><p>活动现场影像记录，通过专业摄影平台实时呈现。</p></div></div><div class="album-grid" id="albumGrid"></div></section>
-<div class="divider"></div>
-<section class="section" id="espace-3"><div class="section-header"><div class="num">03</div><div class="info"><h3>展厅设计</h3><p>6个展厅设计项目，涵盖教育考试院展厅改造、党建文化长廊、社会治理中心等空间设计。</p></div></div><div class="grid" id="expoGrid"></div></section>
+  <section class="sec" id="espace-3">
+    <div class="sec-head"><div class="sec-titles"><span class="sec-no">03</span><h2>直播相册</h2></div>
+      <p>活动现场影像记录，通过专业摄影平台实时呈现。</p>
+    </div>
+    <div class="grid" id="albumGrid"></div>
+  </section>
 
-<footer class="footer">© 案例分享 — PORTFOLIO 2026</footer>
+  <section class="sec" id="espace-4">
+    <div class="sec-head"><div class="sec-titles"><span class="sec-no">04</span><h2>展厅设计</h2></div>
+      <p>6 个展厅空间项目，涵盖教育考试院改造、党建文化长廊、社会治理中心等。</p>
+    </div>
+    <div class="grid" id="expoGrid"></div>
+  </section>
+</main>
 
-<div class="modal-overlay" id="modal"><div class="modal"><button class="modal-close" onclick="closeModal()">✕</button><img class="modal-img" id="modalImg" src="" alt=""><div class="modal-title" id="modalTitle"></div><div class="modal-meta" id="modalMeta"></div><div class="modal-desc" id="modalDesc"></div><a class="modal-btn" id="modalOpenBtn" href="#" target="_blank">📄 查看文件</a></div></div>
+<footer class="foot">
+  <span>© 2026 LFD · 案例分享</span>
+  <span id="statFoot" class="foot-stats"></span>
+  <span><a href="#top">回到顶部</a></span>
+</footer>
+
+<div class="overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <div class="modal-bar">
+      <span class="modal-kicker" id="modalKicker">Case</span>
+      <button class="modal-close" onclick="closeModal()" aria-label="关闭">关闭 <b>×</b></button>
+    </div>
+    <img class="modal-img" id="modalImg" alt="">
+    <h3 class="modal-title" id="modalTitle"></h3>
+    <div class="modal-meta" id="modalMeta"></div>
+    <div class="modal-desc" id="modalDesc"></div>
+    <a class="modal-link" id="modalOpenBtn" href="#" target="_blank" rel="noopener"><span>↗</span> 查看原方案</a>
+  </div>
+</div>
 
 <script>
-var PROJECTS=[{id:0,title:"重庆女排见面会活动方案",client:"太平洋保险",file:"10月13日重庆女排见面会活动方案（上海新康.pdf",pages:37,size:12.6,thumb:"thumbs/00.jpg",preview:"太平洋保险重庆女排见面会活动策划方案"},{id:1,title:"世界人工智能大会-投标方案",client:"上海新康辉",file:"2024世界人工智能大会-投标3.0.pdf",pages:124,size:63.4,thumb:"thumbs/01.jpg",preview:"2024世界人工智能大会 · 智能制造与数字劳动力"},{id:2,title:"第四届菁英奖颁奖盛典策划",client:"太平洋产险",file:"2024精英会策划V8-增加案例.pdf",pages:166,size:56.4,thumb:"thumbs/02.jpg",preview:"太平洋产险第四届菁英奖颁奖盛典策划方案"},{id:3,title:"CIIE 进博会策划",client:"进博会",file:"CIIE(5).pdf",pages:110,size:35.2,thumb:"thumbs/03.jpg",preview:"中国国际进口博览会"},{id:4,title:"616伙伴节需求推荐方案",client:"太平洋保险",file:"太保2024年616伙伴节需求推荐方案（上海新康.pdf",pages:64,size:39.1,thumb:"thumbs/04.jpg",preview:"太保2024年616伙伴节需求推荐方案"},{id:5,title:"奥运健儿见面会（厦门站）",client:"太平洋保险",file:"太保奥运健儿见面会方案0808.pdf",pages:122,size:32.5,thumb:"thumbs/05.jpg",preview:"太保奥运健儿见面会活动策划方案 · 厦门站"},{id:6,title:"IQA年会策划方案",client:"太保寿险",file:"太保寿险2025年IQA年会策划方案221（上海新康.pdf",pages:179,size:66.9,thumb:"thumbs/06.jpg",preview:"太保寿险2025年IQA年会策划方案"},{id:7,title:"第十六届客户节盛典策划",client:"富德生命人寿",file:"富德生命人寿客户节.pdf",pages:62,size:5.5,thumb:"thumbs/07.jpg",preview:"以心至新 · 第十六届客户节盛典"},{id:8,title:"第十二届菁英会（首尔）",client:"顾问行销渠道",file:"第十二届菁英会(首尔)方案.pdf",pages:143,size:34.3,thumb:"thumbs/08.jpg",preview:"顾问行销渠道2025年第十二届菁英会首尔策划方案"}];
-var EXPOS=[{id:"e4",title:"宣城郎溪党建项目策划案",client:"宣城郎溪",type:"党建文化",desc:"党建文化空间策划与设计。",file:"exhibition/宣城郎溪党建项目策划案20230612.pptx",thumb:"thumbs_expo/e4_langxi.jpeg"},{id:"e1",title:"江苏省教育考试院展厅改造方案",client:"江苏省教育考试院",type:"展厅改造",desc:"三大展区整体改造，含前言、党的全面领导、电子大屏、八个处室展板、荣誉墙、多媒体互动设备等。",sections:["序厅：前言·党的全面领导·电子大屏","主厅：八处室展板·科举文化·多媒体互动","尾厅：荣誉墙·群团建设·发展规划·结束语"],file:"exhibition/江苏省教育考试院展厅改造方案8.7_HTML版.pptx",thumb:"thumbs_expo/e1_jiaoyu.png"},{id:"e2",title:"凤凰港口文化中心汇报方案",client:"凤凰港口",type:"文化中心",desc:"港口文化中心空间规划与设计汇报方案。",file:"exhibition/凤凰港口文化中心汇报9.15(1).pdf",thumb:"thumbs_expo/e2_fenghuang.jpg"},{id:"e3",title:"南邮讲标方案",client:"南京邮电大学",type:"讲标方案",desc:"高校项目讲标展示方案。",file:"exhibition/南邮讲标方案1109.pdf",thumb:"thumbs_expo/e3_nanyou.jpg"},{id:"e5",title:"奥赛康药业党建文化长廊设计",client:"江苏奥赛康药业",type:"党建文化",desc:"企业文化长廊空间设计，党建主题展示。",file:"exhibition/江苏奥赛康药业有限公司党建文化长廊设计方案.pptx",thumb:"thumbs_expo/e5_aosaikang.jpeg"},{id:"e6",title:"汤山全域社会治理中心方案",client:"汤山街道",type:"社会治理",desc:"全域社会治理中心空间规划方案。",file:"exhibition/汤山全域社会治理中心方案第四稿.pdf",thumb:"thumbs_expo/e6_tangshan.jpg"}];
-var ALBUMS=[{id:"a1",name:"九岗山峰会暨开门红启动会",sub:"中国太平洋人寿江苏分公司",url:"https://m.alltuu.com/album/60729643c5fa97afc177e8717bb2442d?menu=live",platform:"喔图",thumb:"https://spu.alltuu.com/cover/ALBUM5885093/SHARE/4.jpg?x-oss-process=image/resize,w_400"},{id:"a2",name:"高客法商全员培训暨启动大会",sub:"",url:"https://m.alltuu.com/album/5e944678b4e25ef2f4572b3e77ef2b0a?menu=live",platform:"喔图",thumb:"https://spu.alltuu.com/cover/ALBUM5849740/SHARE/2.jpg?x-oss-process=image/resize,w_400"},{id:"a3",name:"绩优组织发展峰会",sub:"太平洋寿险江苏分公司",url:"https://m.alltuu.com/album/276d6006d13b0a849a04e0312d5497f5?menu=live",platform:"喔图",thumb:"https://spu.alltuu.com/cover/ALBUM5386330/SHARE/2.jpg?x-oss-process=image/resize,w_400"},{id:"a4",name:"江苏银保首季红表彰暨五六联动启动",sub:"",url:"https://m.alltuu.com/album/22677368d043a41b202f5b6d2401b2fe/?menu=live",platform:"喔图",views:"14971",thumb:"https://spu.alltuu.com/cover/ALBUM7254147/SHARE/3.jpg?x-oss-process=image/resize,w_400"},{id:"a5",name:"江苏银保首季红表彰（备用链接）",sub:"",url:"https://m.alltuu.com/album/795162a4f81615b25b6bdbd9f9b83bfb/?menu=live",platform:"喔图",thumb:"https://spu.alltuu.com/cover/ALBUM7756877/SHARE/1.jpg?x-oss-process=image/resize,w_400"},{id:"a6",name:"星耀龙江 守护相随",sub:"太保黑龙江分公司",url:"https://www.yipai360.com/photolivepc/?orderId=202510201303024936&channel=h5",platform:"一拍即传",thumb:"thumbs_expo/a6_xingyao.jpg"},{id:"a7",name:"大师在你身边 相乐家园-成都站",sub:"",url:"https://www.yipai360.com/photolivepc/?orderId=202408261858523839&channel=h5",platform:"一拍即传",thumb:"thumbs_expo/a7_dashi.jpg"}];
+/* ---------- 数据层 ----------
+   可选字段（有则显示，无则自动省略）：
+   role 我的角色 / scale 规模 / year 年份 / result 成果
+   旅游额外支持：destination 目的地 / days 天数 / people 人数 */
+var TOURS = [
+ {title:"银发经济 · 老年旅游×大健康商业计划书",client:"南京康辉国际旅行社",preview:"为银发旅游事业部搭建业务模型，目标3年成为中国银发旅游第一品牌",pages:20,size:4.0,thumb:"tour/tour_00.jpg",file:"tour/01-yinfa-jingji.pdf"},
+ {title:"启航韩国 · 首尔6天欢乐之旅",client:"山东游轮渠道团",destination:"韩国首尔",days:6,preview:"2025 韩国渠道专享，游轮 + 首尔双目的地 6 天欢乐之旅",pages:33,size:10.9,thumb:"tour/tour_01.jpg",file:"tour/02-shouer-6d.pdf"},
+ {title:"江苏太保 · 五台山朝台之旅",client:"江苏太保",destination:"山西五台山",days:3,preview:"佛国圣境，清凉五台——朝台问道，心归清凉",pages:30,size:5.6,thumb:"tour/tour_02.jpg",file:"tour/03-wutaishan.pdf"},
+ {title:"灵山福佑 · 江南行3日游",destination:"江南",days:3,preview:"经典深度探索：精华景点、地道美食、专车专导 24 小时管家式服务",pages:48,size:14.2,thumb:"tour/tour_03.jpg",file:"tour/04-jiangnan-3d.pdf"},
+ {title:"苏锡禅境 · 无锡&苏州3天2晚",destination:"无锡 · 苏州",days:3,preview:"灵山胜境 · 禅意小镇拈花湾 · 惠山古镇 · 狮子林 · 木渎",pages:19,size:4.7,thumb:"tour/tour_04.jpg",file:"tour/05-suxi-chanjing.pdf"},
+ {title:"三亚-博鳌4日康养之旅",client:"贵阳太保",destination:"三亚 · 博鳌",days:4,preview:"三亚-博鳌双城 4 日康养主题定制之旅",pages:31,size:6.4,thumb:"tour/tour_05.jpg",file:"tour/06-sanya-boao-4d.pdf"},
+ {title:"成都熊猫基地-太保家园3日游",client:"天津太保",destination:"成都",days:3,preview:"太平洋保险 · 太保家园成都三日深度体验游",pages:80,size:13.0,thumb:"tour/tour_06.jpg",file:"tour/07-chengdu-3d.pdf"},
+ {title:"北京太保家园参观行程（VIP 定制）",client:"天津太保",destination:"北京",days:1,preview:"VIP 专属定制，太保家园 1 日考察动线",pages:46,size:13.0,thumb:"tour/tour_07.jpg",file:"tour/08-beijing-1d.pdf"},
+ {title:"青岛露营定制2日行程",client:"天津太保",destination:"青岛",days:2,preview:"STAR CAMPING 主题露营团建，2 日定制行程",pages:26,size:4.9,thumb:"tour/tour_08.jpg",file:"tour/09-qingdao-2d.pdf"},
+ {title:"舞动中国 · 2026全国广场舞文艺汇演邀请函",destination:"全国",preview:"舞出健康，舞出风采——全国性广场舞汇演的招商邀请函",pages:28,size:6.6,thumb:"tour/tour_09.jpg",file:"tour/10-guangchangwu.pdf"}
+];
 
-function R(g,items,cardFn){document.getElementById(g).innerHTML=items.map(cardFn).join('')}
-function renderProjects(){R('grid',PROJECTS,function(p){return'<div class="card" onclick="openP('+p.id+')"><img class="card-img" src="'+p.thumb+'" loading="lazy"><div class="card-body"><div class="card-title">'+p.title+'</div><div class="card-meta"><span>'+p.client+'</span><span>'+p.pages+'页</span></div><div class="card-desc">'+(p.preview||'')+'</div></div></div>'})}
-function renderAlbums(){document.getElementById('albumGrid').innerHTML=ALBUMS.map(function(a){var i=a.thumb?'<img class="album-img" src="'+a.thumb+'" loading="lazy">':'<div class="album-ph">📷</div>',v=a.views?'<span>👁 '+a.views+'</span>':'';return'<a class="album-card" href="'+a.url+'" target="_blank" rel="noopener">'+i+'<div class="album-body"><div class="album-name">'+a.name+'</div><div class="album-meta"><span>📱 '+a.platform+'</span>'+v+'</div></div></a>'}).join('')}
-function renderExpos(){var ic={'展厅改造':'🏛️','文化中心':'🏢','讲标方案':'🎓','党建文化':'🚩','社会治理':'🏘️'};document.getElementById('expoGrid').innerHTML=EXPOS.map(function(e){var i=e.thumb?'<img class="card-img" src="'+e.thumb+'" loading="lazy">':'<div class="album-ph" style="height:200px">'+(ic[e.type]||'📐')+'</div>';return'<div class="card" onclick="openE(\''+e.id+'\')">'+i+'<div class="card-body"><div class="card-title">'+e.title+'</div><div class="card-meta"><span>'+e.client+'</span><span>'+e.type+'</span></div><div class="card-desc">'+e.desc+'</div></div></div>'}).join('')}
-function openE(id){var e=EXPOS.find(function(x){return x.id===id});if(!e)return;var mi=document.getElementById('modalImg');mi.src=e.thumb||'';mi.style.display=e.thumb?'':'none';document.getElementById('modalTitle').textContent=e.title;document.getElementById('modalMeta').textContent=e.client+' · '+e.type;var sh=e.sections&&e.sections.length?'<p style="margin-top:12px;font-size:12px;color:rgba(0,0,0,.4);line-height:1.8">'+e.sections.map(function(s,i){return(i+1)+'. '+s}).join('<br>')+'</p>':'';document.getElementById('modalDesc').innerHTML='<p>'+e.desc+'</p>'+sh;var btn=document.getElementById('modalOpenBtn');btn.href=encodeURI(e.file);btn.style.display=e.file?'':'none';document.getElementById('modal').classList.add('show')}
-function openP(id){var p=PROJECTS.find(function(x){return x.id===id});if(!p)return;document.getElementById('modalImg').src=p.thumb;document.getElementById('modalImg').style.display='';document.getElementById('modalTitle').textContent=p.title;document.getElementById('modalMeta').textContent=p.client+' · '+p.pages+'页 · '+p.size+'MB';document.getElementById('modalDesc').innerHTML='<p style="color:rgba(0,0,0,.35);font-size:11px">'+p.file+'</p><p style="margin-top:8px">'+(p.preview||'').substring(0,300).replace(/\n/g,'<br>')+'</p>';document.getElementById('modalOpenBtn').href=encodeURI(p.file);document.getElementById('modalOpenBtn').style.display='';document.getElementById('modal').classList.add('show')}
-function renderArchive(){var cl={};PROJECTS.forEach(function(p){if(!cl[p.client])cl[p.client]=0;cl[p.client]++});EXPOS.forEach(function(e){if(!cl[e.client])cl[e.client]=0;cl[e.client]++});var tp=PROJECTS.reduce(function(s,p){return s+p.pages},0),ts=PROJECTS.reduce(function(s,p){return s+p.size},0);var h='<div class="card" style="cursor:default"><div class="card-body"><div style="font-size:28px;font-weight:900;color:#ff6b00;margin-bottom:2px">'+EXPOS.length+'</div><div class="card-title">展厅设计</div><div class="card-desc" style="margin-top:4px">教育考试院·党建文化·社会治理</div></div></div>';h+='<div class="card" style="cursor:default"><div class="card-body"><div style="font-size:28px;font-weight:900;color:#ff6b00;margin-bottom:2px">'+PROJECTS.length+'</div><div class="card-title">策划方案</div><div class="card-desc" style="margin-top:4px">'+tp+'页 · '+ts.toFixed(1)+'MB</div></div></div>';h+='<div class="card" style="cursor:default"><div class="card-body"><div style="font-size:28px;font-weight:900;color:#ff6b00;margin-bottom:2px">'+ALBUMS.length+'</div><div class="card-title">直播相册</div><div class="card-desc" style="margin-top:4px">喔图+一拍即传</div></div></div>';h+='<div class="card" style="cursor:default"><div class="card-body"><div style="font-size:28px;font-weight:900;color:#1a1a1a;margin-bottom:2px">'+Object.keys(cl).length+'</div><div class="card-title">服务客户</div><div class="card-desc" style="margin-top:4px">'+Object.keys(cl).slice(0,5).join('·')+'…</div></div></div>';document.getElementById('archiveGrid').innerHTML=h}
-function closeModal(){document.getElementById('modal').classList.remove('show')}
-var ns=document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll',function(){var y=pageYOffset;ns.forEach(function(a){a.classList.remove('active')});var t1=document.getElementById('espace-1'),t2=document.getElementById('espace-2'),t3=document.getElementById('espace-3');if(y<(t1?t1.offsetTop:9999)-100){var h=document.querySelector('.nav-links a[href="#hero"]');if(h)h.classList.add('active')}else if(y<(t2?t2.offsetTop:9999)-100){var e=document.querySelector('.nav-links a[href="#espace-1"]');if(e)e.classList.add('active')}else if(y<(t3?t3.offsetTop:9999)-100){var a=document.querySelector('.nav-links a[href="#espace-2"]');if(a)a.classList.add('active')}else{var r=document.querySelector('.nav-links a[href="#espace-3"]');if(r)r.classList.add('active')}});
-document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal()});
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()});
-renderProjects();renderAlbums();renderExpos();
+var PROJECTS = [
+ {id:0,title:"重庆女排见面会活动方案",client:"太平洋保险",file:"10月13日重庆女排见面会活动方案（上海新康.pdf",pages:37,size:12.6,thumb:"thumbs/00.jpg",preview:"太平洋保险重庆女排见面会活动策划方案"},
+ {id:1,title:"世界人工智能大会-投标方案",client:"上海新康辉",file:"2024世界人工智能大会-投标3.0.pdf",pages:124,size:63.4,thumb:"thumbs/01.jpg",preview:"2024世界人工智能大会 · 智能制造与数字劳动力"},
+ {id:2,title:"第四届菁英奖颁奖盛典策划",client:"太平洋产险",file:"2024精英会策划V8-增加案例.pdf",pages:166,size:56.4,thumb:"thumbs/02.jpg",preview:"太平洋产险第四届菁英奖颁奖盛典策划方案"},
+ {id:3,title:"CIIE 进博会策划",client:"进博会",file:"CIIE(5).pdf",pages:110,size:35.2,thumb:"thumbs/03.jpg",preview:"中国国际进口博览会"},
+ {id:4,title:"616伙伴节需求推荐方案",client:"太平洋保险",file:"太保2024年616伙伴节需求推荐方案（上海新康.pdf",pages:64,size:39.1,thumb:"thumbs/04.jpg",preview:"太保2024年616伙伴节需求推荐方案"},
+ {id:5,title:"奥运健儿见面会（厦门站）",client:"太平洋保险",file:"太保奥运健儿见面会方案0808.pdf",pages:122,size:32.5,thumb:"thumbs/05.jpg",preview:"太保奥运健儿见面会活动策划方案 · 厦门站"},
+ {id:6,title:"IQA年会策划方案",client:"太保寿险",file:"太保寿险2025年IQA年会策划方案221（上海新康.pdf",pages:179,size:66.9,thumb:"thumbs/06.jpg",preview:"太保寿险2025年IQA年会策划方案"},
+ {id:7,title:"第十六届客户节盛典策划",client:"富德生命人寿",file:"富德生命人寿客户节.pdf",pages:62,size:5.5,thumb:"thumbs/07.jpg",preview:"以心至新 · 第十六届客户节盛典"},
+ {id:8,title:"第十二届菁英会（首尔）",client:"顾问行销渠道",file:"第十二届菁英会(首尔)方案.pdf",pages:143,size:34.3,thumb:"thumbs/08.jpg",preview:"顾问行销渠道2025年第十二届菁英会首尔策划方案"}
+];
+
+var EXPOS = [
+ {id:"e4",title:"宣城郎溪党建项目策划案",client:"宣城郎溪",type:"党建文化",desc:"党建文化空间策划与设计。",file:"exhibition/宣城郎溪党建项目策划案20230612.pptx",thumb:"thumbs_expo/e4_langxi.jpg"},
+ {id:"e1",title:"江苏省教育考试院展厅改造方案",client:"江苏省教育考试院",type:"展厅改造",desc:"三大展区整体改造，含前言、党的全面领导、电子大屏、八个处室展板、荣誉墙、多媒体互动设备等。",sections:["序厅：前言 · 党的全面领导 · 电子大屏","主厅：八处室展板 · 科举文化 · 多媒体互动","尾厅：荣誉墙 · 群团建设 · 发展规划 · 结束语"],file:"exhibition/江苏省教育考试院展厅改造方案8.7_HTML版.pptx",thumb:"thumbs_expo/e1_jiaoyu.jpg"},
+ {id:"e2",title:"凤凰港口文化中心汇报方案",client:"凤凰港口",type:"文化中心",desc:"港口文化中心空间规划与设计汇报方案。",file:"exhibition/凤凰港口文化中心汇报9.15(1).pdf",thumb:"thumbs_expo/e2_fenghuang.jpg"},
+ {id:"e3",title:"南邮讲标方案",client:"南京邮电大学",type:"讲标方案",desc:"高校项目讲标展示方案。",file:"exhibition/南邮讲标方案1109.pdf",thumb:"thumbs_expo/e3_nanyou.jpg"},
+ {id:"e5",title:"奥赛康药业党建文化长廊设计",client:"江苏奥赛康药业",type:"党建文化",desc:"企业文化长廊空间设计，党建主题展示。",file:"exhibition/江苏奥赛康药业有限公司党建文化长廊设计方案.pptx",thumb:"thumbs_expo/e5_aosaikang.jpg"},
+ {id:"e6",title:"汤山全域社会治理中心方案",client:"汤山街道",type:"社会治理",desc:"全域社会治理中心空间规划方案。",file:"exhibition/汤山全域社会治理中心方案第四稿.pdf",thumb:"thumbs_expo/e6_tangshan.jpg"}
+];
+
+var ALBUMS = [
+ {id:"a1",name:"九岗山峰会暨开门红启动会",sub:"中国太平洋人寿江苏分公司",url:"https://m.alltuu.com/album/60729643c5fa97afc177e8717bb2442d?menu=live",platform:"喔图",thumb:"albums/a1.jpg"},
+ {id:"a2",name:"高客法商全员培训暨启动大会",sub:"",url:"https://m.alltuu.com/album/5e944678b4e25ef2f4572b3e77ef2b0a?menu=live",platform:"喔图",thumb:"albums/a2.jpg"},
+ {id:"a3",name:"绩优组织发展峰会",sub:"太平洋寿险江苏分公司",url:"https://m.alltuu.com/album/276d6006d13b0a849a04e0312d5497f5?menu=live",platform:"喔图",thumb:"albums/a3.jpg"},
+ {id:"a4",name:"江苏银保首季红表彰暨五六联动启动",sub:"",url:"https://m.alltuu.com/album/22677368d043a41b202f5b6d2401b2fe/?menu=live",platform:"喔图",views:14971,thumb:"albums/a4.jpg"},
+ {id:"a6",name:"星耀龙江 守护相随",sub:"太保黑龙江分公司",url:"https://www.yipai360.com/photolivepc/?orderId=202510201303024936&channel=h5",platform:"一拍即传",thumb:"thumbs_expo/a6_xingyao.jpg"},
+ {id:"a7",name:"大师在你身边 相乐家园-成都站",sub:"",url:"https://www.yipai360.com/photolivepc/?orderId=202408261858523839&channel=h5",platform:"一拍即传",thumb:"thumbs_expo/a7_dashi.jpg"}
+];
+
+/* ---------- 工具 ---------- */
+var esc = function(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
+var META = function(parts){ return parts.filter(Boolean).join(' · ') };
+var fmt = function(n){ return n > 9999 ? (n/10000).toFixed(1).replace(/\.0$/,'') + ' 万' : String(n) };
+
+/* ---------- 渲染 ---------- */
+function renderTours(){
+  var st = document.getElementById('statFoot');
+  if(st) st.textContent = TOURS.length + ' 旅游 · ' + PROJECTS.length + ' 方案 · ' + ALBUMS.length + ' 相册 · ' + EXPOS.length + ' 展厅';
+  document.getElementById('tourGrid').innerHTML = TOURS.map(function(t,i){
+    var a = esc(t.title);
+    var meta = META([t.destination, t.days ? t.days + '天' : '', t.client]);
+    return '<button class="work" onclick="openT('+i+')">'
+      + '<span class="thumb"><img src="'+esc(t.thumb)+'" alt="'+a+'" loading="lazy" width="480" height="270"></span>'
+      + '<span class="work-title">'+a+'</span>'
+      + '<span class="work-meta">'+esc(meta)+'</span>'
+      + '<span class="work-desc">'+esc(t.preview||'')+'</span>'
+      + '</button>';
+  }).join('');
+}
+
+function renderProjects(){
+  document.getElementById('grid').innerHTML = PROJECTS.map(function(p){
+    var a = esc(p.title);
+    var meta = META([p.client, p.role, p.year]);
+    return '<button class="work" onclick="openP('+p.id+')">'
+      + '<span class="thumb"><img src="'+esc(p.thumb)+'" alt="'+a+'" loading="lazy" width="400" height="225"></span>'
+      + '<span class="work-title">'+a+'</span>'
+      + '<span class="work-meta">'+esc(meta)+'</span>'
+      + '<span class="work-desc">'+esc(p.preview||'')+'</span>'
+      + '</button>';
+  }).join('');
+}
+
+function renderAlbums(){
+  document.getElementById('albumGrid').innerHTML = ALBUMS.map(function(a){
+    var n = esc(a.name);
+    var v = a.views ? '<span class="alb-views">'+fmt(a.views)+' 次浏览</span>' : '';
+    return '<a class="work album" href="'+esc(a.url)+'" target="_blank" rel="noopener">'
+      + '<span class="thumb"><img src="'+esc(a.thumb)+'" alt="'+n+'" loading="lazy" width="300" height="300"></span>'
+      + '<span class="work-title">'+n+'</span>'
+      + '<span class="work-meta">'+esc(META([a.sub, a.platform]))+v+'</span>'
+      + '</a>';
+  }).join('');
+}
+
+function renderExpos(){
+  document.getElementById('expoGrid').innerHTML = EXPOS.map(function(e){
+    var t = esc(e.title);
+    var meta = META([e.client, e.type]);
+    return '<button class="work" onclick="openE(\''+e.id+'\')">'
+      + '<span class="thumb"><img src="'+esc(e.thumb)+'" alt="'+t+'" loading="lazy" width="480" height="270"></span>'
+      + '<span class="work-title">'+t+'</span>'
+      + '<span class="work-meta">'+esc(meta)+'</span>'
+      + '<span class="work-desc">'+esc(e.desc)+'</span>'
+      + '</button>';
+  }).join('');
+}
+
+/* ---------- 弹窗 ---------- */
+/* 本地预览时（file://）除旅游方案外，其他原文件回落到线上地址；发布后一律走相对路径 */
+var BASE = location.protocol === 'file:' ? 'https://www.luhuahua.com/' : '';
+function linkUrl(f){ return (location.protocol === 'file:' && f.indexOf('tour/') === 0) ? f : BASE + f; }
+var lastFocus = null;
+
+function showModal(o){
+  lastFocus = document.activeElement;
+  var mi = document.getElementById('modalImg');
+  if(o.img){ mi.src = o.img; mi.alt = o.title || ''; mi.style.display = 'block'; }
+  else { mi.removeAttribute('src'); mi.style.display = 'none'; }
+  document.getElementById('modalKicker').textContent = o.kicker || 'Case';
+  document.getElementById('modalTitle').textContent = o.title || '';
+  document.getElementById('modalMeta').textContent = o.meta || '';
+  document.getElementById('modalDesc').innerHTML = o.desc || '';
+  var btn = document.getElementById('modalOpenBtn');
+  if(o.link){ btn.href = encodeURI(linkUrl(o.link)); btn.innerHTML = '<span>↗</span> ' + (o.btnText || '查看原方案'); btn.style.display = 'inline-flex'; }
+  else { btn.style.display = 'none'; }
+  var m = document.getElementById('modal');
+  m.classList.add('show');
+  m.querySelector('.modal-close').focus();
+}
+
+function openP(id){
+  var p = PROJECTS.filter(function(x){return x.id===id})[0]; if(!p) return;
+  showModal({
+    kicker:'策划方案', img:p.thumb, title:p.title,
+    meta:META([p.client, p.year, p.role, p.scale]),
+    desc:(p.result?'<p style="color:#B23A20;font-weight:600;margin-bottom:10px">'+esc(p.result)+'</p>':'')+'<p>'+esc(p.preview||'')+'</p>',
+    link:p.file, btnText:'查看原方案 · '+p.pages+'页 / '+p.size+'MB'
+  });
+}
+
+function openT(i){
+  var t = TOURS[i]; if(!t) return;
+  var tags = [t.destination, t.days ? t.days+'天' : '', t.people ? t.people+'人' : ''].filter(Boolean);
+  showModal({
+    kicker:'旅游案例', img:t.thumb, title:t.title,
+    meta:META([tags.join(' · '), t.client]),
+    desc:(t.result?'<p style="color:#B23A20;font-weight:600;margin-bottom:10px">'+esc(t.result)+'</p>':'')+'<p>'+esc(t.preview||'')+'</p>',
+    link:t.file, btnText:'查看原方案 · '+t.pages+'页 / '+t.size+'MB'
+  });
+}
+
+function openE(id){
+  var e = EXPOS.filter(function(x){return x.id===id})[0]; if(!e) return;
+  var sh = (e.sections && e.sections.length) ? '<ol>'+e.sections.map(function(s){return '<li>'+esc(s)+'</li>'}).join('')+'</ol>' : '';
+  showModal({kicker:'展厅设计', img:e.thumb, title:e.title, meta:e.client+' · '+e.type,
+    desc:'<p>'+esc(e.desc)+'</p>'+sh, link:e.file, btnText:'查看原方案'});
+}
+
+function closeModal(){
+  document.getElementById('modal').classList.remove('show');
+  if(lastFocus && lastFocus.focus) lastFocus.focus();
+}
+document.getElementById('modal').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
+
+/* ---------- 导航 ---------- */
+var burger = document.getElementById('burger'), navLinks = document.getElementById('navLinks');
+burger.addEventListener('click', function(){
+  var open = navLinks.classList.toggle('open');
+  burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+navLinks.addEventListener('click', function(e){
+  if(e.target.tagName === 'A'){ navLinks.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+});
+
+var links = document.querySelectorAll('.nav-links a');
+var sections = ['top','espace-1','espace-2','espace-3','espace-4'].map(function(id){return document.getElementById(id)});
+var onScroll = function(){
+  var y = window.scrollY + 130, idx = 0;
+  for(var i=0;i<sections.length;i++){ if(sections[i] && y >= sections[i].offsetTop) idx = i; }
+  links.forEach(function(a){ a.classList.remove('active'); });
+  var cur = document.querySelector('.nav-links a[href="#'+sections[idx].id+'"]');
+  if(cur) cur.classList.add('active');
+};
+window.addEventListener('scroll', onScroll, {passive:true});
+
+renderTours(); renderProjects(); renderAlbums(); renderExpos(); onScroll();
 </script>
 </body>
 </html>
